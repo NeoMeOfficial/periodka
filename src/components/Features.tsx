@@ -1,163 +1,169 @@
 import React from 'react';
 import { Card } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Shield, Lock, TrendingUp, Heart, Smartphone, Eye, BarChart, Pin, Database, Zap, Settings } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Shield, Lock, KeyRound, TrendingUp, Target, Activity, Settings, Sparkles, Brain, EyeOff, Download } from 'lucide-react';
 
 export const Features = () => {
   return (
-    <section className="py-20 bg-muted/5">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6">
+    <section className="py-24 bg-gradient-soft relative overflow-hidden">
+      {/* Background decorations */}
+      <div className="absolute top-0 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 right-1/4 w-48 h-48 bg-accent/8 rounded-full blur-2xl"></div>
+      
+      <div className="container mx-auto px-6 relative">
+        <div className="text-center mb-20">
+          <h2 className="text-5xl lg:text-6xl font-bold mb-8 bg-gradient-primary bg-clip-text text-transparent">
             Prečo používať Periodku?
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Periodka sa odlišuje od ostatných sledovačov menštruácie zameraním na súkromnosť, 
-            presnosť a komplexné funkcie navrhnuté špeciálne pre vaše potreby.
+          <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+            Vaša menštruácia si zaslúži súkromie, presnosť a pohodlie. Periodka je navrhnutá s dôrazom na vašu bezpečnosť a jedinečné potreby.
           </p>
         </div>
 
-        {/* Privacy & Security */}
-        <div className="mb-16">
-          <h3 className="text-2xl font-bold mb-8 text-center">Súkromnosť a bezpečnosť</h3>
-          <div className="grid md:grid-cols-2 gap-8">
-            <Card className="glass p-8 rounded-2xl">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
-                  <Shield className="w-6 h-6 text-primary" />
-                </div>
-                <div>
-                  <h4 className="text-xl font-semibold mb-3">Prístup orientovaný na súkromnosť</h4>
-                  <p className="text-muted-foreground leading-relaxed mb-4">
-                    Vaše dáta zostávajú na vašom zariadení. Žiadna registrácia, žiadne cloudové dáta a žiadne sledovanie. 
-                    Vaše intímne zdravotné dáta zostávajú len vaše.
-                  </p>
-                  <Badge variant="secondary">100% offline</Badge>
-                </div>
+        <div className="grid lg:grid-cols-3 gap-8 mb-16">
+          {/* Privacy & Security Section */}
+          <div className="space-y-8">
+            <div className="text-center mb-8">
+              <div className="w-16 h-16 bg-gradient-primary rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-elegant">
+                <Shield className="w-8 h-8 text-white" />
               </div>
-            </Card>
+              <h3 className="text-2xl font-bold mb-2">Súkromnosť a bezpečnosť</h3>
+              <p className="text-muted-foreground">Vaše dáta zostávajú výhradne vo vašich rukách</p>
+            </div>
+            
+            <div className="space-y-6">
+              <Card className="glass p-6 rounded-2xl shadow-soft border-primary/10 hover:shadow-elegant transition-all duration-300">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Lock className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-2 text-lg">Prístup orientovaný na súkromnosť</h4>
+                    <p className="text-muted-foreground leading-relaxed">
+                      Vaše dáta zostávajú na zariadení. Žiadna registrácia, žiadne cloudové dáta, žiadne sledovanie. 
+                      Vaše intímne zdravotné údaje zostávajú výhradne vaše.
+                    </p>
+                  </div>
+                </div>
+              </Card>
 
-            <Card className="glass p-8 rounded-2xl">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
-                  <Pin className="w-6 h-6 text-primary" />
+              <Card className="glass p-6 rounded-2xl shadow-soft border-primary/10 hover:shadow-elegant transition-all duration-300">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <KeyRound className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-2 text-lg">Ochrana PIN kódom</h4>
+                    <p className="text-muted-foreground leading-relaxed">
+                      Pridajte ďalšiu vrstvu súkromia pomocou 4-miestneho PIN kódu. Chráňte svoje citlivé 
+                      zdravotné údaje pred kýmkoľvek, kto by mohol získať prístup k vášmu zariadeniu.
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="text-xl font-semibold mb-3">Ochrana PIN kódom</h4>
-                  <p className="text-muted-foreground leading-relaxed mb-4">
-                    Pridajte ďalšiu vrstvu súkromia pomocou 4-miestneho PIN kódu. 
-                    Uchovajte svoje citlivé zdravotné dáta v bezpečí pred kýmkoľvek, kto by mohol pristupovať k vášmu zariadeniu.
-                  </p>
-                  <Badge variant="secondary">4-miestny PIN</Badge>
-                </div>
+              </Card>
+            </div>
+          </div>
+
+          {/* Tracking & Predictions Section */}
+          <div className="space-y-8">
+            <div className="text-center mb-8">
+              <div className="w-16 h-16 bg-gradient-primary rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-elegant">
+                <TrendingUp className="w-8 h-8 text-white" />
               </div>
-            </Card>
+              <h3 className="text-2xl font-bold mb-2">Sledovanie a predpovede</h3>
+              <p className="text-muted-foreground">Inteligentné poznatky prispôsobené vášmu cyklu</p>
+            </div>
+            
+            <div className="space-y-6">
+              <Card className="glass p-6 rounded-2xl shadow-soft border-primary/10 hover:shadow-elegant transition-all duration-300">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Target className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-2 text-lg">Presné predpovede</h4>
+                    <p className="text-muted-foreground leading-relaxed">
+                      Periodka sa učí z vašich jedinečných vzorcov cyklu a poskytuje čoraz presnejšie 
+                      predpovede pre vašu menštruáciu, plodnosť a ovuláciu.
+                    </p>
+                  </div>
+                </div>
+              </Card>
+
+              <Card className="glass p-6 rounded-2xl shadow-soft border-primary/10 hover:shadow-elegant transition-all duration-300">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Activity className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-2 text-lg">Komplexné sledovanie</h4>
+                    <p className="text-muted-foreground leading-relaxed">
+                      Sledujte nielen menštruáciu, ale aj príznaky, náladu, intenzitu prietoku a ďalšie 
+                      zdravotné ukazovatele pre úplný obraz o vašom menštruačnom zdraví.
+                    </p>
+                  </div>
+                </div>
+              </Card>
+            </div>
+          </div>
+
+          {/* Advanced Features Section */}
+          <div className="space-y-8">
+            <div className="text-center mb-8">
+              <div className="w-16 h-16 bg-gradient-primary rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-elegant">
+                <Sparkles className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold mb-2">Pokročilé funkcie</h3>
+              <p className="text-muted-foreground">Inovatívne nástroje pre modernú ženu</p>
+            </div>
+            
+            <div className="space-y-6">
+              <Card className="glass p-6 rounded-2xl shadow-soft border-primary/10 hover:shadow-elegant transition-all duration-300">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Brain className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-2 text-lg">Voliteľné AI poznatky</h4>
+                    <p className="text-muted-foreground leading-relaxed">
+                      Získajte personalizované odporúčania a analýzu vašich vzorcov cyklu a príznakov 
+                      pomocou pokročilej umelej inteligencie.
+                    </p>
+                  </div>
+                </div>
+              </Card>
+
+              <Card className="glass p-6 rounded-2xl shadow-soft border-primary/10 hover:shadow-elegant transition-all duration-300">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <EyeOff className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-2 text-lg">Diskrétny režim</h4>
+                    <p className="text-muted-foreground leading-relaxed">
+                      Úplne zmeňte rozhranie aplikácie na pracovný nástroj. Ideálne pre zachovanie 
+                      súkromia v akejkoľvek situácii.
+                    </p>
+                  </div>
+                </div>
+              </Card>
+            </div>
           </div>
         </div>
 
-        {/* Tracking & Predictions */}
-        <div className="mb-16">
-          <h3 className="text-2xl font-bold mb-8 text-center">Sledovanie a predpovede</h3>
-          <div className="grid md:grid-cols-3 gap-6">
-            <Card className="glass p-6 rounded-2xl">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <TrendingUp className="w-8 h-8 text-primary" />
-                </div>
-                <h4 className="font-semibold mb-3">Presné predpovede</h4>
-                <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-                  Periodka sa učí z vašich jedinečných vzorcov cyklu, aby poskytovala stále presnejšie predpovede.
-                </p>
-                <Badge variant="secondary">95% presnosť</Badge>
-              </div>
-            </Card>
-
-            <Card className="glass p-6 rounded-2xl">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <Heart className="w-8 h-8 text-primary" />
-                </div>
-                <h4 className="font-semibold mb-3">Komplexné sledovanie</h4>
-                <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-                  Sledujte nielen menštruáciu, ale aj príznaky, náladu, intenzitu prietoku a ďalšie zdravotné ukazovatele.
-                </p>
-                <Badge variant="secondary">20+ príznakov</Badge>
-              </div>
-            </Card>
-
-            <Card className="glass p-6 rounded-2xl">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <Settings className="w-8 h-8 text-primary" />
-                </div>
-                <h4 className="font-semibold mb-3">Personalizované nastavenia</h4>
-                <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-                  Prispôsobte dĺžku cyklu, trvanie periód a sledovače príznakov. Periodka sa prispôsobí vášmu telu.
-                </p>
-                <Badge variant="secondary">Úplne prispôsobiteľné</Badge>
-              </div>
-            </Card>
-          </div>
-        </div>
-
-        {/* Advanced Features */}
-        <div className="mb-16">
-          <h3 className="text-2xl font-bold mb-8 text-center">Pokročilé funkcie</h3>
-          <div className="grid md:grid-cols-3 gap-6">
-            <Card className="glass p-6 rounded-2xl">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <Zap className="w-8 h-8 text-accent" />
-                </div>
-                <h4 className="font-semibold mb-3">Voliteľné AI poznatky</h4>
-                <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-                  Získajte personalizované odporúčania a analýzu vašich vzorcov cyklu a príznakov.
-                </p>
-                <Badge variant="secondary">AI asistent</Badge>
-              </div>
-            </Card>
-
-            <Card className="glass p-6 rounded-2xl">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <Eye className="w-8 h-8 text-accent" />
-                </div>
-                <h4 className="font-semibold mb-3">Diskrétny režim</h4>
-                <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-                  Úplne zmena rozhrania aplikácie na pracovný nástroj produktivity. Ideálne pre zachovanie súkromia.
-                </p>
-                <Badge variant="secondary">Úplne skryté</Badge>
-              </div>
-            </Card>
-
-            <Card className="glass p-6 rounded-2xl">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <Database className="w-8 h-8 text-accent" />
-                </div>
-                <h4 className="font-semibold mb-3">Jednoduché spravovanie dát</h4>
-                <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-                  Zálohovanie jedným kliknutím a jednoduchá funkcia importu. Žiadne prekážky. Len kontrola nad vašimi dátami.
-                </p>
-                <Badge variant="secondary">Jednoduché zálohovanie</Badge>
-              </div>
-            </Card>
-          </div>
-        </div>
-
-        {/* Stats section */}
-        <div className="grid md:grid-cols-3 gap-8 text-center">
-          <div className="space-y-2">
-            <div className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent">98%</div>
-            <p className="text-muted-foreground">používateľiek je spokojných s presnosťou</p>
-          </div>
-          <div className="space-y-2">
-            <div className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent">95%</div>
-            <p className="text-muted-foreground">presnosť predpovedí po 3 mesiacoch</p>
-          </div>
-          <div className="space-y-2">
-            <div className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent">100%</div>
-            <p className="text-muted-foreground">súkromnosť vašich dát</p>
+        {/* Call to Action */}
+        <div className="text-center">
+          <div className="glass p-10 rounded-3xl shadow-elegant border-primary/20 max-w-2xl mx-auto">
+            <h3 className="text-3xl font-bold mb-4 bg-gradient-primary bg-clip-text text-transparent">
+              Pripravená prevziať kontrolu nad svojím menštruačným zdravím?
+            </h3>
+            <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+              Začnite sledovať svoj cyklus ešte dnes s Periodkou - aplikáciou orientovanou na súkromie, 
+              úplne bezplatnou a navrhnutou tak, aby vám dala kontrolu.
+            </p>
+            <Button size="lg" className="bg-gradient-primary hover:shadow-elegant transition-all duration-500 text-white font-semibold text-xl py-6 px-12 rounded-2xl hover:scale-105">
+              ✨ Začať používať Periodku zdarma
+            </Button>
           </div>
         </div>
       </div>

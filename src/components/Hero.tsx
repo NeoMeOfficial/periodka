@@ -83,12 +83,12 @@ export const Hero = () => {
               </div>
             </div>
 
-            <div className="flex flex-col gap-4">
-              <Button size="lg" className="glass-button bg-gradient-primary hover:shadow-elegant transition-all duration-300 text-lg py-6">
-                Zadaj menštruáciu
+            <div className="flex flex-col gap-5">
+              <Button size="lg" className="bg-gradient-primary hover:shadow-elegant transition-all duration-500 text-white font-semibold text-xl py-8 rounded-2xl hover:scale-105 shadow-soft">
+                ✨ Zadaj menštruáciu
               </Button>
-              <Button variant="outline" size="lg" className="glass-button">
-                Pozrieť kalendár
+              <Button variant="outline" size="lg" className="glass-button border-primary/30 hover:border-primary/50 text-lg py-6 rounded-2xl">
+                📅 Pozrieť kalendár
               </Button>
             </div>
 
@@ -103,52 +103,72 @@ export const Hero = () => {
             </div>
           </div>
 
-          {/* Right content - Cycle indicator */}
-          <div className="relative">
-            <Card className="glass border-0 shadow-elegant p-8 rounded-3xl">
-              <div className="relative aspect-square rounded-2xl overflow-hidden bg-gradient-soft flex items-center justify-center">
-                {/* Circular cycle indicator */}
-                <div className="relative w-64 h-64">
-                  <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
-                    {/* Background circle */}
-                    <circle
-                      cx="50"
-                      cy="50"
-                      r="45"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      className="text-muted/20"
-                    />
-                    {/* Progress circle */}
-                    <circle
-                      cx="50"
-                      cy="50"
-                      r="45"
-                      fill="none"
-                      stroke="url(#gradient)"
-                      strokeWidth="3"
-                      strokeDasharray={`${(1/28) * 283} 283`}
-                      strokeLinecap="round"
-                      className="transition-all duration-300"
-                    />
-                    <defs>
-                      <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stopColor="hsl(var(--primary))" />
-                        <stop offset="100%" stopColor="hsl(var(--accent))" />
-                      </linearGradient>
-                    </defs>
-                  </svg>
-                  
-                  {/* Center content */}
-                  <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-                    <img src={periodkaIcon} alt="Periodka" className="w-12 h-12 rounded-xl mb-3" />
-                    <div className="text-4xl font-bold mb-2">1</div>
-                    <div className="text-sm text-muted-foreground">deň cyklu</div>
+          {/* Right content - Enhanced cycle indicator */}
+          <div className="relative lg:ml-8">
+            <div className="relative">
+              {/* Floating background elements */}
+              <div className="absolute -top-4 -right-4 w-24 h-24 bg-primary/10 rounded-full blur-xl"></div>
+              <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-accent/15 rounded-full blur-lg"></div>
+              
+              <Card className="glass border-primary/20 shadow-elegant p-10 rounded-[2rem] backdrop-blur-xl">
+                <div className="relative aspect-square rounded-3xl overflow-hidden bg-gradient-soft flex items-center justify-center">
+                  {/* Enhanced circular cycle indicator */}
+                  <div className="relative w-72 h-72">
+                    <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
+                      {/* Background circle */}
+                      <circle
+                        cx="50"
+                        cy="50"
+                        r="42"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        className="text-muted/15"
+                      />
+                      {/* Progress circle with glow effect */}
+                      <circle
+                        cx="50"
+                        cy="50"
+                        r="42"
+                        fill="none"
+                        stroke="url(#enhancedGradient)"
+                        strokeWidth="4"
+                        strokeDasharray={`${(1/28) * 264} 264`}
+                        strokeLinecap="round"
+                        className="transition-all duration-700 drop-shadow-lg"
+                        filter="url(#glow)"
+                      />
+                      <defs>
+                        <linearGradient id="enhancedGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stopColor="hsl(var(--primary))" />
+                          <stop offset="50%" stopColor="hsl(10 70% 80%)" />
+                          <stop offset="100%" stopColor="hsl(var(--accent))" />
+                        </linearGradient>
+                        <filter id="glow">
+                          <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                          <feMerge> 
+                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                          </feMerge>
+                        </filter>
+                      </defs>
+                    </svg>
+                    
+                    {/* Enhanced center content */}
+                    <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
+                      <div className="mb-4 p-3 rounded-2xl bg-gradient-primary/10 backdrop-blur-sm">
+                        <img src={periodkaIcon} alt="Periodka" className="w-14 h-14 rounded-xl" />
+                      </div>
+                      <div className="text-5xl font-bold mb-2 bg-gradient-primary bg-clip-text text-transparent">1</div>
+                      <div className="text-sm text-muted-foreground font-medium">deň cyklu</div>
+                      <div className="mt-3 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium">
+                        Menštruácia
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Card>
+              </Card>
+            </div>
           </div>
         </div>
       </div>
