@@ -18,23 +18,26 @@ export const Hero = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left content */}
           <div className="space-y-8">
-            <div className="space-y-4">
-              <Badge variant="secondary" className="text-sm font-medium">
-                100% Súkromný a bezpečný
-              </Badge>
+            <div className="space-y-6">
+              <div className="space-y-4">
+                <h1 className="text-4xl lg:text-5xl font-bold">
+                  Ahoj! 👋
+                </h1>
+                
+                <div className="space-y-2">
+                  <p className="text-xl font-medium">Ste vo fáze menštruácie</p>
+                  <p className="text-muted-foreground">Deň 1 z vášho aktuálneho cyklu</p>
+                </div>
+                
+                <Badge variant="secondary" className="text-sm font-medium">
+                  Všetky dáta sú uložené na vašom zariadení
+                </Badge>
+              </div>
               
-              <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
-                Číslo 1 bezplatný{" "}
-                <span className="bg-gradient-primary bg-clip-text text-transparent">
-                  sledovač menštruácie
-                </span>{" "}
-                s úplnou súkromnosťou
-              </h1>
-              
-              <p className="text-xl text-muted-foreground leading-relaxed">
-                Sledujte svoj menštruačný cyklus s presnosťou a úplnou súkromnosťou. 
-                Periodka uchováva vaše dáta offline a bezpečne, nikdy nezdieľa vaše citlivé informácie.
-              </p>
+              <div className="bg-muted/10 rounded-2xl p-6 glass">
+                <p className="text-lg mb-4">Ďalšia menštruácia za <span className="font-bold text-primary">27 dní</span></p>
+                <p className="text-sm text-muted-foreground">Založené na vašom 28-dňovom cykle</p>
+              </div>
             </div>
 
             {/* Feature highlights */}
@@ -80,12 +83,12 @@ export const Hero = () => {
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="glass-button bg-gradient-primary hover:shadow-elegant transition-all duration-300">
-                Používať Periodku zdarma
+            <div className="flex flex-col gap-4">
+              <Button size="lg" className="glass-button bg-gradient-primary hover:shadow-elegant transition-all duration-300 text-lg py-6">
+                Zadaj menštruáciu
               </Button>
               <Button variant="outline" size="lg" className="glass-button">
-                Viac informácií
+                Pozrieť kalendár
               </Button>
             </div>
 
@@ -100,32 +103,49 @@ export const Hero = () => {
             </div>
           </div>
 
-          {/* Right content - App mockup */}
+          {/* Right content - Cycle indicator */}
           <div className="relative">
             <Card className="glass border-0 shadow-elegant p-8 rounded-3xl">
-              <div className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-gradient-soft">
-                <img 
-                  src={heroImage} 
-                  alt="Žena používajúca aplikáciu Periodka" 
-                  className="w-full h-full object-cover"
-                />
-                
-                {/* App overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent" />
-                
-                {/* App mockup element */}
-                <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
-                  <Card className="glass bg-primary/20 text-primary-foreground p-6 rounded-2xl shadow-elegant min-w-[280px] backdrop-blur-xl">
-                    <div className="flex items-center gap-3 mb-4">
-                      <img src={periodkaIcon} alt="Periodka" className="w-8 h-8 rounded-lg" />
-                      <h3 className="font-bold text-lg">Periodka</h3>
-                    </div>
-                    <div className="space-y-2 text-center">
-                      <div className="text-2xl font-bold">● ● ● ○ ○</div>
-                      <p className="text-sm opacity-90">Deň 3 z 28</p>
-                      <p className="text-xs opacity-75">Ďalšia menštruácia za 25 dní</p>
-                    </div>
-                  </Card>
+              <div className="relative aspect-square rounded-2xl overflow-hidden bg-gradient-soft flex items-center justify-center">
+                {/* Circular cycle indicator */}
+                <div className="relative w-64 h-64">
+                  <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
+                    {/* Background circle */}
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="45"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      className="text-muted/20"
+                    />
+                    {/* Progress circle */}
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="45"
+                      fill="none"
+                      stroke="url(#gradient)"
+                      strokeWidth="3"
+                      strokeDasharray={`${(1/28) * 283} 283`}
+                      strokeLinecap="round"
+                      className="transition-all duration-300"
+                    />
+                    <defs>
+                      <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="hsl(var(--primary))" />
+                        <stop offset="100%" stopColor="hsl(var(--accent))" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                  
+                  {/* Center content */}
+                  <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
+                    <img src={periodkaIcon} alt="Periodka" className="w-12 h-12 rounded-xl mb-3" />
+                    <div className="text-4xl font-bold mb-2">1</div>
+                    <div className="text-sm text-muted-foreground">deň cyklu</div>
+                  </div>
                 </div>
               </div>
             </Card>
