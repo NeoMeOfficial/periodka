@@ -14,7 +14,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        'poppins': ['Poppins', 'sans-serif'],
+        'raleway': ['Raleway', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",

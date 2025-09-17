@@ -11,17 +11,17 @@ export const CalendarInsights = () => {
       <div className="absolute bottom-1/4 right-0 w-64 h-64 bg-accent/5 rounded-full blur-2xl"></div>
       
       <div className="container mx-auto px-6 relative">
-        <div className="text-center mb-20">
-          <h2 className="text-5xl lg:text-6xl font-bold mb-8 bg-gradient-primary bg-clip-text text-transparent">
+        <div className="text-center mb-32">
+          <h2 className="text-6xl lg:text-7xl font-bold mb-12 bg-gradient-primary bg-clip-text text-transparent leading-tight">
             Kalendár a poznatky
           </h2>
-          <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+          <p className="text-2xl text-muted-foreground max-w-5xl mx-auto leading-relaxed">
             Sledujte svoj cyklus pomocou intuitívneho kalendára a získajte cenné poznatky o svojom zdraví.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 mb-16">
-          <div className="space-y-10">
+        <div className="grid lg:grid-cols-2 gap-16 mb-20">
+          <div className="space-y-12">
             <div className="transform hover:scale-105 transition-all duration-300">
               <CycleTimeline />
             </div>

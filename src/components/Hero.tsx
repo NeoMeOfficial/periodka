@@ -17,26 +17,26 @@ export const Hero = () => {
       <div className="relative container mx-auto px-4 py-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left content */}
-          <div className="space-y-8">
-            <div className="space-y-6">
-              <div className="space-y-4">
-                <h1 className="text-4xl lg:text-5xl font-bold">
-                  Ahoj! 👋
+          <div className="space-y-12">
+            <div className="space-y-8">
+              <div className="space-y-6">
+                <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
+                  Ahoj!
                 </h1>
                 
-                <div className="space-y-2">
-                  <p className="text-xl font-medium">Ste vo fáze menštruácie</p>
-                  <p className="text-muted-foreground">Deň 1 z vášho aktuálneho cyklu</p>
+                <div className="space-y-4">
+                  <p className="text-2xl font-medium">Ste vo fáze menštruácie</p>
+                  <p className="text-xl text-muted-foreground">Deň 1 z vášho aktuálneho cyklu</p>
                 </div>
                 
-                <Badge variant="secondary" className="text-sm font-medium">
+                <Badge variant="secondary" className="text-base font-medium px-6 py-3 rounded-2xl">
                   Všetky dáta sú uložené na vašom zariadení
                 </Badge>
               </div>
               
-              <div className="bg-muted/10 rounded-2xl p-6 glass">
-                <p className="text-lg mb-4">Ďalšia menštruácia za <span className="font-bold text-primary">27 dní</span></p>
-                <p className="text-sm text-muted-foreground">Založené na vašom 28-dňovom cykle</p>
+              <div className="bg-muted/5 rounded-3xl p-8 glass border border-primary/10">
+                <p className="text-xl mb-6">Ďalšia menštruácia za <span className="font-bold text-primary">27 dní</span></p>
+                <p className="text-base text-muted-foreground">Založené na vašom 28-dňovom cykle</p>
               </div>
             </div>
 
@@ -83,23 +83,22 @@ export const Hero = () => {
               </div>
             </div>
 
-            <div className="flex flex-col gap-5">
-              <Button size="lg" className="bg-gradient-primary hover:shadow-elegant transition-all duration-500 text-white font-semibold text-xl py-8 rounded-2xl hover:scale-105 shadow-soft">
-                ✨ Zadaj menštruáciu
+            <div className="flex flex-col gap-6 mt-12">
+              <Button size="lg" className="bg-gradient-primary hover:shadow-elegant transition-all duration-500 text-white font-semibold text-xl py-6 px-12 rounded-2xl hover:scale-105 shadow-soft">
+                Zadaj menštruáciu
               </Button>
-              <Button variant="outline" size="lg" className="glass-button border-primary/30 hover:border-primary/50 text-lg py-6 rounded-2xl">
-                📅 Pozrieť kalendár
+              <Button variant="outline" size="lg" className="glass-button border-primary/30 hover:border-primary/50 text-lg py-5 px-12 rounded-2xl">
+                Pozrieť kalendár
               </Button>
             </div>
 
-            {/* Rating */}
-            <div className="flex items-center gap-2">
-              <div className="flex gap-1">
+            <div className="flex items-center gap-4 mt-8">
+              <div className="flex gap-2">
                 {[...Array(5)].map((_, i) => (
-                  <div key={i} className="w-5 h-5 bg-gradient-primary rounded-full" />
+                  <div key={i} className="w-6 h-6 bg-gradient-primary rounded-full" />
                 ))}
               </div>
-              <span className="text-sm text-muted-foreground">100% zamerané na súkromnosť</span>
+              <span className="text-base text-muted-foreground">100% zamerané na súkromnosť</span>
             </div>
           </div>
 
