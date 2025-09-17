@@ -81,10 +81,10 @@ export const Hero = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="bg-gradient-primary hover:shadow-elegant transition-all duration-300">
+              <Button size="lg" className="glass-button bg-gradient-primary hover:shadow-elegant transition-all duration-300">
                 Používať Periodku zdarma
               </Button>
-              <Button variant="outline" size="lg">
+              <Button variant="outline" size="lg" className="glass-button">
                 Viac informácií
               </Button>
             </div>
@@ -102,7 +102,7 @@ export const Hero = () => {
 
           {/* Right content - App mockup */}
           <div className="relative">
-            <Card className="bg-gradient-hero border-0 shadow-elegant p-8 rounded-3xl">
+            <Card className="glass border-0 shadow-elegant p-8 rounded-3xl">
               <div className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-gradient-soft">
                 <img 
                   src={heroImage} 
@@ -115,7 +115,7 @@ export const Hero = () => {
                 
                 {/* App mockup element */}
                 <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
-                  <Card className="bg-primary text-primary-foreground p-6 rounded-2xl shadow-elegant min-w-[280px]">
+                  <Card className="glass bg-primary/20 text-primary-foreground p-6 rounded-2xl shadow-elegant min-w-[280px] backdrop-blur-xl">
                     <div className="flex items-center gap-3 mb-4">
                       <img src={periodkaIcon} alt="Periodka" className="w-8 h-8 rounded-lg" />
                       <h3 className="font-bold text-lg">Periodka</h3>
