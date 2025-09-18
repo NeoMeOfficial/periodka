@@ -12,7 +12,7 @@ export const FloNavigation = () => {
             <img 
               src={periodkaLogo} 
               alt="Periodka Logo" 
-              className="w-12 h-12 rounded-lg"
+              className="w-15 h-15 rounded-lg object-cover"
             />
             <div className="text-2xl font-bold brand-text" style={{ color: '#F4415F' }}>Periodka</div>
           </div>
