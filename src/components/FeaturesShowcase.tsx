@@ -88,13 +88,23 @@ export const FeaturesShowcase = () => {
                 
                 {/* Feature Content */}
                 <div className="relative p-6 cursor-pointer transition-transform duration-300 hover:scale-[1.02]">
-                  <h3 className={`text-2xl font-bold mb-4 transition-colors duration-300 ${
-                    index === activeFeature 
-                      ? 'text-primary' 
-                      : 'text-foreground/80'
-                  }`}>
-                    {feature.title}
-                  </h3>
+                  <div className="symptom-glass rounded-2xl p-4 mb-4">
+                    <div className="flex items-center justify-center">
+                      <div className="text-center space-y-1">
+                        <div className="flex items-center justify-center gap-3">
+                          <div className="w-2 h-2 rounded-full bg-rose-400"></div>
+                          <h3 className={`text-lg lg:text-xl font-medium transition-colors duration-300 ${
+                            index === activeFeature 
+                              ? 'text-primary' 
+                              : 'text-foreground/80'
+                          }`} style={{ color: index === activeFeature ? undefined : '#955F6A' }}>
+                            {feature.title}
+                          </h3>
+                          <div className="w-2 h-2 rounded-full bg-rose-400"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <p className={`text-lg leading-relaxed transition-colors duration-300 ${
                     index === activeFeature 
                       ? 'text-foreground' 

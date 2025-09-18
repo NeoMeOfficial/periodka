@@ -46,6 +46,11 @@ All colors MUST be HSL.
     --shadow-soft: 0 4px 20px -4px hsl(355 40% 80% / 0.4);
     --shadow-glass: 0 8px 32px 0 rgba(255, 119, 130, 0.15);
     
+    /* Symptom glass variables */
+    --symptom-glass-bg: #FBF8F9;
+    --symptom-glass-border: rgba(255, 255, 255, 0.6);
+    --symptom-glass-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+    
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     --radius: 0.5rem;
@@ -105,6 +110,11 @@ All colors MUST be HSL.
     --shadow-elegant: 0 10px 30px -10px hsl(355 90% 78% / 0.4);
     --shadow-soft: 0 4px 20px -4px hsl(340 15% 5% / 0.6);
     --shadow-glass: 0 8px 32px 0 rgba(255, 119, 130, 0.2);
+    
+    /* Dark mode symptom glass */
+    --symptom-glass-bg: rgba(52, 41, 46, 0.9);
+    --symptom-glass-border: rgba(255, 255, 255, 0.1);
+    --symptom-glass-shadow: 0 4px 16px rgba(0, 0, 0, 0.2), 0 1px 4px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -223,5 +233,20 @@ All colors MUST be HSL.
   @keyframes gentle-spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+  }
+
+  /* Symptom glass morphism */
+  .symptom-glass {
+    background: var(--symptom-glass-bg);
+    border: 1px solid var(--symptom-glass-border);
+    box-shadow: var(--symptom-glass-shadow);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: all 0.2s ease;
+  }
+
+  .symptom-glass:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--symptom-glass-shadow), 0 8px 25px rgba(0, 0, 0, 0.1);
   }
 }
