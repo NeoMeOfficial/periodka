@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
+import periodkaLogo from '@/assets/periodka-logo.png';
 
 export const FloNavigation = () => {
   return (
@@ -8,9 +9,11 @@ export const FloNavigation = () => {
         <div className="px-8 py-4 flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-              <div className="w-4 h-4 bg-white rounded-sm"></div>
-            </div>
+            <img 
+              src={periodkaLogo} 
+              alt="Periodka Logo" 
+              className="w-8 h-8 rounded-lg"
+            />
             <div className="text-2xl font-bold text-foreground brand-text">Periodka</div>
           </div>
           
