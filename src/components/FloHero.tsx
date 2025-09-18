@@ -67,8 +67,9 @@ export const FloHero = () => {
               </Button>
               
               <Button 
-                variant="secondary"
+                variant="secondary-glass"
                 className="whitespace-nowrap"
+                style={{ color: '#F4415F' }}
               >
                 Získať prístup za 4,90 Eur mesačne
               </Button>
