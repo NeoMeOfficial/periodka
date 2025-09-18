@@ -16,7 +16,7 @@ export default {
       fontFamily: {
         'inter': ['Inter', 'sans-serif'],
         'sans': ['Inter', 'sans-serif'],
-        'nanum-pen': ['Nanum Pen Script', 'cursive'],
+        'allura': ['Allura', 'cursive'],
       },
       colors: {
         border: "hsl(var(--border))",
