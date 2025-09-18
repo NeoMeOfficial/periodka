@@ -45,8 +45,8 @@ export const FloFeaturesSection = () => {
               {/* Content Side */}
               <div className={`space-y-6 ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
                 <div className="symptom-glass rounded-2xl p-6">
-                  <div className="text-center space-y-4">
-                    <div className="flex items-center justify-center gap-3">
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3">
                       <div className="w-2 h-2 rounded-full bg-rose-400"></div>
                       <h3 className="text-xl lg:text-2xl font-medium" style={{ color: '#955F6A' }}>
                         {feature.id === 1 && (

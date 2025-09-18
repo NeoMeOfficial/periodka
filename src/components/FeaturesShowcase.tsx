@@ -89,8 +89,8 @@ export const FeaturesShowcase = () => {
                 {/* Feature Content */}
                 <div className="relative p-6 cursor-pointer transition-transform duration-300 hover:scale-[1.02]">
                   <div className="symptom-glass rounded-2xl p-6">
-                    <div className="text-center space-y-4">
-                      <div className="flex items-center justify-center gap-3">
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-3">
                         <div className="w-2 h-2 rounded-full bg-rose-400"></div>
                         <h3 className={`text-lg lg:text-xl font-medium transition-colors duration-300 ${
                           index === activeFeature 
