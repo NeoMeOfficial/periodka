@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Star, TrendingUp } from 'lucide-react';
+import { Star, TrendingUp, Calendar, Clock, Activity } from 'lucide-react';
 
 export const FloHero = () => {
+  const [showEntries, setShowEntries] = useState(false);
+
   return (
     <section className="pt-32 pb-16 bg-gradient-soft relative overflow-hidden floating-dots geometric-shapes">
       {/* Glassmorphism accent dots - reduced for hero */}
@@ -50,9 +52,10 @@ export const FloHero = () => {
                 variant="primary" 
                 className="bg-gradient-primary-button" 
                 style={{ color: '#F4415F' }}
+                onClick={() => setShowEntries(!showEntries)}
               >
                 <TrendingUp className="w-4 h-4" />
-                Odhad na dnes
+                Čo ma dnes čaká
               </Button>
             </div>
             
@@ -97,11 +100,51 @@ export const FloHero = () => {
                   
                   {/* Product Screenshot */}
                   <div className="w-full h-full relative rounded-[2.2rem] overflow-hidden">
-                    <img 
-                      src="/src/assets/periodka-app-screen.png" 
-                      alt="Periodka App Interface showing menstrual cycle tracking features" 
-                      className="w-full h-full object-cover object-center rounded-[2.2rem]"
-                    />
+                    {showEntries ? (
+                      /* Period Tracking Entries */
+                      <div className="w-full h-full bg-gradient-to-br from-rose-50 to-pink-50 p-6 flex flex-col justify-center gap-4">
+                        <div className="space-y-4">
+                          {/* Last Period Entry */}
+                          <div className="symptom-glass rounded-2xl p-4 bg-gradient-to-r from-rose-50/80 to-pink-50/80 border border-rose-200/30 backdrop-blur-sm">
+                            <div className="flex items-center gap-3">
+                              <Calendar className="w-5 h-5" style={{ color: '#F4415F' }} />
+                              <div>
+                                <p className="text-sm font-medium" style={{ color: '#955F6A' }}>Posledná menštruácia</p>
+                                <p className="text-base font-semibold" style={{ color: '#F4415F' }}>5. september 2025</p>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Cycle Length Entry */}
+                          <div className="symptom-glass rounded-2xl p-4 bg-gradient-to-r from-rose-50/80 to-pink-50/80 border border-rose-200/30 backdrop-blur-sm">
+                            <div className="flex items-center gap-3">
+                              <Clock className="w-5 h-5" style={{ color: '#F4415F' }} />
+                              <div>
+                                <p className="text-sm font-medium" style={{ color: '#955F6A' }}>Dĺžka cyklu</p>
+                                <p className="text-base font-semibold" style={{ color: '#F4415F' }}>28 dní</p>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Period Length Entry */}
+                          <div className="symptom-glass rounded-2xl p-4 bg-gradient-to-r from-rose-50/80 to-pink-50/80 border border-rose-200/30 backdrop-blur-sm">
+                            <div className="flex items-center gap-3">
+                              <Activity className="w-5 h-5" style={{ color: '#F4415F' }} />
+                              <div>
+                                <p className="text-sm font-medium" style={{ color: '#955F6A' }}>Dĺžka menštruácie</p>
+                                <p className="text-base font-semibold" style={{ color: '#F4415F' }}>5 dní</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      <img 
+                        src="/src/assets/periodka-app-screen.png" 
+                        alt="Periodka App Interface showing menstrual cycle tracking features" 
+                        className="w-full h-full object-cover object-center rounded-[2.2rem]"
+                      />
+                    )}
                     
                     {/* Subtle screen reflection effect */}
                     <div className="absolute inset-0 bg-gradient-to-br from-white/8 via-transparent to-white/3 pointer-events-none rounded-[2.2rem]"></div>
