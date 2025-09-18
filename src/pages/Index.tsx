@@ -1,21 +1,21 @@
 import React from 'react';
 import { Navigation } from '@/components/Navigation';
 import { HeroWithSocialProof } from '@/components/HeroWithSocialProof';
-import { ScreenshotsCarousel } from '@/components/ScreenshotsCarousel';
+import { FeaturesShowcase } from '@/components/FeaturesShowcase';
 import { FeatureSplit } from '@/components/FeatureSplit';
 import { ThreeUpFeatures } from '@/components/ThreeUpFeatures';
 import { TestimonialCarousel } from '@/components/TestimonialCarousel';
 import { QRDownload } from '@/components/QRDownload';
 import { WideCTABanner } from '@/components/WideCTABanner';
 import { Footer } from '@/components/Footer';
-import { Calendar, Baby, Heart, Users, Shield } from 'lucide-react';
+import { Calendar, Heart, Shield } from 'lucide-react';
 
 const Index = () => {
   return (
     <div className="min-h-screen">
       <Navigation />
       <HeroWithSocialProof />
-      <ScreenshotsCarousel />
+      <FeaturesShowcase />
       
       {/* Feature Sections */}
       <FeatureSplit
@@ -31,23 +31,6 @@ const Index = () => {
         description="Dostávaj denné tipy na počatie od expertov a nauč sa čítať signály plodnosti pomocou sledovania ovulácie – aby si v každom cykle maximalizovala šancu na pozitívny tehotenský test."
         bullets={["Plodné okná", "LH/ovulácia", "Denné odporúčania"]}
         icon={Heart}
-        reverse
-        className="bg-gradient-soft"
-      />
-      
-      <FeatureSplit
-        title="Sleduj tehotenstvo týždeň po týždni"
-        description="Zisti, ako sa mení tvoje telo aj bábätko. Sleduj dôležité míľniky a vďaka týždennému zoznamu úloh vždy vieš, čo je práve teraz dôležité."
-        icon={Baby}
-        className="bg-background"
-      />
-      
-      <FeatureSplit
-        title="Zdieľaj Periodka s partnerom – a zdieľajte zodpovednosť"
-        description="Naučíme partnera všetko, čo potrebuje vedieť o tvojom tele (a ako ťa môže lepšie podporiť) – aby si to nemusela vysvetľovať ty."
-        linkText="Zisti viac o zdieľaní s partnerom"
-        linkHref="#partner"
-        icon={Users}
         reverse
         className="bg-gradient-soft"
       />
