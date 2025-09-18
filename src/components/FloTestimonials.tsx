@@ -38,16 +38,16 @@ export const FloTestimonials = () => {
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + testimonials.length) % testimonials.length);
 
   return (
-    <section className="py-24 bg-gradient-soft">
+    <section className="py-24 bg-gradient-soft relative floating-dots">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto text-center">
           {/* Section Header */}
           <div className="mb-16">
             <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-foreground">
-              Čo hovoria naše používateľky o Periodka
+              Čo hovoria naše <span className="highlight-text">používateľky</span> o <span className="brand-text">Periodka</span>
             </h2>
             <p className="text-lg text-muted-foreground">
-              Čítaním Periodka sa môžeš cítiť posilnená! Môžeš povedať to isté o tom, 
+              Čítaním <span className="highlight-text">Periodka</span> sa môžeš cítiť posilnená! Môžeš povedať to isté o tom, 
               čo spôsobuje, že sa cítiš dobre?
             </p>
           </div>

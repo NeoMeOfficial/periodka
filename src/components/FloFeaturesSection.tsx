@@ -29,12 +29,12 @@ const features = [
 
 export const FloFeaturesSection = () => {
   return (
-    <section className="py-24 bg-background">
+    <section className="py-24 bg-background relative geometric-shapes">
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-foreground">
-            Čo všetko zvládne aplikácia Periodka?
+            Čo všetko zvládne aplikácia <span className="brand-text">Periodka</span>?
           </h2>
         </div>
 
@@ -45,7 +45,18 @@ export const FloFeaturesSection = () => {
               {/* Content Side */}
               <div className={`space-y-6 ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
                 <h3 className="text-2xl lg:text-3xl font-bold text-foreground">
-                  {feature.title}
+                  {feature.id === 1 && (
+                    <>Sleduj svoj <span className="highlight-text">cyklus</span> a príznaky</>
+                  )}
+                  {feature.id === 2 && (
+                    <>Pochop svoje <span className="highlight-text">príznaky</span></>
+                  )}
+                  {feature.id === 3 && (
+                    <>Vedz, čo robiť s <span className="highlight-text">príznakmi</span></>
+                  )}
+                  {feature.id === 4 && (
+                    <><span className="highlight-text">Anonymný režim</span> pre súkromie</>
+                  )}
                 </h3>
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   {feature.description}
@@ -62,7 +73,7 @@ export const FloFeaturesSection = () => {
               
               {/* Visual Side */}
               <div className={`flex justify-center ${index % 2 === 1 ? 'lg:order-1' : ''}`}>
-                <Card className="w-64 h-80 bg-gradient-soft border-border/50 p-6 flex items-center justify-center">
+                <Card className="w-64 h-80 bg-gradient-soft border-border/50 p-6 flex items-center justify-center relative floating-dots">
                   <div className="text-center space-y-4">
                     <div className="w-16 h-16 bg-primary/20 rounded-2xl mx-auto flex items-center justify-center">
                       <div className="w-8 h-8 bg-primary rounded-lg"></div>

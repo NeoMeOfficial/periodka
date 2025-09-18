@@ -4,7 +4,7 @@ import { Star, Apple, Smartphone } from 'lucide-react';
 
 export const FloHero = () => {
   return (
-    <section className="pt-24 pb-16 bg-gradient-soft relative overflow-hidden">
+    <section className="pt-32 pb-16 bg-gradient-soft relative overflow-hidden floating-dots geometric-shapes">
       <div className="container mx-auto px-6">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
@@ -16,20 +16,20 @@ export const FloHero = () => {
                   <Star key={i} className="w-4 h-4 fill-primary text-primary" />
                 ))}
               </div>
-              <span>Najlepšia aplikácia pre ženy na Google Play a App Store</span>
+              <span><span className="highlight-text">Najlepšia aplikácia</span> pre ženy na Google Play a App Store</span>
             </div>
             
             {/* Main Headline */}
             <div className="space-y-6">
               <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
                 <span className="text-foreground">Sme</span>{' '}
-                <span className="text-primary">Periodka</span>
-                <span className="text-foreground">, tvoja spoľahlivá aplikácia pre zdravie žien</span>
+                <span className="brand-text text-primary">Periodka</span>
+                <span className="text-foreground">, tvoja <span className="highlight-text">spoľahlivá</span> aplikácia pre <span className="highlight-text">zdravie žien</span></span>
                 <span className="text-primary">*</span>
               </h1>
               
               <p className="text-xl text-muted-foreground leading-relaxed max-w-lg">
-                Tisíce slovenských žien už používajú Periodka na sledovanie 
+                <span className="highlight-text">Tisíce slovenských žien</span> už používajú Periodka na sledovanie 
                 menštruácie, ovulácie a lepšie porozumenie svojho tela.
               </p>
             </div>

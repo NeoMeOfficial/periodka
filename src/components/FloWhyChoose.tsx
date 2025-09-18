@@ -22,12 +22,12 @@ const features = [
 
 export const FloWhyChoose = () => {
   return (
-    <section className="py-24 bg-gradient-soft">
+    <section className="py-24 bg-gradient-soft relative geometric-shapes">
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-foreground">
-            Prečo si vybrať Periodka?
+            Prečo si vybrať <span className="brand-text">Periodka</span>?
           </h2>
         </div>
 
@@ -36,7 +36,7 @@ export const FloWhyChoose = () => {
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
-              <Card key={index} className="p-8 text-center bg-background/80 border-border/50 hover:shadow-soft transition-all duration-300">
+              <Card key={index} className="p-8 text-center bg-background/80 border-border/50 hover:shadow-elegant transition-all duration-300 relative floating-dots">
                 <div className="w-16 h-16 mx-auto mb-6 bg-primary/10 rounded-full flex items-center justify-center">
                   <Icon className="w-8 h-8 text-primary" />
                 </div>

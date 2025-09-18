@@ -15,7 +15,7 @@ export const FloFooter = () => {
                 <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
                   <div className="w-4 h-4 bg-white rounded-sm"></div>
                 </div>
-                <div className="text-2xl font-bold text-primary">Periodka</div>
+                <div className="text-2xl font-bold brand-text text-primary">Periodka</div>
               </div>
               <p className="text-background/80 leading-relaxed">
                 Poznaj svoje telo, vlastni svoje zdravie
