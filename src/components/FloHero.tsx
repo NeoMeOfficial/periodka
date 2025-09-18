@@ -32,7 +32,7 @@ export const FloHero = () => {
                   <Star key={i} className="w-4 h-4 fill-primary text-primary" />
                 ))}
               </div>
-              <span>Obľúbená aplikácia, všetkúch aktívnych žien</span>
+              <span><span className="highlight-text">Obľúbená aplikácia</span>, všetkúch aktívnych žien</span>
             </div>
             
             {/* Main Headline */}
