@@ -17,7 +17,7 @@ const features = [
   },
   {
     id: 3,
-    title: "Vedz, čo robiť s príznakmi", 
+    title: "Zmeň to, ako sa cítiš", 
     description: "Získaj personalizované odporúčania a tipy od odborníkov, ako sa vyrovnať s príznakmi a zlepšiť svoje celkové zdravie."
   },
   {
@@ -44,33 +44,31 @@ export const FloFeaturesSection = () => {
             <div key={feature.id} className="grid lg:grid-cols-2 gap-12 items-center">
               {/* Content Side */}
               <div className={`space-y-6 ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
-                <div className="symptom-glass rounded-2xl p-4 mb-4">
-                  <div className="flex items-center justify-center">
-                    <div className="text-center space-y-1">
-                      <div className="flex items-center justify-center gap-3">
-                        <div className="w-2 h-2 rounded-full bg-rose-400"></div>
-                        <h3 className="text-xl lg:text-2xl font-medium" style={{ color: '#955F6A' }}>
-                          {feature.id === 1 && (
-                            <>Sleduj svoj <span className="highlight-text">cyklus</span> a príznaky</>
-                          )}
-                          {feature.id === 2 && (
-                            <>Pochop svoje <span className="highlight-text">príznaky</span></>
-                          )}
-                          {feature.id === 3 && (
-                            <>Vedz, čo robiť s <span className="highlight-text">príznakmi</span></>
-                          )}
-                          {feature.id === 4 && (
-                            <><span className="highlight-text">Anonymný režim</span> pre súkromie</>
-                          )}
-                        </h3>
-                        <div className="w-2 h-2 rounded-full bg-rose-400"></div>
-                      </div>
+                <div className="symptom-glass rounded-2xl p-6">
+                  <div className="text-center space-y-4">
+                    <div className="flex items-center justify-center gap-3">
+                      <div className="w-2 h-2 rounded-full bg-rose-400"></div>
+                      <h3 className="text-xl lg:text-2xl font-medium" style={{ color: '#955F6A' }}>
+                        {feature.id === 1 && (
+                          <>Sleduj svoj <span className="highlight-text">cyklus</span> a príznaky</>
+                        )}
+                        {feature.id === 2 && (
+                          <>Pochop svoje <span className="highlight-text">príznaky</span></>
+                        )}
+                        {feature.id === 3 && (
+                          <>Zmeň to, ako sa <span className="highlight-text">cítiš</span></>
+                        )}
+                        {feature.id === 4 && (
+                          <><span className="highlight-text">Anonymný režim</span> pre súkromie</>
+                        )}
+                      </h3>
+                      <div className="w-2 h-2 rounded-full bg-rose-400"></div>
                     </div>
+                    <p className="text-base leading-relaxed" style={{ color: '#955F6A' }}>
+                      {feature.description}
+                    </p>
                   </div>
                 </div>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  {feature.description}
-                </p>
                 {feature.buttonText && (
                   <Button 
                     variant="ghost" 

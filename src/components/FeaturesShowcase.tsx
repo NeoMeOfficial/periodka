@@ -15,7 +15,7 @@ const features = [
   },
   {
     id: 3,
-    title: "Vedz, čo robiť s príznakmi",
+    title: "Zmeň to, ako sa cítiš",
     description: "Získaj personalizované odporúčania a tipy od odborníkov, ako sa vyrovnať s príznakmi a zlepšiť svoje celkové zdravie."
   },
   {
@@ -88,30 +88,28 @@ export const FeaturesShowcase = () => {
                 
                 {/* Feature Content */}
                 <div className="relative p-6 cursor-pointer transition-transform duration-300 hover:scale-[1.02]">
-                  <div className="symptom-glass rounded-2xl p-4 mb-4">
-                    <div className="flex items-center justify-center">
-                      <div className="text-center space-y-1">
-                        <div className="flex items-center justify-center gap-3">
-                          <div className="w-2 h-2 rounded-full bg-rose-400"></div>
-                          <h3 className={`text-lg lg:text-xl font-medium transition-colors duration-300 ${
-                            index === activeFeature 
-                              ? 'text-primary' 
-                              : 'text-foreground/80'
-                          }`} style={{ color: index === activeFeature ? undefined : '#955F6A' }}>
-                            {feature.title}
-                          </h3>
-                          <div className="w-2 h-2 rounded-full bg-rose-400"></div>
-                        </div>
+                  <div className="symptom-glass rounded-2xl p-6">
+                    <div className="text-center space-y-4">
+                      <div className="flex items-center justify-center gap-3">
+                        <div className="w-2 h-2 rounded-full bg-rose-400"></div>
+                        <h3 className={`text-lg lg:text-xl font-medium transition-colors duration-300 ${
+                          index === activeFeature 
+                            ? 'text-primary' 
+                            : 'text-foreground/80'
+                        }`} style={{ color: index === activeFeature ? undefined : '#955F6A' }}>
+                          {feature.title}
+                        </h3>
+                        <div className="w-2 h-2 rounded-full bg-rose-400"></div>
                       </div>
+                      <p className={`text-base leading-relaxed transition-colors duration-300 ${
+                        index === activeFeature 
+                          ? 'text-foreground' 
+                          : 'text-muted-foreground'
+                      }`} style={{ color: index === activeFeature ? '#955F6A' : undefined }}>
+                        {feature.description}
+                      </p>
                     </div>
                   </div>
-                  <p className={`text-lg leading-relaxed transition-colors duration-300 ${
-                    index === activeFeature 
-                      ? 'text-foreground' 
-                      : 'text-muted-foreground'
-                  }`}>
-                    {feature.description}
-                  </p>
                 </div>
               </div>
             ))}
