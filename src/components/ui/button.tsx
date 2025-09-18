@@ -15,6 +15,8 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        primary: "symptom-glass rounded-3xl px-6 py-3 text-base font-semibold hover:opacity-90 transition-opacity [&_svg]:size-4",
+        "secondary-glass": "symptom-glass rounded-3xl px-6 py-3 text-base bg-gradient-to-r from-rose-50/80 to-pink-50/80 border border-rose-200/30 backdrop-blur-sm hover:from-rose-50 hover:to-pink-50 transition-all [&_svg]:size-4",
       },
       size: {
         default: "h-10 px-4 py-2",

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Lightbulb } from 'lucide-react';
 
 const features = [
   {
@@ -46,23 +46,32 @@ export const FloFeaturesSection = () => {
               <div className={`space-y-6 ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
                 <div className="symptom-glass rounded-2xl p-6">
                   <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 rounded-full bg-rose-400"></div>
-                      <h3 className="text-xl lg:text-2xl font-medium" style={{ color: '#955F6A' }}>
-                        {feature.id === 1 && (
-                          <>Sleduj svoj <span className="highlight-text">cyklus</span> a príznaky</>
-                        )}
-                        {feature.id === 2 && (
-                          <>Pochop svoje <span className="highlight-text">príznaky</span></>
-                        )}
-                        {feature.id === 3 && (
-                          <>Zmeň to, ako sa <span className="highlight-text">cítiš</span></>
-                        )}
-                        {feature.id === 4 && (
-                          <><span className="highlight-text">Anonymný režim</span> pre súkromie</>
-                        )}
-                      </h3>
-                      <div className="w-2 h-2 rounded-full bg-rose-400"></div>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="w-2 h-2 rounded-full bg-rose-400"></div>
+                        <h3 className="text-xl lg:text-2xl font-medium" style={{ color: '#955F6A' }}>
+                          {feature.id === 1 && (
+                            <>Sleduj svoj <span className="highlight-text">cyklus</span> a príznaky</>
+                          )}
+                          {feature.id === 2 && (
+                            <>Pochop svoje <span className="highlight-text">príznaky</span></>
+                          )}
+                          {feature.id === 3 && (
+                            <>Zmeň to, ako sa <span className="highlight-text">cítiš</span></>
+                          )}
+                          {feature.id === 4 && (
+                            <><span className="highlight-text">Anonymný režim</span> pre súkromie</>
+                          )}
+                        </h3>
+                        <div className="w-2 h-2 rounded-full bg-rose-400"></div>
+                      </div>
+                      <Button 
+                        variant="secondary-glass" 
+                        style={{ color: '#F4415F' }}
+                      >
+                        <Lightbulb className="w-4 h-4" />
+                        Čo s tým
+                      </Button>
                     </div>
                     <p className="text-base leading-relaxed" style={{ color: '#955F6A' }}>
                       {feature.description}

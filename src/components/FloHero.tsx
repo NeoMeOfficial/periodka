@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Star, Apple, Smartphone } from 'lucide-react';
+import { Star, TrendingUp } from 'lucide-react';
 
 export const FloHero = () => {
   return (
@@ -34,22 +34,15 @@ export const FloHero = () => {
               </p>
             </div>
             
-            {/* App Store Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button className="bg-foreground text-background hover:bg-foreground/90 flex items-center gap-3 px-6 py-3 h-auto rounded-lg">
-                <Apple className="w-6 h-6" />
-                <div className="text-left">
-                  <div className="text-xs opacity-80">Download on the</div>
-                  <div className="text-lg font-semibold">App Store</div>
-                </div>
-              </Button>
-              
-              <Button className="bg-foreground text-background hover:bg-foreground/90 flex items-center gap-3 px-6 py-3 h-auto rounded-lg">
-                <Smartphone className="w-6 h-6" />
-                <div className="text-left">
-                  <div className="text-xs opacity-80">Get it on</div>
-                  <div className="text-lg font-semibold">Google Play</div>
-                </div>
+            {/* Primary CTA Button */}
+            <div className="flex justify-center sm:justify-start">
+              <Button 
+                variant="primary" 
+                className="bg-gradient-primary-button" 
+                style={{ color: '#F4415F' }}
+              >
+                <TrendingUp className="w-4 h-4" />
+                Odhad na dnes
               </Button>
             </div>
             
