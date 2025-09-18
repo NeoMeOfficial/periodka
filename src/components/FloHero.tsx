@@ -5,6 +5,13 @@ import { Star, TrendingUp } from 'lucide-react';
 export const FloHero = () => {
   return (
     <section className="pt-32 pb-16 bg-gradient-soft relative overflow-hidden floating-dots geometric-shapes">
+      {/* Glassmorphism accent dots */}
+      <div className="accent-dot w-32 h-32 top-20 right-10 opacity-60" style={{animationDelay: '0s'}}></div>
+      <div className="accent-dot-large w-48 h-48 top-40 -left-24 opacity-40" style={{animationDelay: '2s'}}></div>
+      <div className="accent-dot-small w-16 h-16 top-60 right-1/3 opacity-80" style={{animationDelay: '4s'}}></div>
+      <div className="accent-oval w-40 h-28 bottom-32 right-20 opacity-30" style={{animationDelay: '1s'}}></div>
+      <div className="accent-dot w-20 h-20 bottom-48 left-1/4 opacity-50" style={{animationDelay: '3s'}}></div>
+      
       <div className="container mx-auto px-6">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center pt-20">
           {/* Left Content */}

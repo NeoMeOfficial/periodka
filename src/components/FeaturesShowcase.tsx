@@ -40,7 +40,13 @@ export const FeaturesShowcase = () => {
   }, [isPlaying]);
 
   return (
-    <section className="py-24 bg-gradient-soft relative">
+    <section className="py-24 bg-gradient-soft relative geometric-shapes overflow-hidden">
+      {/* Glassmorphism accent dots */}
+      <div className="accent-dot w-36 h-36 top-16 -left-18 opacity-35" style={{animationDelay: '0s'}}></div>
+      <div className="accent-dot-small w-14 h-14 top-1/3 right-12 opacity-60" style={{animationDelay: '4s'}}></div>
+      <div className="accent-oval w-28 h-44 bottom-24 -right-14 opacity-25" style={{animationDelay: '2s'}}></div>
+      <div className="accent-dot-large w-40 h-40 bottom-8 left-8 opacity-40" style={{animationDelay: '6s'}}></div>
+      
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16">

@@ -28,7 +28,13 @@ const features = [
 
 export const FloFeaturesSection = () => {
   return (
-    <section className="py-24 bg-background relative geometric-shapes">
+    <section className="py-24 bg-background relative geometric-shapes overflow-hidden">
+      {/* Glassmorphism accent dots */}
+      <div className="accent-dot-large w-56 h-56 -top-28 -right-28 opacity-30" style={{animationDelay: '1s'}}></div>
+      <div className="accent-dot w-24 h-24 top-32 left-16 opacity-50" style={{animationDelay: '3s'}}></div>
+      <div className="accent-dot-small w-12 h-12 bottom-40 right-24 opacity-70" style={{animationDelay: '5s'}}></div>
+      <div className="accent-oval w-32 h-20 bottom-16 left-1/3 opacity-40" style={{animationDelay: '2s'}}></div>
+      
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16">

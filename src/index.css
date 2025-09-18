@@ -226,6 +226,51 @@ All colors MUST be HSL.
     transform: translateY(-2px);
   }
 
+  /* Glassmorphism accent dots */
+  .accent-dot {
+    background: rgba(255, 119, 130, 0.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 119, 130, 0.12);
+    border-radius: 50%;
+    position: absolute;
+    pointer-events: none;
+    animation: float-gentle 8s ease-in-out infinite;
+  }
+
+  .accent-dot-large {
+    background: rgba(255, 119, 130, 0.06);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 119, 130, 0.1);
+    border-radius: 50%;
+    position: absolute;
+    pointer-events: none;
+    animation: float-gentle 12s ease-in-out infinite reverse;
+  }
+
+  .accent-dot-small {
+    background: rgba(255, 119, 130, 0.12);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 119, 130, 0.15);
+    border-radius: 50%;
+    position: absolute;
+    pointer-events: none;
+    animation: float-gentle 6s ease-in-out infinite;
+  }
+
+  .accent-oval {
+    background: rgba(255, 119, 130, 0.05);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 119, 130, 0.08);
+    border-radius: 50% 40% 60% 30%;
+    position: absolute;
+    pointer-events: none;
+    animation: gentle-spin 20s linear infinite;
+  }
+
   /* Animations */
   @keyframes float {
     0%, 100% { transform: translateY(0px) rotate(0deg); }
@@ -235,6 +280,21 @@ All colors MUST be HSL.
   @keyframes gentle-spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+  }
+
+  @keyframes float-gentle {
+    0%, 100% { 
+      transform: translateY(0px) translateX(0px) scale(1); 
+      opacity: 0.6;
+    }
+    33% { 
+      transform: translateY(-15px) translateX(8px) scale(1.05); 
+      opacity: 0.8;
+    }
+    66% { 
+      transform: translateY(10px) translateX(-5px) scale(0.95); 
+      opacity: 0.4;
+    }
   }
 
   /* Symptom glass morphism */
