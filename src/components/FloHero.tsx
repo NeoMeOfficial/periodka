@@ -22,8 +22,11 @@ export const FloHero = () => {
             {/* Main Headline */}
             <div className="space-y-6">
               <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
-                <span className="text-foreground">Ahoj, som </span>
-                <span className="brand-text text-primary">Periodka</span>
+                <span className="text-foreground">Ahoj, </span>
+                <span className="whitespace-nowrap">
+                  <span className="text-foreground">som </span>
+                  <span className="brand-text text-primary">Periodka</span>
+                </span>
                 <span className="text-foreground">.</span>
                 <br />
                 <span className="text-foreground">Poviem ti <span className="highlight-text">ako</span> a <span className="highlight-text">kedy</span> sa o seba starať</span>
