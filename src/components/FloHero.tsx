@@ -214,7 +214,7 @@ export const FloHero = () => {
                       </div>
                     ) : (
                       <img 
-                        src="/src/assets/periodka-app-screen.png" 
+                        src="/periodka-app-screen.png" 
                         alt="Periodka App Interface showing menstrual cycle tracking features" 
                         className="w-full h-full object-cover object-center rounded-[2.2rem]"
                       />
