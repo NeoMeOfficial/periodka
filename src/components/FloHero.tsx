@@ -83,25 +83,25 @@ export const FloHero = () => {
                 <div className="absolute top-1/2 left-2 w-8 h-32 bg-white/15 rounded-full blur-lg animate-pulse" style={{animationDelay: '0.5s'}}></div>
                 
                 {/* App Screenshot Container with phone screen styling */}
-                <div className="relative w-full h-full bg-background rounded-[2.5rem] overflow-hidden m-1" 
+                <div className="absolute inset-2 bg-background rounded-[2.2rem] overflow-hidden" 
                      style={{
                        boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(0, 0, 0, 0.05)'
                      }}>
                   
                   {/* Clean white-based overlays for depth */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-white/5 z-10"></div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-white/5 via-transparent to-transparent z-10"></div>
+                  <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-white/5 z-10 rounded-[2.2rem]"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-white/5 via-transparent to-transparent z-10 rounded-[2.2rem]"></div>
                   
                   {/* Product Screenshot */}
-                  <div className="w-full h-full flex items-center justify-center relative">
+                  <div className="w-full h-full relative rounded-[2.2rem] overflow-hidden">
                     <img 
                       src="/src/assets/periodka-app-screen.png" 
                       alt="Periodka App Interface showing menstrual cycle tracking features" 
-                      className="w-full h-full object-cover object-center"
+                      className="w-full h-full object-cover object-center rounded-[2.2rem]"
                     />
                     
                     {/* Subtle screen reflection effect */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/8 via-transparent to-white/3 pointer-events-none"></div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/8 via-transparent to-white/3 pointer-events-none rounded-[2.2rem]"></div>
                   </div>
                 </div>
                 
