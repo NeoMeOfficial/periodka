@@ -16,22 +16,21 @@ export const FloHero = () => {
                   <Star key={i} className="w-4 h-4 fill-primary text-primary" />
                 ))}
               </div>
-              <span>Best of 2023 and 2024 on Google Play</span>
+              <span>Najlepšia aplikácia pre ženy na Google Play a App Store</span>
             </div>
             
             {/* Main Headline */}
             <div className="space-y-6">
               <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
-                <span className="text-foreground">We're</span>{' '}
-                <span className="text-primary">Flo</span>
-                <span className="text-foreground">, the world's #1 women's health app</span>
+                <span className="text-foreground">Sme</span>{' '}
+                <span className="text-primary">Periodka</span>
+                <span className="text-foreground">, tvoja spoľahlivá aplikácia pre zdravie žien</span>
                 <span className="text-primary">*</span>
               </h1>
               
               <p className="text-xl text-muted-foreground leading-relaxed max-w-lg">
-                Over 430 million people* around the world use the 
-                Flo app to track their periods, ovulation, and 
-                pregnancy.
+                Tisíce slovenských žien už používajú Periodka na sledovanie 
+                menštruácie, ovulácie a lepšie porozumenie svojho tela.
               </p>
             </div>
             
@@ -56,8 +55,8 @@ export const FloHero = () => {
             
             {/* Small Print */}
             <p className="text-xs text-muted-foreground/60 max-w-md">
-              *Flo's data comes from Flo users only. Data on file. This data is not a 
-              substitute for professional medical advice.
+              *Údaje pochádzajú iba od používateliek Periodka. Tieto údaje nie sú 
+              náhradou za odbornú lekársku starostlivosť.
             </p>
           </div>
           
@@ -69,8 +68,8 @@ export const FloHero = () => {
                   <div className="p-6 space-y-4">
                     {/* Mock App Interface */}
                     <div className="text-center space-y-2">
-                      <div className="text-2xl font-bold text-foreground">July 2025</div>
-                      <div className="text-primary font-semibold">5,959 recorded symptoms</div>
+                      <div className="text-2xl font-bold text-foreground">Júl 2025</div>
+                      <div className="text-primary font-semibold">5,959 zaznamenaných príznakov</div>
                     </div>
                     
                     <div className="bg-gradient-soft rounded-2xl p-4 space-y-3">
@@ -81,11 +80,11 @@ export const FloHero = () => {
                       <div className="space-y-2">
                         <div className="flex items-center gap-2">
                           <div className="w-3 h-3 bg-primary rounded-full"></div>
-                          <span className="text-sm text-muted-foreground">Medium flow</span>
+                          <span className="text-sm text-muted-foreground">Stredné krvácanie</span>
                         </div>
                         <div className="flex items-center gap-2">
                           <div className="w-3 h-3 bg-primary/60 rounded-full"></div>
-                          <span className="text-sm text-muted-foreground">Cramps</span>
+                          <span className="text-sm text-muted-foreground">Kŕče</span>
                         </div>
                       </div>
                     </div>

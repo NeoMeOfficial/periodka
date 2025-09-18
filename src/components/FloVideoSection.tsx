@@ -23,9 +23,14 @@ export const FloVideoSection = () => {
               </button>
             </div>
             
-            {/* Flo Logo Overlay */}
+            {/* Periodka Logo Overlay */}
             <div className="absolute bottom-8 left-8">
-              <div className="text-4xl font-bold text-white">Flo</div>
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center">
+                  <div className="w-4 h-4 bg-white rounded-sm"></div>
+                </div>
+                <div className="text-4xl font-bold text-white">Periodka</div>
+              </div>
             </div>
           </div>
         </div>

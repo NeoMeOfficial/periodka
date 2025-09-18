@@ -11,9 +11,14 @@ export const FloFooter = () => {
           <div className="grid md:grid-cols-4 gap-12 mb-12">
             {/* Brand Column */}
             <div className="space-y-6">
-              <div className="text-2xl font-bold text-primary">Flo</div>
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+                  <div className="w-4 h-4 bg-white rounded-sm"></div>
+                </div>
+                <div className="text-2xl font-bold text-primary">Periodka</div>
+              </div>
               <p className="text-background/80 leading-relaxed">
-                Know your body, own your health
+                Poznaj svoje telo, vlastni svoje zdravie
               </p>
               
               {/* App Store Buttons */}
@@ -38,37 +43,37 @@ export const FloFooter = () => {
 
             {/* Product Column */}
             <div className="space-y-4">
-              <h4 className="font-semibold text-background">Product</h4>
+              <h4 className="font-semibold text-background">Produkt</h4>
               <ul className="space-y-2 text-sm">
-                <li><a href="#" className="text-background/80 hover:text-background transition-colors">Flo for Android</a></li>
-                <li><a href="#" className="text-background/80 hover:text-background transition-colors">Flo for iPhone</a></li>
-                <li><a href="#" className="text-background/80 hover:text-background transition-colors">Flo Premium</a></li>
-                <li><a href="#" className="text-background/80 hover:text-background transition-colors">Secret Chats</a></li>
-                <li><a href="#" className="text-background/80 hover:text-background transition-colors">Flo for Partners</a></li>
+                <li><a href="#" className="text-background/80 hover:text-background transition-colors">Periodka pre Android</a></li>
+                <li><a href="#" className="text-background/80 hover:text-background transition-colors">Periodka pre iPhone</a></li>
+                <li><a href="#" className="text-background/80 hover:text-background transition-colors">Periodka Premium</a></li>
+                <li><a href="#" className="text-background/80 hover:text-background transition-colors">Súkromné rozhovory</a></li>
+                <li><a href="#" className="text-background/80 hover:text-background transition-colors">Periodka pre partnerov</a></li>
               </ul>
             </div>
 
             {/* Features Column */}
             <div className="space-y-4">
-              <h4 className="font-semibold text-background">Features</h4>
+              <h4 className="font-semibold text-background">Funkcie</h4>
               <ul className="space-y-2 text-sm">
-                <li><a href="#" className="text-background/80 hover:text-background transition-colors">Period Tracker</a></li>
-                <li><a href="#" className="text-background/80 hover:text-background transition-colors">Ovulation Calculator</a></li>
-                <li><a href="#" className="text-background/80 hover:text-background transition-colors">Pregnancy Tracker</a></li>
-                <li><a href="#" className="text-background/80 hover:text-background transition-colors">Cycle Calendar</a></li>
-                <li><a href="#" className="text-background/80 hover:text-background transition-colors">Health Insights</a></li>
+                <li><a href="#" className="text-background/80 hover:text-background transition-colors">Sledovač menštruácie</a></li>
+                <li><a href="#" className="text-background/80 hover:text-background transition-colors">Kalkulátor ovulácie</a></li>
+                <li><a href="#" className="text-background/80 hover:text-background transition-colors">Sledovač tehotenstva</a></li>
+                <li><a href="#" className="text-background/80 hover:text-background transition-colors">Kalendár cyklu</a></li>
+                <li><a href="#" className="text-background/80 hover:text-background transition-colors">Zdravotné poznatky</a></li>
               </ul>
             </div>
 
             {/* Company Column */}
             <div className="space-y-4">
-              <h4 className="font-semibold text-background">Company</h4>
+              <h4 className="font-semibold text-background">Spoločnosť</h4>
               <ul className="space-y-2 text-sm">
-                <li><a href="#" className="text-background/80 hover:text-background transition-colors">About Us</a></li>
-                <li><a href="#" className="text-background/80 hover:text-background transition-colors">Careers</a></li>
-                <li><a href="#" className="text-background/80 hover:text-background transition-colors">Press</a></li>
-                <li><a href="#" className="text-background/80 hover:text-background transition-colors">Contact</a></li>
-                <li><a href="#" className="text-background/80 hover:text-background transition-colors">Support</a></li>
+                <li><a href="#" className="text-background/80 hover:text-background transition-colors">O nás</a></li>
+                <li><a href="#" className="text-background/80 hover:text-background transition-colors">Kariéra</a></li>
+                <li><a href="#" className="text-background/80 hover:text-background transition-colors">Tlač</a></li>
+                <li><a href="#" className="text-background/80 hover:text-background transition-colors">Kontakt</a></li>
+                <li><a href="#" className="text-background/80 hover:text-background transition-colors">Podpora</a></li>
               </ul>
             </div>
           </div>
@@ -86,15 +91,15 @@ export const FloFooter = () => {
 
               {/* Legal Links */}
               <div className="flex flex-wrap justify-center gap-6 text-sm text-background/60">
-                <a href="#" className="hover:text-background transition-colors">Privacy Policy</a>
-                <a href="#" className="hover:text-background transition-colors">Terms of Use</a>
-                <a href="#" className="hover:text-background transition-colors">Cookie Policy</a>
-                <a href="#" className="hover:text-background transition-colors">Data Protection</a>
+                <a href="#" className="hover:text-background transition-colors">Ochrana súkromia</a>
+                <a href="#" className="hover:text-background transition-colors">Podmienky používania</a>
+                <a href="#" className="hover:text-background transition-colors">Cookies</a>
+                <a href="#" className="hover:text-background transition-colors">Ochrana údajov</a>
               </div>
 
               {/* Copyright */}
               <div className="text-sm text-background/60">
-                © 2025 Flo Health Inc.
+                © 2025 Periodka s.r.o.
               </div>
             </div>
           </div>

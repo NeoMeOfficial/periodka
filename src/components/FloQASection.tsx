@@ -6,18 +6,18 @@ import { MessageCircle, Baby, Calendar } from 'lucide-react';
 const qaItems = [
   {
     icon: MessageCircle,
-    title: "Spotting during ovulation: is it normal? & does ovulation last?",
-    linkText: "Get answers"
+    title: "Krvácanie počas ovulácie: je to normálne? & ako dlho trvá ovulácia?",
+    linkText: "Získať odpovede"
   },
   {
     icon: Baby,
-    title: "A guide to AMH and its role in reproductive health",
-    linkText: "Get answers"  
+    title: "Sprievodca AMH a jeho úlohou v reprodukčnom zdraví",
+    linkText: "Získať odpovede"  
   },
   {
     icon: Calendar,
-    title: "Let longer What it is and why it is important if you're TTC",
-    linkText: "Get answers"
+    title: "Dlhší cyklus: čo to je a prečo je dôležitý, ak sa snažíte otehotnieť",
+    linkText: "Získať odpovede"
   }
 ];
 
@@ -28,7 +28,7 @@ export const FloQASection = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-foreground">
-            Questions about your body, answered by experts
+            Otázky o vašom tele, odpovedané odborníkmi
           </h2>
         </div>
 
@@ -62,7 +62,7 @@ export const FloQASection = () => {
         {/* Bottom Link */}
         <div className="text-center mt-12">
           <Button variant="ghost" className="text-primary hover:text-primary/80 font-semibold">
-            Discover all questions answered by health experts →
+            Objavte všetky otázky odpovedané zdravotnými odborníkmi →
           </Button>
         </div>
       </div>

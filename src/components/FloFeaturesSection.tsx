@@ -6,29 +6,24 @@ import { ArrowRight } from 'lucide-react';
 const features = [
   {
     id: 1,
-    title: "Track your cycle and symptoms",
-    description: "Cookies aren't just great for the first day of your period - find out more. Read Articles. Free, Focus Today. No ads that annoy you, thanks to tech settings.",
-    buttonText: "Start →"
+    title: "Sleduj svoj cyklus a príznaky",
+    description: "Zisti, čo je normálne pre teba vďaka sledovaniu menštruácie a cyklu. Objav vzorce v príznakoch a vedz, kedy pravdepodobne príde menštruácia – aby ťa už nič nezaskočilo.",
+    buttonText: "Začni →"
   },
   {
     id: 2, 
-    title: "Plan your fertility better",
-    description: "Get personalised pre-to-post plans and learn how to read your fertility signs with ovulation tracking - so you can maximize your chances of getting your fertility badge each cycle."
+    title: "Pochop svoje príznaky",
+    description: "Nauč sa rozumieť signálom svojho tela a rozoznávať, čo ti chce povedať. Sleduj príznaky a získaj prehľad o svojom zdraví."
   },
   {
     id: 3,
-    title: "Follow your pregnancy week by week", 
-    description: "Discover how your body and baby are changing. Track important milestones and, with your weekly to-do list, always know what matters most right now."
+    title: "Vedz, čo robiť s príznakmi", 
+    description: "Získaj personalizované odporúčania a tipy od odborníkov, ako sa vyrovnať s príznakmi a zlepšiť svoje celkové zdravie."
   },
   {
     id: 4,
-    title: "Share Flo with your partner",
-    description: "We'll teach your partner everything they need to know about your body (and how they can better support you) - so you don't have to learn about explanation/education."
-  },
-  {
-    id: 5,
-    title: "Switch to Anonymous Mode",
-    description: "Get to know your body better with an added layer of privacy. Flo encrypts your data as standard and never sells it - we can't identify you when using Anonymous Mode."
+    title: "Anonymný režim pre súkromie",
+    description: "Lepšie spoznaj svoje telo s pridanou vrstvou súkromia. Periodka štandardne šifruje údaje a nikdy ich nepredáva – v Anonymnom režime ťa nevieme identifikovať ani my."
   }
 ];
 
@@ -39,7 +34,7 @@ export const FloFeaturesSection = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-foreground">
-            What can you do with the Flo app?
+            Čo všetko zvládne aplikácia Periodka?
           </h2>
         </div>
 

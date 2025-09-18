@@ -14,7 +14,7 @@ export const FloRatingsSection = () => {
               ))}
             </div>
             <h2 className="text-4xl lg:text-5xl font-bold text-foreground">
-              Over 7 million 5-star ratings*
+              Viac ako 7 miliónov 5-hviezdičkových hodnotení*
             </h2>
           </div>
 

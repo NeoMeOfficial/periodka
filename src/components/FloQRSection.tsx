@@ -17,10 +17,10 @@ export const FloQRSection = () => {
           {/* Description */}
           <div className="space-y-4">
             <p className="text-lg text-muted-foreground">
-              Use your phone's camera to scan and download the Flo app.
+              Použite fotoaparát svojho telefónu na naskenovanie a stiahnutie aplikácie Periodka.
             </p>
             <p className="text-lg font-semibold text-foreground">
-              Available on iOS and Android devices.
+              Dostupné na iOS a Android zariadeniach.
             </p>
           </div>
           

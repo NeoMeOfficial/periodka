@@ -6,17 +6,17 @@ import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
 const testimonials = [
   {
     id: 1,
-    text: "Amazing app. It's more than a period tracker. I follow with information about my health, weight, sleep, mood and there are many more things to follow. - LOVE it",
-    author: "Ava Smith"
+    text: "Úžasná aplikácia. Je to viac ako len sledovač menštruácie. Sledujem si informácie o zdraví, váhe, spánku, nálade a ešte veľa ďalších vecí. - MILUJEM ju",
+    author: "Anna Novakova"
   },
   {
     id: 2,
-    text: "This is the best period app I've ever used. Over the years I've tried out many period tracking apps but this one got me hooked to consistently logging the info that it is now part of my daily routine (like checking weather forecast).",
-    author: "Emma Wilson"
+    text: "Toto je najlepšia aplikácia na sledovanie menštruácie, akú som kedy používala. Za roky som vyskúšala veľa aplikácií na sledovanie period, ale táto ma chytila tak, že si každodenne zapisujem údaje (ako kontrola predpovede počasia).",
+    author: "Lucia Svoboda"
   },
   {
     id: 3,
-    text: "As I grew having problems understanding I find this incredibly helpful!! It's exactly the data, love the customizable options and I think it's accurate."
+    text: "Keď som mala problémy s porozumením môjho tela, našla som toto neuveriteľne užitočné! Sú to presne tie údaje, milujem prispôsobiteľné možnosti a myslím si, že je presná."
   }
 ];
 
@@ -44,11 +44,11 @@ export const FloTestimonials = () => {
           {/* Section Header */}
           <div className="mb-16">
             <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-foreground">
-              What our users say about Flo
+              Čo hovoria naše používateľky o Periodka
             </h2>
             <p className="text-lg text-muted-foreground">
-              By reading Flo you can feel empowered! Can you say the same to 
-              know what causes feel fine?
+              Čítaním Periodka sa môžeš cítiť posilnená! Môžeš povedať to isté o tom, 
+              čo spôsobuje, že sa cítiš dobre?
             </p>
           </div>
 

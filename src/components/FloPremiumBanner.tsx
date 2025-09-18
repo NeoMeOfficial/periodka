@@ -10,21 +10,21 @@ export const FloPremiumBanner = () => {
           {/* Left Content */}
           <div className="space-y-6 text-white">
             <h2 className="text-4xl lg:text-5xl font-bold leading-tight">
-              Flo is gifting{' '}
-              <span className="text-white/90">Flo Premium</span>
-              {' '}subscriptions to women in need
+              Periodka daruje{' '}
+              <span className="text-white/90">Periodka Premium</span>
+              {' '}predplatné ženám v núdzi
             </h2>
             
             <p className="text-xl text-white/90 leading-relaxed">
-              The Pass It On Project is our mission for gender equality: 
-              SEE to access period and reproductive health information.
+              Projekt Pass It On je našou misiou pre rodovú rovnosť: 
+              prístup k informáciám o menštruácii a reprodukčnom zdraví.
             </p>
             
             <Button 
               variant="secondary" 
               className="bg-white text-primary hover:bg-white/90 font-semibold px-6 py-3 h-auto rounded-lg group"
             >
-              Learn more about Pass It On
+              Zistiť viac o Pass It On
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>
           </div>

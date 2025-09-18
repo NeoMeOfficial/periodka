@@ -122,7 +122,7 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground font-raleway;
+    @apply bg-background text-foreground font-inter;
   }
 
   /* Glass morphism utilities */

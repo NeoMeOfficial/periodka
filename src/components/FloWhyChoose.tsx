@@ -5,18 +5,18 @@ import { Target, Shield, BookOpen } from 'lucide-react';
 const features = [
   {
     icon: Target,
-    title: "Predictions you can plan around",
-    description: "Plan your month around your cycle."
+    title: "Predikcie, na ktoré sa môžeš spoľahnúť",
+    description: "Naplánuj si mesiac podľa svojho cyklu."
   },
   {
     icon: Shield,
-    title: "Personal data that stays private to you", 
-    description: "Your data stays private to you."
+    title: "Súkromné údaje, ktoré zostávajú tvoje", 
+    description: "Tvoje údaje zostávajú len tvoje."
   },
   {
     icon: BookOpen,
-    title: "Information you can trust",
-    description: "Science-backed health info and insights."
+    title: "Informácie, ktorým môžeš veriť",
+    description: "Vedecky podložené zdravotné informácie a poznatky."
   }
 ];
 
@@ -27,7 +27,7 @@ export const FloWhyChoose = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-foreground">
-            Why choose Flo?
+            Prečo si vybrať Periodka?
           </h2>
         </div>
 

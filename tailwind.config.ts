@@ -14,7 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        'raleway': ['Raleway', 'sans-serif'],
+        'inter': ['Inter', 'sans-serif'],
+        'sans': ['Inter', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
