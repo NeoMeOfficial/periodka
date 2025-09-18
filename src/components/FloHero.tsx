@@ -6,7 +6,7 @@ export const FloHero = () => {
   return (
     <section className="pt-32 pb-16 bg-gradient-soft relative overflow-hidden floating-dots geometric-shapes">
       <div className="container mx-auto px-6">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center pt-8">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center pt-20">
           {/* Left Content */}
           <div className="space-y-8">
             {/* Rating Badge */}
