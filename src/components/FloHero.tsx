@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Star, TrendingUp, Calendar, Clock, Activity } from 'lucide-react';
+import { Calendar } from '@/components/ui/calendar';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Input } from '@/components/ui/input';
+import { Star, TrendingUp, Calendar as CalendarIcon, Clock, Activity, Edit3 } from 'lucide-react';
+import { format } from 'date-fns';
+import { cn } from '@/lib/utils';
 
 export const FloHero = () => {
   const [showEntries, setShowEntries] = useState(false);
+  const [lastPeriodDate, setLastPeriodDate] = useState<Date>(new Date(2025, 8, 5)); // September 5, 2025
+  const [cycleLength, setCycleLength] = useState(28);
+  const [periodLength, setPeriodLength] = useState(5);
 
   return (
     <section className="pt-32 pb-16 bg-gradient-soft relative overflow-hidden floating-dots geometric-shapes">
@@ -102,39 +110,107 @@ export const FloHero = () => {
                   <div className="w-full h-full relative rounded-[2.2rem] overflow-hidden">
                     {showEntries ? (
                       /* Period Tracking Entries */
-                      <div className="w-full h-full bg-gradient-to-br from-rose-50 to-pink-50 p-6 flex flex-col justify-center gap-4">
-                        <div className="space-y-4">
+                      <div className="w-full h-full bg-gradient-to-br from-rose-50 to-pink-50 p-4 flex flex-col justify-center gap-3">
+                        <div className="space-y-3">
                           {/* Last Period Entry */}
-                          <div className="symptom-glass rounded-2xl p-4 bg-gradient-to-r from-rose-50/80 to-pink-50/80 border border-rose-200/30 backdrop-blur-sm">
-                            <div className="flex items-center gap-3">
-                              <Calendar className="w-5 h-5" style={{ color: '#F4415F' }} />
-                              <div>
-                                <p className="text-sm font-medium" style={{ color: '#955F6A' }}>Posledná menštruácia</p>
-                                <p className="text-base font-semibold" style={{ color: '#F4415F' }}>5. september 2025</p>
+                          <div className="symptom-glass rounded-2xl p-3 bg-gradient-to-r from-rose-50/80 to-pink-50/80 border border-rose-200/30 backdrop-blur-sm">
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center gap-2">
+                                <CalendarIcon className="w-4 h-4" style={{ color: '#F4415F' }} />
+                                <div>
+                                  <p className="text-xs font-medium" style={{ color: '#955F6A' }}>Posledná menštruácia</p>
+                                  <Popover>
+                                    <PopoverTrigger asChild>
+                                      <Button
+                                        variant="ghost"
+                                        className={cn(
+                                          "h-auto p-0 text-sm font-semibold justify-start hover:bg-transparent",
+                                        )}
+                                        style={{ color: '#F4415F' }}
+                                      >
+                                        {format(lastPeriodDate, "d. MMMM yyyy")}
+                                      </Button>
+                                    </PopoverTrigger>
+                                    <PopoverContent className="w-auto p-0" align="start">
+                                      <Calendar
+                                        mode="single"
+                                        selected={lastPeriodDate}
+                                        onSelect={(date) => date && setLastPeriodDate(date)}
+                                        initialFocus
+                                        className={cn("p-3 pointer-events-auto")}
+                                      />
+                                    </PopoverContent>
+                                  </Popover>
+                                </div>
                               </div>
+                              <Edit3 className="w-3 h-3 opacity-60" style={{ color: '#955F6A' }} />
                             </div>
                           </div>
 
                           {/* Cycle Length Entry */}
-                          <div className="symptom-glass rounded-2xl p-4 bg-gradient-to-r from-rose-50/80 to-pink-50/80 border border-rose-200/30 backdrop-blur-sm">
-                            <div className="flex items-center gap-3">
-                              <Clock className="w-5 h-5" style={{ color: '#F4415F' }} />
-                              <div>
-                                <p className="text-sm font-medium" style={{ color: '#955F6A' }}>Dĺžka cyklu</p>
-                                <p className="text-base font-semibold" style={{ color: '#F4415F' }}>28 dní</p>
+                          <div className="symptom-glass rounded-2xl p-3 bg-gradient-to-r from-rose-50/80 to-pink-50/80 border border-rose-200/30 backdrop-blur-sm">
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center gap-2">
+                                <Clock className="w-4 h-4" style={{ color: '#F4415F' }} />
+                                <div className="flex items-center gap-2">
+                                  <div>
+                                    <p className="text-xs font-medium" style={{ color: '#955F6A' }}>Dĺžka cyklu</p>
+                                  </div>
+                                  <div className="flex items-center gap-1">
+                                    <Input
+                                      type="number"
+                                      value={cycleLength}
+                                      onChange={(e) => setCycleLength(Number(e.target.value))}
+                                      className="w-12 h-6 text-sm font-semibold border-0 bg-transparent p-0 text-center"
+                                      style={{ color: '#F4415F' }}
+                                      min="20"
+                                      max="40"
+                                    />
+                                    <span className="text-sm font-semibold" style={{ color: '#F4415F' }}>dní</span>
+                                  </div>
+                                </div>
                               </div>
+                              <Edit3 className="w-3 h-3 opacity-60" style={{ color: '#955F6A' }} />
                             </div>
                           </div>
 
                           {/* Period Length Entry */}
-                          <div className="symptom-glass rounded-2xl p-4 bg-gradient-to-r from-rose-50/80 to-pink-50/80 border border-rose-200/30 backdrop-blur-sm">
-                            <div className="flex items-center gap-3">
-                              <Activity className="w-5 h-5" style={{ color: '#F4415F' }} />
-                              <div>
-                                <p className="text-sm font-medium" style={{ color: '#955F6A' }}>Dĺžka menštruácie</p>
-                                <p className="text-base font-semibold" style={{ color: '#F4415F' }}>5 dní</p>
+                          <div className="symptom-glass rounded-2xl p-3 bg-gradient-to-r from-rose-50/80 to-pink-50/80 border border-rose-200/30 backdrop-blur-sm">
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center gap-2">
+                                <Activity className="w-4 h-4" style={{ color: '#F4415F' }} />
+                                <div className="flex items-center gap-2">
+                                  <div>
+                                    <p className="text-xs font-medium" style={{ color: '#955F6A' }}>Dĺžka menštruácie</p>
+                                  </div>
+                                  <div className="flex items-center gap-1">
+                                    <Input
+                                      type="number"
+                                      value={periodLength}
+                                      onChange={(e) => setPeriodLength(Number(e.target.value))}
+                                      className="w-12 h-6 text-sm font-semibold border-0 bg-transparent p-0 text-center"
+                                      style={{ color: '#F4415F' }}
+                                      min="3"
+                                      max="10"
+                                    />
+                                    <span className="text-sm font-semibold" style={{ color: '#F4415F' }}>dní</span>
+                                  </div>
+                                </div>
                               </div>
+                              <Edit3 className="w-3 h-3 opacity-60" style={{ color: '#955F6A' }} />
                             </div>
+                          </div>
+
+                          {/* CTA Button */}
+                          <div className="pt-2">
+                            <Button 
+                              variant="secondary-glass" 
+                              className="w-full"
+                              style={{ color: '#F4415F' }}
+                            >
+                              <TrendingUp className="w-4 h-4" />
+                              Ukáž, čo ma čaká
+                            </Button>
                           </div>
                         </div>
                       </div>
