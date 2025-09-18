@@ -7,8 +7,7 @@ const features = [
   {
     id: 1,
     title: "Sleduj svoj cyklus a príznaky",
-    description: "Zisti, čo je normálne pre teba vďaka sledovaniu menštruácie a cyklu. Objav vzorce v príznakoch a vedz, kedy pravdepodobne príde menštruácia – aby ťa už nič nezaskočilo.",
-    buttonText: "Začni →"
+    description: "Zisti, čo je normálne pre teba vďaka sledovaniu menštruácie a cyklu. Objav vzorce v príznakoch a vedz, kedy pravdepodobne príde menštruácia – aby ťa už nič nezaskočilo."
   },
   {
     id: 2, 
@@ -46,46 +45,39 @@ export const FloFeaturesSection = () => {
               <div className={`space-y-6 ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
                 <div className="symptom-glass rounded-2xl p-6">
                   <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <div className="w-2 h-2 rounded-full bg-rose-400"></div>
-                        <h3 className="text-xl lg:text-2xl font-medium" style={{ color: '#955F6A' }}>
-                          {feature.id === 1 && (
-                            <>Sleduj svoj <span className="highlight-text">cyklus</span> a príznaky</>
-                          )}
-                          {feature.id === 2 && (
-                            <>Pochop svoje <span className="highlight-text">príznaky</span></>
-                          )}
-                          {feature.id === 3 && (
-                            <>Zmeň to, ako sa <span className="highlight-text">cítiš</span></>
-                          )}
-                          {feature.id === 4 && (
-                            <><span className="highlight-text">Anonymný režim</span> pre súkromie</>
-                          )}
-                        </h3>
-                        <div className="w-2 h-2 rounded-full bg-rose-400"></div>
-                      </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-2 h-2 rounded-full bg-rose-400"></div>
+                      <h3 className="text-xl lg:text-2xl font-medium" style={{ color: '#955F6A' }}>
+                        {feature.id === 1 && (
+                          <>Sleduj svoj <span className="highlight-text">cyklus</span> a príznaky</>
+                        )}
+                        {feature.id === 2 && (
+                          <>Pochop svoje <span className="highlight-text">príznaky</span></>
+                        )}
+                        {feature.id === 3 && (
+                          <>Zmeň to, ako sa <span className="highlight-text">cítiš</span></>
+                        )}
+                        {feature.id === 4 && (
+                          <><span className="highlight-text">Anonymný režim</span> pre súkromie</>
+                        )}
+                      </h3>
+                      <div className="w-2 h-2 rounded-full bg-rose-400"></div>
+                    </div>
+                    <p className="text-base leading-relaxed" style={{ color: '#955F6A' }}>
+                      {feature.description}
+                    </p>
+                    <div className="pt-2">
                       <Button 
                         variant="secondary-glass" 
                         style={{ color: '#F4415F' }}
                       >
                         <Lightbulb className="w-4 h-4" />
-                        Čo s tým
+                        Chcem sa pridať
                       </Button>
                     </div>
-                    <p className="text-base leading-relaxed" style={{ color: '#955F6A' }}>
-                      {feature.description}
-                    </p>
                   </div>
                 </div>
-                {feature.buttonText && (
-                  <Button 
-                    variant="ghost" 
-                    className="text-primary hover:text-primary/80 p-0 h-auto font-semibold text-lg"
-                  >
-                    {feature.buttonText}
-                  </Button>
-                )}
+                {/* Action Button - Now removed since we have the glassmorphism button */}
               </div>
               
               {/* Visual Side */}
