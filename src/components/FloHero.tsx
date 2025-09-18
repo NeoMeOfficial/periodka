@@ -45,7 +45,7 @@ export const FloHero = () => {
                 </span>
                 <span className="text-foreground">.</span>
                 <br />
-                <span className="text-foreground">Ukážem ti <span className="highlight-text">ako</span> a <span className="highlight-text">kedy</span> sa o seba starať. Bodka.</span>
+                <span className="text-foreground">Ukážem ti <span className="highlight-text">ako</span> a <span className="highlight-text">kedy</span> sa o seba starať. <span className="highlight-text">Bodka</span>.</span>
               </h1>
               
               <p className="text-xl text-muted-foreground leading-relaxed max-w-lg">
