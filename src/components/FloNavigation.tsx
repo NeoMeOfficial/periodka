@@ -8,11 +8,11 @@ export const FloNavigation = () => {
       <nav className="max-w-6xl mx-auto bg-background/95 backdrop-blur-md border border-border/50 rounded-2xl shadow-elegant">
         <div className="px-6 py-3 flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 py-1">
             <img 
               src={periodkaLogo} 
               alt="Periodka Logo" 
-              className="w-15 h-15 rounded-lg object-cover"
+              className="w-12 h-12 rounded-lg"
             />
             <div className="text-2xl font-bold brand-text" style={{ color: '#F4415F' }}>Periodka</div>
           </div>
