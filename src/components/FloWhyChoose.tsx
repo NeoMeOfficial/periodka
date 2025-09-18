@@ -23,11 +23,14 @@ const features = [
 export const FloWhyChoose = () => {
   return (
     <section className="py-24 bg-gradient-soft relative geometric-shapes overflow-hidden">
-      {/* Glassmorphism accent dots */}
+      {/* Glassmorphism accent dots - enhanced coverage */}
       <div className="accent-dot-large w-44 h-44 top-12 right-16 opacity-25" style={{animationDelay: '1s'}}></div>
       <div className="accent-dot w-28 h-28 top-2/3 left-12 opacity-45" style={{animationDelay: '3s'}}></div>
       <div className="accent-dot-small w-18 h-18 bottom-32 right-1/4 opacity-65" style={{animationDelay: '5s'}}></div>
       <div className="accent-oval w-36 h-24 bottom-8 -left-12 opacity-30" style={{animationDelay: '0s'}}></div>
+      <div className="accent-dot w-22 h-22 top-40 left-1/3 opacity-50" style={{animationDelay: '7s'}}></div>
+      <div className="accent-dot-small w-12 h-12 top-20 right-20 opacity-60" style={{animationDelay: '4s'}}></div>
+      <div className="accent-oval w-32 h-20 bottom-24 right-12 opacity-35" style={{animationDelay: '6s'}}></div>
       
       <div className="container mx-auto px-6">
         {/* Section Header */}

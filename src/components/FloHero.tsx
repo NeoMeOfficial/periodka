@@ -5,22 +5,11 @@ import { Star, TrendingUp } from 'lucide-react';
 export const FloHero = () => {
   return (
     <section className="pt-32 pb-16 bg-gradient-soft relative overflow-hidden floating-dots geometric-shapes">
-      {/* Glassmorphism accent dots - spread across entire screen */}
-      <div className="accent-dot w-32 h-32 top-20 right-10 opacity-60" style={{animationDelay: '0s'}}></div>
+      {/* Glassmorphism accent dots - reduced for hero */}
       <div className="accent-dot-large w-48 h-48 top-40 -left-24 opacity-40" style={{animationDelay: '2s'}}></div>
-      <div className="accent-dot-small w-16 h-16 top-60 right-1/3 opacity-80" style={{animationDelay: '4s'}}></div>
+      <div className="accent-dot w-24 h-24 top-32 right-16 opacity-50" style={{animationDelay: '0s'}}></div>
       <div className="accent-oval w-40 h-28 bottom-32 right-20 opacity-30" style={{animationDelay: '1s'}}></div>
-      <div className="accent-dot w-20 h-20 bottom-48 left-1/4 opacity-50" style={{animationDelay: '3s'}}></div>
-      
-      {/* Additional dots for full screen coverage */}
-      <div className="accent-dot-large w-56 h-56 -top-28 left-1/3 opacity-25" style={{animationDelay: '6s'}}></div>
-      <div className="accent-dot w-24 h-24 top-32 left-16 opacity-45" style={{animationDelay: '8s'}}></div>
-      <div className="accent-dot-small w-12 h-12 top-1/2 right-16 opacity-70" style={{animationDelay: '5s'}}></div>
-      <div className="accent-oval w-36 h-22 top-3/4 left-12 opacity-35" style={{animationDelay: '7s'}}></div>
-      <div className="accent-dot w-28 h-28 bottom-20 right-1/2 opacity-40" style={{animationDelay: '9s'}}></div>
-      <div className="accent-dot-small w-14 h-14 bottom-12 left-3/4 opacity-60" style={{animationDelay: '11s'}}></div>
-      <div className="accent-dot-large w-40 h-40 top-16 -right-20 opacity-30" style={{animationDelay: '10s'}}></div>
-      <div className="accent-oval w-32 h-48 bottom-4 -left-16 opacity-25" style={{animationDelay: '12s'}}></div>
+      <div className="accent-dot-small w-16 h-16 bottom-48 left-1/4 opacity-60" style={{animationDelay: '3s'}}></div>
       
       <div className="container mx-auto px-6">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center pt-20">

@@ -41,11 +41,14 @@ export const FeaturesShowcase = () => {
 
   return (
     <section className="py-24 bg-gradient-soft relative geometric-shapes overflow-hidden">
-      {/* Glassmorphism accent dots */}
+      {/* Glassmorphism accent dots - enhanced coverage */}
       <div className="accent-dot w-36 h-36 top-16 -left-18 opacity-35" style={{animationDelay: '0s'}}></div>
       <div className="accent-dot-small w-14 h-14 top-1/3 right-12 opacity-60" style={{animationDelay: '4s'}}></div>
       <div className="accent-oval w-28 h-44 bottom-24 -right-14 opacity-25" style={{animationDelay: '2s'}}></div>
       <div className="accent-dot-large w-40 h-40 bottom-8 left-8 opacity-40" style={{animationDelay: '6s'}}></div>
+      <div className="accent-dot w-20 h-20 top-24 left-1/2 opacity-50" style={{animationDelay: '8s'}}></div>
+      <div className="accent-dot-small w-18 h-18 bottom-1/3 right-1/4 opacity-65" style={{animationDelay: '3s'}}></div>
+      <div className="accent-oval w-24 h-36 top-1/2 -right-12 opacity-30" style={{animationDelay: '5s'}}></div>
       
       <div className="container mx-auto px-6">
         {/* Section Header */}
