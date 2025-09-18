@@ -61,40 +61,59 @@ export const FloHero = () => {
           </div>
           
           {/* Right Content - Phone Mockup */}
-          <div className="flex justify-center lg:justify-end">
+          <div className="flex justify-center">
             <div className="relative">
-              {/* 3D Glass Phone Frame */}
-              <div className="w-80 h-[600px] bg-gradient-primary rounded-[3rem] p-2 shadow-elegant relative overflow-hidden">
-                {/* Glass morphism overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent rounded-[3rem] backdrop-blur-sm"></div>
-                <div className="absolute inset-2 bg-white/10 rounded-[2.5rem] backdrop-blur-lg border border-white/20"></div>
+              {/* 3D Premium Phone Frame */}
+              <div className="w-80 h-[600px] bg-gradient-primary rounded-[3rem] p-1 shadow-elegant relative overflow-hidden" 
+                   style={{
+                     boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
+                   }}>
                 
-                {/* Liquid glass effect */}
-                <div className="absolute top-4 left-4 w-16 h-16 bg-white/30 rounded-full blur-xl animate-pulse"></div>
-                <div className="absolute bottom-8 right-6 w-12 h-12 bg-primary/30 rounded-full blur-lg animate-pulse" style={{animationDelay: '1s'}}></div>
+                {/* Outer phone bezel with realistic phone styling */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-white/10 to-transparent rounded-[3rem] backdrop-blur-sm"></div>
+                <div className="absolute inset-1 bg-gradient-to-br from-white/20 via-transparent to-white/5 rounded-[2.8rem] backdrop-blur-lg border border-white/30"></div>
                 
-                {/* App Screenshot Container */}
-                <div className="relative w-full h-full bg-background rounded-[2.5rem] overflow-hidden">
-                  {/* Gradient overlay for depth */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20 z-10"></div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/10 via-transparent to-transparent z-10"></div>
+                {/* Phone-specific elements */}
+                <div className="absolute top-6 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-white/40 rounded-full"></div>
+                <div className="absolute top-4 right-4 w-3 h-3 bg-white/30 rounded-full"></div>
+                
+                {/* Enhanced liquid glass animation */}
+                <div className="absolute top-8 left-6 w-20 h-20 bg-white/25 rounded-full blur-2xl animate-pulse"></div>
+                <div className="absolute bottom-12 right-8 w-16 h-16 bg-white/20 rounded-full blur-xl animate-pulse" style={{animationDelay: '1.5s'}}></div>
+                <div className="absolute top-1/2 left-2 w-8 h-32 bg-white/15 rounded-full blur-lg animate-pulse" style={{animationDelay: '0.5s'}}></div>
+                
+                {/* App Screenshot Container with phone screen styling */}
+                <div className="relative w-full h-full bg-background rounded-[2.5rem] overflow-hidden m-1" 
+                     style={{
+                       boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(0, 0, 0, 0.05)'
+                     }}>
+                  
+                  {/* Clean white-based overlays for depth */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-white/5 z-10"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-white/5 via-transparent to-transparent z-10"></div>
                   
                   {/* Product Screenshot */}
                   <div className="w-full h-full flex items-center justify-center relative">
                     <img 
                       src="/src/assets/periodka-app-screen.png" 
-                      alt="Periodka App Interface" 
+                      alt="Periodka App Interface showing menstrual cycle tracking features" 
                       className="w-full h-full object-cover object-center"
                     />
                     
-                    {/* Additional glass overlay for premium effect */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-primary/5"></div>
+                    {/* Subtle screen reflection effect */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/8 via-transparent to-white/3 pointer-events-none"></div>
                   </div>
                 </div>
                 
-                {/* 3D highlight effect */}
-                <div className="absolute -top-2 -left-2 w-6 h-6 bg-white/40 rounded-full blur-md"></div>
-                <div className="absolute top-1/3 -right-1 w-4 h-8 bg-white/20 rounded-full blur-sm"></div>
+                {/* Enhanced 3D phone highlights */}
+                <div className="absolute -top-3 -left-3 w-8 h-8 bg-white/50 rounded-full blur-lg"></div>
+                <div className="absolute top-1/4 -right-2 w-6 h-12 bg-white/30 rounded-full blur-md"></div>
+                <div className="absolute bottom-1/4 -left-2 w-4 h-8 bg-white/25 rounded-full blur-sm"></div>
+                
+                {/* Side button details */}
+                <div className="absolute left-0 top-24 w-1 h-12 bg-white/20 rounded-r-full"></div>
+                <div className="absolute left-0 top-40 w-1 h-6 bg-white/20 rounded-r-full"></div>
+                <div className="absolute right-0 top-32 w-1 h-16 bg-white/20 rounded-l-full"></div>
               </div>
             </div>
           </div>
