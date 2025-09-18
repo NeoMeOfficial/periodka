@@ -32,7 +32,7 @@ export const FloHero = () => {
                   <Star key={i} className="w-4 h-4 fill-primary text-primary" />
                 ))}
               </div>
-              <span><span className="highlight-text">Najlepšia aplikácia</span> pre ženy na Google Play a App Store</span>
+              <span>Obľúbená aplikácia, všetkúch aktívnych žien</span>
             </div>
             
             {/* Main Headline */}
