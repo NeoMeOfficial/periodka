@@ -110,16 +110,16 @@ export const FloHero = () => {
                        boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(0, 0, 0, 0.05)'
                      }}>
                   
-                  {/* Clean white-based overlays for depth */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-white/5 z-10 rounded-[2.2rem]"></div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-white/5 via-transparent to-transparent z-10 rounded-[2.2rem]"></div>
+                  {/* Clean white-based overlays for depth - made non-interactive */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-white/5 pointer-events-none rounded-[2.2rem]"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-white/5 via-transparent to-transparent pointer-events-none rounded-[2.2rem]"></div>
                   
                   {/* Product Screenshot */}
                   <div className="w-full h-full relative rounded-[2.2rem] overflow-hidden">
                     {showEntries ? (
                       /* Period Tracking Entries */
-                      <div className="w-full h-full bg-gradient-to-br from-rose-50 to-pink-50 p-4 flex flex-col justify-center gap-3">
-                        <div className="space-y-3">
+                      <div className="w-full h-full bg-gradient-to-br from-rose-50 to-pink-50 p-4 flex flex-col justify-center gap-3 relative z-20">
+                        <div className="space-y-3 relative z-30">
                           {/* Last Period Entry */}
                           <div className="bg-white rounded-2xl p-4 border border-gray-200/50 shadow-sm">
                             <div className="space-y-2">
@@ -140,7 +140,7 @@ export const FloHero = () => {
                                     {format(lastPeriodDate, "d. MMMM yyyy")}
                                   </Button>
                                 </PopoverTrigger>
-                                <PopoverContent className="w-auto p-0 z-50 pointer-events-auto" align="start">
+                                <PopoverContent className="w-auto p-0 z-[100] pointer-events-auto shadow-xl border-2" align="start">
                                   <Calendar
                                     mode="single"
                                     selected={lastPeriodDate}
@@ -203,7 +203,8 @@ export const FloHero = () => {
                           <div className="pt-2">
                             <Button 
                               variant="primary" 
-                              className="w-full"
+                              className="w-full bg-gradient-primary-button"
+                              style={{ color: '#F4415F' }}
                             >
                               <TrendingUp className="w-4 h-4" />
                               Ukáž, čo ma čaká
