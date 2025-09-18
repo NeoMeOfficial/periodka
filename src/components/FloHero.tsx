@@ -63,45 +63,38 @@ export const FloHero = () => {
           {/* Right Content - Phone Mockup */}
           <div className="flex justify-center lg:justify-end">
             <div className="relative">
-              <div className="w-80 h-[600px] bg-gradient-primary rounded-[3rem] p-2 shadow-elegant">
-                <div className="w-full h-full bg-background rounded-[2.5rem] overflow-hidden">
-                  <div className="p-6 space-y-4">
-                    {/* Mock App Interface */}
-                    <div className="text-center space-y-2">
-                      <div className="text-2xl font-bold text-foreground">Júl 2025</div>
-                      <div className="text-primary font-semibold">5,959 zaznamenaných príznakov</div>
-                    </div>
+              {/* 3D Glass Phone Frame */}
+              <div className="w-80 h-[600px] bg-gradient-primary rounded-[3rem] p-2 shadow-elegant relative overflow-hidden">
+                {/* Glass morphism overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent rounded-[3rem] backdrop-blur-sm"></div>
+                <div className="absolute inset-2 bg-white/10 rounded-[2.5rem] backdrop-blur-lg border border-white/20"></div>
+                
+                {/* Liquid glass effect */}
+                <div className="absolute top-4 left-4 w-16 h-16 bg-white/30 rounded-full blur-xl animate-pulse"></div>
+                <div className="absolute bottom-8 right-6 w-12 h-12 bg-primary/30 rounded-full blur-lg animate-pulse" style={{animationDelay: '1s'}}></div>
+                
+                {/* App Screenshot Container */}
+                <div className="relative w-full h-full bg-background rounded-[2.5rem] overflow-hidden">
+                  {/* Gradient overlay for depth */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20 z-10"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/10 via-transparent to-transparent z-10"></div>
+                  
+                  {/* Product Screenshot */}
+                  <div className="w-full h-full flex items-center justify-center relative">
+                    <img 
+                      src="/src/assets/periodka-app-screen.png" 
+                      alt="Periodka App Interface" 
+                      className="w-full h-full object-cover object-center"
+                    />
                     
-                    <div className="bg-gradient-soft rounded-2xl p-4 space-y-3">
-                      <div className="flex justify-between items-center">
-                        <span className="text-foreground font-medium">Day 5</span>
-                        <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold">5</div>
-                      </div>
-                      <div className="space-y-2">
-                        <div className="flex items-center gap-2">
-                          <div className="w-3 h-3 bg-primary rounded-full"></div>
-                          <span className="text-sm text-muted-foreground">Stredné krvácanie</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <div className="w-3 h-3 bg-primary/60 rounded-full"></div>
-                          <span className="text-sm text-muted-foreground">Kŕče</span>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div className="grid grid-cols-7 gap-2">
-                      {[...Array(31)].map((_, i) => (
-                        <div key={i} className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium ${
-                          i === 4 ? 'bg-primary text-white' : 
-                          [3, 5, 6].includes(i) ? 'bg-primary/20 text-primary' :
-                          'text-muted-foreground'
-                        }`}>
-                          {i + 1}
-                        </div>
-                      ))}
-                    </div>
+                    {/* Additional glass overlay for premium effect */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-primary/5"></div>
                   </div>
                 </div>
+                
+                {/* 3D highlight effect */}
+                <div className="absolute -top-2 -left-2 w-6 h-6 bg-white/40 rounded-full blur-md"></div>
+                <div className="absolute top-1/3 -right-1 w-4 h-8 bg-white/20 rounded-full blur-sm"></div>
               </div>
             </div>
           </div>
