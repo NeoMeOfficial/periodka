@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Star, TrendingUp, Calendar as CalendarIcon, Clock, Activity, Edit3 } from 'lucide-react';
 import { format } from 'date-fns';
 import { cn } from '@/lib/utils';
+import periodkaAppScreen from '@/assets/periodka-app-screen.png';
 
 export const FloHero = () => {
   const [showEntries, setShowEntries] = useState(false);
@@ -214,7 +215,7 @@ export const FloHero = () => {
                       </div>
                     ) : (
                       <img 
-                        src="/periodka-app-screen.png" 
+                        src={periodkaAppScreen}
                         alt="Periodka App Interface showing menstrual cycle tracking features" 
                         className="w-full h-full object-cover object-center rounded-[2.2rem]"
                       />
