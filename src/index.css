@@ -127,16 +127,18 @@ All colors MUST be HSL.
 
   /* Highlight text styling */
   .highlight-text {
-    @apply font-allura text-primary;
-    font-size: 1.4em;
-    transform: rotate(-1deg);
+    @apply font-caveat text-primary;
+    font-size: 1.3em;
+    font-weight: 600;
+    transform: rotate(-0.5deg);
     display: inline-block;
   }
 
   .brand-text {
-    @apply font-allura text-primary;
-    font-size: 1.6em;
-    transform: rotate(-0.5deg);
+    @apply font-caveat text-primary;
+    font-size: 1.5em;
+    font-weight: 700;
+    transform: rotate(-0.3deg);
     display: inline-block;
   }
 
