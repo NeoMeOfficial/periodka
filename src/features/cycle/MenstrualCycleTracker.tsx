@@ -52,6 +52,13 @@ export const MenstrualCycleTracker: React.FC<MenstrualCycleTrackerProps> = ({ ac
 
   return (
     <div className="w-full max-w-md mx-auto space-y-4">
+      {/* Title */}
+      <div className="text-center mb-6">
+        <h1 className="text-2xl font-semibold" style={{ color: 'hsl(var(--foreground))' }}>
+          Menštruačný kalendár
+        </h1>
+      </div>
+
       {/* Cycle Information Card */}
       <div className="symptom-glass rounded-2xl p-4" style={{ backgroundColor: '#FBF8F9' }}>
         <div className="flex items-center justify-center">
@@ -108,16 +115,22 @@ export const MenstrualCycleTracker: React.FC<MenstrualCycleTrackerProps> = ({ ac
         <TabsList className="grid w-full grid-cols-2 gap-3 bg-transparent p-0">
           <TabsTrigger 
             value="today" 
-            className="flex items-center gap-2 text-base bg-gradient-primary font-semibold rounded-3xl px-6 py-3 symptom-glass hover:opacity-90 transition-opacity data-[state=active]:bg-gradient-primary data-[state=inactive]:bg-gradient-primary"
-            style={{ color: '#F4415F' }}
+            className="flex items-center gap-2 text-base font-semibold rounded-3xl px-6 py-3 transition-all data-[state=active]:bg-rose-300 data-[state=active]:text-white data-[state=inactive]:bg-transparent data-[state=inactive]:border data-[state=inactive]:border-rose-200/30"
+            style={{ 
+              backgroundColor: activeTab === 'today' ? '#F8BBD0' : 'transparent',
+              color: activeTab === 'today' ? '#8E1538' : '#F4415F'
+            }}
           >
             <TrendingUp className="w-4 h-4" />
             Odhad na dnes
           </TabsTrigger>
           <TabsTrigger 
             value="overview" 
-            className="flex items-center gap-2 text-base bg-gradient-to-r from-rose-50/80 to-pink-50/80 border border-rose-200/30 backdrop-blur-sm rounded-3xl px-6 py-3 symptom-glass hover:from-rose-50 hover:to-pink-50 transition-all data-[state=active]:from-rose-50 data-[state=active]:to-pink-50 data-[state=inactive]:from-rose-50/80 data-[state=inactive]:to-pink-50/80"
-            style={{ color: '#F4415F' }}
+            className="flex items-center gap-2 text-base rounded-3xl px-6 py-3 transition-all data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=inactive]:bg-transparent"
+            style={{ 
+              backgroundColor: activeTab === 'overview' ? 'white' : 'transparent',
+              color: '#F4415F'
+            }}
           >
             <Lightbulb className="w-4 h-4" />
             Čo s tým
