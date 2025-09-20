@@ -1,10 +1,10 @@
 import React from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Calendar, Heart, LogOut, Plus } from 'lucide-react';
+import { LogOut } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import periodkaLogo from '@/assets/periodka-logo.png';
+import { MenstrualCycleTracker } from '@/features/cycle/MenstrualCycleTracker';
 
 const Dashboard = () => {
   const { user, signOut } = useAuth();
@@ -48,77 +48,10 @@ const Dashboard = () => {
             </p>
           </div>
 
-          {/* Quick Actions */}
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            <Card className="hover:shadow-lg transition-shadow cursor-pointer">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Heart className="w-5 h-5 text-red-500" />
-                  Začať novú periódu
-                </CardTitle>
-                <CardDescription>
-                  Označ začiatok tvojej menštruácie
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Button className="w-full">
-                  <Plus className="w-4 h-4 mr-2" />
-                  Pridať záznam
-                </Button>
-              </CardContent>
-            </Card>
-
-            <Card className="hover:shadow-lg transition-shadow cursor-pointer">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Calendar className="w-5 h-5 text-blue-500" />
-                  Kalendár cyklu
-                </CardTitle>
-                <CardDescription>
-                  Zobraz si svoj cyklus v kalendári
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Button variant="outline" className="w-full">
-                  Otvoriť kalendár
-                </Button>
-              </CardContent>
-            </Card>
-
-            <Card className="hover:shadow-lg transition-shadow cursor-pointer">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Heart className="w-5 h-5 text-purple-500" />
-                  Príznaky & Nálada
-                </CardTitle>
-                <CardDescription>
-                  Zaznamenaj ako sa dnes cítiš
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Button variant="outline" className="w-full">
-                  Pridať poznámku
-                </Button>
-              </CardContent>
-            </Card>
+          {/* Menstrual Cycle Tracker */}
+          <div className="flex justify-center">
+            <MenstrualCycleTracker />
           </div>
-
-          {/* Recent Activity */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Posledná aktivita</CardTitle>
-              <CardDescription>
-                Tvoje najnovšie záznamy a štatistiky
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="text-center text-muted-foreground py-8">
-                <Calendar className="w-12 h-12 mx-auto mb-4 opacity-50" />
-                <p>Zatiaľ nemáš žiadne záznamy</p>
-                <p className="text-sm">Začni sledovaním svojej ďalšej periódy</p>
-              </div>
-            </CardContent>
-          </Card>
         </div>
       </main>
     </div>

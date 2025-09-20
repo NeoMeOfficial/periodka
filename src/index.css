@@ -43,6 +43,16 @@ All colors MUST be HSL.
     --gradient-hero: linear-gradient(135deg, hsl(355 100% 73%) 0%, hsl(355 95% 78%) 50%, hsl(355 90% 83%) 100%);
     --gradient-glass: linear-gradient(135deg, rgba(255, 119, 130, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
     
+    /* Primary cycle colors */
+    --cycle-secondary-text: 351 89% 61%;  /* #F4415F - Primary accent */
+    --cycle-body-text: 348 22% 48%;       /* #955F6A - Body text */
+    
+    /* Phase colors */
+    --mint: 150 31% 82%;                  /* Follicular - Mint green */
+    --lavender: 265 30% 92%;              /* Ovulation - Purple */
+    --peach: 17 80% 86%;                  /* Luteal - Coral/peach */
+    --chart-center: 0 0% 98%;            /* Center circle color */
+    
     --shadow-elegant: 0 10px 30px -10px hsl(355 100% 73% / 0.3);
     --shadow-soft: 0 4px 20px -4px hsl(355 40% 80% / 0.4);
     --shadow-glass: 0 8px 32px 0 rgba(255, 119, 130, 0.15);
