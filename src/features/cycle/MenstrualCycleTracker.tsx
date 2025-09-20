@@ -71,8 +71,7 @@ export const MenstrualCycleTracker: React.FC<MenstrualCycleTrackerProps> = ({ ac
               <div className="w-2 h-2 rounded-full bg-rose-400"></div>
             </div>
             <Button 
-              className="px-4 py-2 text-sm font-medium bg-gradient-to-r from-rose-50 to-pink-50 border border-rose-200/30 rounded-3xl symptom-glass hover:from-rose-50 hover:to-pink-50 transition-all"
-              style={{ color: '#F4415F' }}
+              className="phase-button phase-button--unselected rounded-3xl px-4 py-2"
             >
               {daysUntilPeriod !== null && daysUntilPeriod > 0 ? `za ${daysUntilPeriod} ${daysUntilPeriod === 1 ? 'deň' : 'dní'}` : 'Dnes'}
             </Button>
@@ -88,12 +87,11 @@ export const MenstrualCycleTracker: React.FC<MenstrualCycleTrackerProps> = ({ ac
             <Button
               key={phase.key}
               onClick={() => setSelectedPhase(selectedPhase?.key === phase.key ? undefined : phase)}
-              className={`text-sm px-3 py-1.5 rounded-full transition-all whitespace-nowrap flex-shrink-0 ${
+              className={`phase-button ${
                 selectedPhase?.key === phase.key 
-                  ? 'bg-gradient-primary border-none symptom-glass shadow-sm' 
-                  : 'bg-gradient-to-r from-rose-50/80 to-pink-50/80 border border-rose-200/30 symptom-glass hover:from-rose-50 hover:to-pink-50 shadow-sm'
+                  ? 'phase-button--selected' 
+                  : 'phase-button--unselected'
               }`}
-              style={{ color: '#F4415F' }}
             >
               {phase.name}
             </Button>
@@ -115,22 +113,18 @@ export const MenstrualCycleTracker: React.FC<MenstrualCycleTrackerProps> = ({ ac
         <TabsList className="grid w-full grid-cols-2 gap-3 bg-transparent p-0">
           <TabsTrigger 
             value="today" 
-            className="flex items-center gap-2 text-base font-semibold rounded-3xl px-6 py-3 transition-all data-[state=active]:bg-rose-300 data-[state=active]:text-white data-[state=inactive]:bg-transparent data-[state=inactive]:border data-[state=inactive]:border-rose-200/30"
-            style={{ 
-              backgroundColor: activeTab === 'today' ? '#F8BBD0' : 'transparent',
-              color: activeTab === 'today' ? '#8E1538' : '#F4415F'
-            }}
+            className={`flex items-center gap-2 text-base font-semibold rounded-3xl px-6 py-3 transition-all ${
+              activeTab === 'today' ? 'phase-button--selected' : 'phase-button--unselected'
+            }`}
           >
             <TrendingUp className="w-4 h-4" />
             Odhad na dnes
           </TabsTrigger>
           <TabsTrigger 
             value="overview" 
-            className="flex items-center gap-2 text-base rounded-3xl px-6 py-3 transition-all data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=inactive]:bg-transparent"
-            style={{ 
-              backgroundColor: activeTab === 'overview' ? 'white' : 'transparent',
-              color: '#F4415F'
-            }}
+            className={`flex items-center gap-2 text-base rounded-3xl px-6 py-3 transition-all ${
+              activeTab === 'overview' ? 'phase-button--selected' : 'phase-button--unselected'
+            }`}
           >
             <Lightbulb className="w-4 h-4" />
             Čo s tým
@@ -161,16 +155,14 @@ export const MenstrualCycleTracker: React.FC<MenstrualCycleTrackerProps> = ({ ac
       <div className="mt-2 grid grid-cols-2 gap-2">
         <Button 
           onClick={() => setShowDatePicker(true)}
-          className="flex items-center gap-2 text-base bg-gradient-primary font-semibold rounded-3xl px-6 py-3 symptom-glass hover:opacity-90 transition-opacity"
-          style={{ color: '#F4415F' }}
+          className="phase-button phase-button--selected flex items-center gap-2 text-base font-semibold rounded-3xl px-6 py-3"
         >
           <Calendar className="w-4 h-4" />
           Kalendár
         </Button>
         <Button 
           onClick={() => setShowSettings(true)}
-          className="flex items-center gap-2 text-base bg-gradient-to-r from-rose-50 to-pink-50 border border-rose-200/30 rounded-3xl px-6 py-3 symptom-glass hover:from-rose-50 hover:to-pink-50 transition-all"
-          style={{ color: '#F4415F' }}
+          className="phase-button phase-button--unselected flex items-center gap-2 text-base rounded-3xl px-6 py-3"
         >
           <Settings className="w-4 h-4" />
           Nastavenia

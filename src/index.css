@@ -308,6 +308,73 @@ All colors MUST be HSL.
     }
   }
 
+  /* Button styling for phase buttons */
+  .phase-button {
+    font-size: 14px; /* text-sm */
+    padding: 6px 12px; /* px-3 py-1.5 */
+    border-radius: 9999px; /* rounded-full */
+    transition: all 0.15s ease; /* transition-all */
+    white-space: nowrap; /* whitespace-nowrap */
+    flex-shrink: 0; /* flex-shrink-0 */
+    color: #F4415F; /* Fixed rose color */
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* shadow-sm */
+  }
+
+  .phase-button--selected {
+    /* Primary gradient background */
+    background: linear-gradient(135deg, hsl(355, 78%, 90%) 0%, hsl(355, 70%, 85%) 100%);
+    border: none;
+    
+    /* Glassmorphism effect */
+    background-color: #FBF8F9; /* --symptom-glass-bg */
+    border: 1px solid rgba(255, 255, 255, 0.6); /* --symptom-glass-border */
+    box-shadow: 
+      0 4px 16px rgba(0, 0, 0, 0.08), 
+      0 1px 4px rgba(0, 0, 0, 0.04),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.05),
+      0 1px 2px 0 rgba(0, 0, 0, 0.05); /* Additional shadow-sm */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .phase-button--unselected {
+    /* Subtle rose gradient */
+    background: linear-gradient(to right, rgba(254, 242, 242, 0.8), rgba(252, 231, 243, 0.8));
+    border: 1px solid rgba(251, 207, 232, 0.3); /* border-rose-200/30 */
+    
+    /* Glassmorphism effect */
+    background-color: #FBF8F9; /* --symptom-glass-bg */
+    border: 1px solid rgba(255, 255, 255, 0.6); /* --symptom-glass-border */
+    box-shadow: 
+      0 4px 16px rgba(0, 0, 0, 0.08), 
+      0 1px 4px rgba(0, 0, 0, 0.04),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.05),
+      0 1px 2px 0 rgba(0, 0, 0, 0.05); /* Additional shadow-sm */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .phase-button--unselected:hover {
+    background: linear-gradient(to right, rgb(254, 242, 242), rgb(252, 231, 243));
+    transform: translateY(-1px);
+    box-shadow: 
+      0 6px 20px rgba(0, 0, 0, 0.12), 
+      0 2px 6px rgba(0, 0, 0, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.08);
+  }
+
+  .phase-button--selected:hover {
+    transform: translateY(-1px);
+    box-shadow: 
+      0 6px 20px rgba(0, 0, 0, 0.12), 
+      0 2px 6px rgba(0, 0, 0, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.08);
+  }
+
   /* Symptom glass morphism */
   .symptom-glass {
     background: var(--symptom-glass-bg);
