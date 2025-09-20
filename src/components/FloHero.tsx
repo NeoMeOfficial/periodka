@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Star, TrendingUp, Calendar as CalendarIcon, Clock, Activity, Edit3 } from 'lucide-react';
 import { format } from 'date-fns';
 import { cn } from '@/lib/utils';
+import { useNavigate } from 'react-router-dom';
 import periodkaAppScreen from '@/assets/periodka-app-screen.png';
 
 export const FloHero = () => {
@@ -13,6 +14,7 @@ export const FloHero = () => {
   const [lastPeriodDate, setLastPeriodDate] = useState<Date>(new Date(2025, 8, 5)); // September 5, 2025
   const [cycleLength, setCycleLength] = useState(28);
   const [periodLength, setPeriodLength] = useState(5);
+  const navigate = useNavigate();
 
   return (
     <section className="pt-32 pb-16 bg-gradient-soft relative overflow-hidden floating-dots geometric-shapes">
@@ -61,10 +63,10 @@ export const FloHero = () => {
                 variant="primary" 
                 className="bg-gradient-primary-button" 
                 style={{ color: '#F4415F' }}
-                onClick={() => setShowEntries(!showEntries)}
+                onClick={() => navigate('/auth')}
               >
                 <TrendingUp className="w-4 h-4" />
-                Čo ma dnes čaká
+                Ukáž čo ma čaká
               </Button>
               
               <Button 
@@ -206,6 +208,7 @@ export const FloHero = () => {
                               variant="primary" 
                               className="w-full bg-gradient-primary-button"
                               style={{ color: '#F4415F' }}
+                              onClick={() => navigate('/auth')}
                             >
                               <TrendingUp className="w-4 h-4" />
                               Ukáž, čo ma čaká
