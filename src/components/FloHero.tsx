@@ -50,8 +50,8 @@ export const FloHero = () => {
               </h1>
               
               <p className="text-xl text-muted-foreground leading-relaxed max-w-lg">
-                <span className="highlight-text">Tisíce slovenských žien</span> už používajú Periodka na sledovanie 
-                menštruácie, ovulácie a lepšie porozumenie svojho tela.
+                Jednoducho a <span className="highlight-text">anonymne</span> sleduj svoju periodu. 
+                Vždy budeš vedieť, <span className="highlight-text">čo ťa čaká</span> a lepšie porozumieš svojmu telu.
               </p>
             </div>
             
