@@ -43,7 +43,7 @@ export const WellnessDonutChart: React.FC<WellnessDonutChartProps> = ({
   const currentDayPos = getCurrentDayPosition();
 
   return (
-    <div className="relative w-full aspect-square max-w-[300px] mx-auto">
+    <div className="relative w-full max-w-[300px] h-[250px] mx-auto">
       <svg viewBox="0 25 200 150" className="w-full h-full -rotate-90">
         {/* Base ring track */}
         <circle 
@@ -53,6 +53,8 @@ export const WellnessDonutChart: React.FC<WellnessDonutChartProps> = ({
           fill="none" 
           stroke="hsl(var(--muted))" 
           strokeWidth="12" 
+          strokeLinecap="round"
+          opacity="0.3"
         />
         
         {/* Day dots around the circle */}
@@ -63,20 +65,35 @@ export const WellnessDonutChart: React.FC<WellnessDonutChartProps> = ({
           const isCurrentDay = day === currentDay;
           const isSelectedPhase = selectedPhase ? 
             day >= selectedPhase.start && day <= selectedPhase.end : false;
+          const shouldHighlight = isSelectedPhase || (!selectedPhase && isCurrentDay);
+          const phaseColor = getPhaseColor(phase.key);
           
           return (
-            <circle
-              key={day}
-              cx={pos.x}
-              cy={pos.y}
-              r={isCurrentDay ? 8 : 4}
-              fill={isCurrentDay ? "hsl(var(--primary))" : getPhaseColor(phase.key)}
-              stroke={isCurrentDay ? "white" : "none"}
-              strokeWidth={isCurrentDay ? 2 : 0}
-              className={`transition-all duration-200 ${
-                isSelectedPhase ? 'opacity-100' : selectedPhase ? 'opacity-30' : 'opacity-70'
-              }`}
-            />
+            <g key={day}>
+              {isCurrentDay && (
+                <circle
+                  cx={pos.x}
+                  cy={pos.y}
+                  r="10"
+                  fill="hsl(var(--peach) / 0.35)"
+                  stroke="hsl(var(--peach) / 0.55)"
+                  strokeWidth="1"
+                  style={{
+                    filter: 'drop-shadow(0 0 8px hsl(var(--peach) / 0.45))'
+                  }}
+                />
+              )}
+              <circle
+                cx={pos.x}
+                cy={pos.y}
+                r={isCurrentDay ? "5" : (shouldHighlight ? "4" : "3")}
+                fill={phaseColor}
+                opacity={shouldHighlight ? 1 : 0.7}
+                className="transition-all duration-300"
+                stroke={isCurrentDay ? "hsl(var(--background))" : (shouldHighlight ? phaseColor : "none")}
+                strokeWidth={isCurrentDay ? "1" : (shouldHighlight ? "1" : "0")}
+              />
+            </g>
           );
         })}
         
@@ -86,39 +103,36 @@ export const WellnessDonutChart: React.FC<WellnessDonutChartProps> = ({
           cy={centerY} 
           r="66" 
           fill="hsl(var(--chart-center))" 
-          className="cursor-pointer"
+          className="transition-colors duration-300 cursor-pointer hover:fill-[hsl(var(--chart-center)_/_0.9)]"
           onClick={() => onPhaseSelect?.(currentPhase)}
         />
         
         {/* "DNES" label pointing to current day */}
         <text
-          x={currentDayPos.x + (currentDayPos.x > centerX ? 15 : -15)}
-          y={currentDayPos.y}
-          fill="hsl(var(--cycle-secondary-text))"
-          fontSize="10"
-          fontWeight="600"
-          textAnchor={currentDayPos.x > centerX ? "start" : "end"}
-          className="rotate-90"
+          x={100 + 100 * Math.cos(((((currentDay - 1) / cycleLength) * 360 - 90) * Math.PI) / 180)}
+          y={100 + 100 * Math.sin(((((currentDay - 1) / cycleLength) * 360 - 90) * Math.PI) / 180)}
+          fontSize="14"
+          fill="hsl(var(--foreground))"
+          textAnchor="middle"
+          dominantBaseline="middle"
+          fontWeight="700"
+          className="rotate-90 transform-origin-center pointer-events-none"
+          style={{ textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}
         >
-          {UI_TEXT.today}
+          Dnes
         </text>
       </svg>
       
       {/* Center content overlay */}
       <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-        <div className="text-center">
-          <div 
-            className="text-lg font-semibold mb-1"
-            style={{ color: getPhaseColor(currentPhase.key) }}
-          >
-            {currentPhase.name}
-          </div>
-          <div className="text-2xl font-bold mb-1" style={{ color: 'hsl(var(--cycle-secondary-text))' }}>
-            {currentDay}
-          </div>
-          <div className="text-xs" style={{ color: 'hsl(var(--cycle-body-text))' }}>
-            {UI_TEXT.cycleDay}
-          </div>
+        <div className="text-sm text-center mb-1 font-medium" style={{ color: 'hsl(var(--foreground))' }}>
+          {selectedPhase ? (phaseRanges.find(p => p.key === selectedPhase.key)?.name || currentPhase.name) : currentPhase.name}
+        </div>
+        <div className="text-4xl font-bold" style={{ color: 'hsl(var(--foreground))' }}>
+          {currentDay}
+        </div>
+        <div className="text-sm text-center font-medium" style={{ color: 'hsl(var(--muted-foreground))' }}>
+          deň
         </div>
       </div>
     </div>

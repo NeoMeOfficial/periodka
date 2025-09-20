@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
-import { Calendar, Settings, Play, Square } from 'lucide-react';
+import { Calendar, Settings, Play, Square, TrendingUp, Lightbulb } from 'lucide-react';
 import { WellnessDonutChart } from './WellnessDonutChart';
 import { SuggestedToday } from './SuggestedToday';
 import { PhaseOverview } from './PhaseOverview';
@@ -54,82 +54,44 @@ export const MenstrualCycleTracker: React.FC<MenstrualCycleTrackerProps> = ({ ac
     <div className="w-full max-w-md mx-auto space-y-4">
       {/* Cycle Information Card */}
       <div className="symptom-glass rounded-2xl p-4" style={{ backgroundColor: '#FBF8F9' }}>
-        <div className="text-center space-y-2">
-          {/* Rose dots decoration */}
-          <div className="flex justify-center gap-1 mb-3">
-            <div className="w-2 h-2 rounded-full" style={{ backgroundColor: 'hsl(var(--cycle-secondary-text))' }}></div>
-            <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'hsl(var(--cycle-secondary-text))' }} opacity-70></div>
-            <div className="w-1 h-1 rounded-full" style={{ backgroundColor: 'hsl(var(--cycle-secondary-text))' }} opacity-50></div>
+        <div className="flex items-center justify-center">
+          <div className="text-center space-y-3">
+            <div className="flex items-center justify-center gap-3">
+              <div className="w-2 h-2 rounded-full bg-rose-400"></div>
+              <p className="text-base font-medium" style={{ color: '#955F6A' }}>
+                Očakávaná menštruácia
+              </p>
+              <div className="w-2 h-2 rounded-full bg-rose-400"></div>
+            </div>
+            <Button 
+              className="px-4 py-2 text-sm font-medium bg-gradient-to-r from-rose-50 to-pink-50 border border-rose-200/30 rounded-3xl symptom-glass hover:from-rose-50 hover:to-pink-50 transition-all"
+              style={{ color: '#F4415F' }}
+            >
+              {daysUntilPeriod !== null && daysUntilPeriod > 0 ? `za ${daysUntilPeriod} ${daysUntilPeriod === 1 ? 'deň' : 'dní'}` : 'Dnes'}
+            </Button>
           </div>
-
-          {derivedState.isFirstRun ? (
-            <div>
-              <h2 className="text-lg font-semibold mb-2" style={{ color: 'hsl(var(--cycle-secondary-text))' }}>
-                {UI_TEXT.welcome}
-              </h2>
-              <Button
-                onClick={() => setShowDatePicker(true)}
-                variant="secondary-glass"
-                className="w-full"
-              >
-                <Calendar className="w-4 h-4 mr-2" />
-                {UI_TEXT.lastPeriod}
-              </Button>
-            </div>
-          ) : (
-            <div>
-              <div className="text-sm mb-1" style={{ color: 'hsl(var(--cycle-body-text))' }}>
-                {UI_TEXT.todayEstimate}
-              </div>
-              {daysUntilPeriod !== null && (
-                <div className="text-lg font-semibold" style={{ color: 'hsl(var(--cycle-secondary-text))' }}>
-                  {daysUntilPeriod > 0 ? (
-                    `${UI_TEXT.expectedPeriod} za ${daysUntilPeriod} ${daysUntilPeriod === 1 ? 'deň' : 'dní'}`
-                  ) : daysUntilPeriod === 0 ? (
-                    `${UI_TEXT.expectedPeriod} dnes`
-                  ) : (
-                    `${Math.abs(daysUntilPeriod)} ${UI_TEXT.daysPast}`
-                  )}
-                </div>
-              )}
-            </div>
-          )}
         </div>
       </div>
 
       {/* Main Tabs System */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-5">
-        {/* Phase Selector Buttons */}
-        {!derivedState.isFirstRun && (
-          <div className="flex gap-2 justify-center overflow-x-auto px-2 py-1 -mx-2">
-            {derivedState.phaseRanges.map(phase => {
-              const isSelected = selectedPhase?.key === phase.key;
-              const isCurrent = derivedState.currentPhase.key === phase.key;
-              
-              return (
-                <Button
-                  key={phase.key}
-                  onClick={() => {
-                    setSelectedPhase(phase);
-                    setActiveTab('phase');
-                  }}
-                  className={`text-sm px-3 py-1.5 rounded-full transition-all whitespace-nowrap flex-shrink-0 ${
-                    isSelected ? 'symptom-glass shadow-sm' : 
-                    'bg-gradient-to-r from-rose-50/80 to-pink-50/80 symptom-glass shadow-sm'
-                  }`}
-                  style={{ 
-                    color: 'hsl(var(--cycle-secondary-text))',
-                    backgroundColor: isSelected ? 'var(--gradient-primary-button)' : undefined
-                  }}
-                  variant="ghost"
-                >
-                  {phase.name}
-                  {isCurrent && <span className="ml-1 text-xs">•</span>}
-                </Button>
-              );
-            })}
-          </div>
-        )}
+        {/* Phase selector buttons */}
+        <div className="flex gap-2 justify-center overflow-x-auto px-2 py-1 -mx-2">
+          {derivedState.phaseRanges.map((phase) => (
+            <Button
+              key={phase.key}
+              onClick={() => setSelectedPhase(selectedPhase?.key === phase.key ? undefined : phase)}
+              className={`text-sm px-3 py-1.5 rounded-full transition-all whitespace-nowrap flex-shrink-0 ${
+                selectedPhase?.key === phase.key 
+                  ? 'bg-gradient-primary border-none symptom-glass shadow-sm' 
+                  : 'bg-gradient-to-r from-rose-50/80 to-pink-50/80 border border-rose-200/30 symptom-glass hover:from-rose-50 hover:to-pink-50 shadow-sm'
+              }`}
+              style={{ color: '#F4415F' }}
+            >
+              {phase.name}
+            </Button>
+          ))}
+        </div>
 
         {/* Wellness Donut Chart */}
         {!derivedState.isFirstRun && (
@@ -143,12 +105,22 @@ export const MenstrualCycleTracker: React.FC<MenstrualCycleTrackerProps> = ({ ac
           />
         )}
 
-        {/* Tab Navigation */}
-        <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="today">{UI_TEXT.today}</TabsTrigger>
-          <TabsTrigger value="symptoms">{UI_TEXT.symptoms}</TabsTrigger>
-          <TabsTrigger value="phase" disabled={!selectedPhase}>
-            Fáza
+        <TabsList className="grid w-full grid-cols-2 gap-3 bg-transparent p-0">
+          <TabsTrigger 
+            value="today" 
+            className="flex items-center gap-2 text-base bg-gradient-primary font-semibold rounded-3xl px-6 py-3 symptom-glass hover:opacity-90 transition-opacity data-[state=active]:bg-gradient-primary data-[state=inactive]:bg-gradient-primary"
+            style={{ color: '#F4415F' }}
+          >
+            <TrendingUp className="w-4 h-4" />
+            Odhad na dnes
+          </TabsTrigger>
+          <TabsTrigger 
+            value="overview" 
+            className="flex items-center gap-2 text-base bg-gradient-to-r from-rose-50/80 to-pink-50/80 border border-rose-200/30 backdrop-blur-sm rounded-3xl px-6 py-3 symptom-glass hover:from-rose-50 hover:to-pink-50 transition-all data-[state=active]:from-rose-50 data-[state=active]:to-pink-50 data-[state=inactive]:from-rose-50/80 data-[state=inactive]:to-pink-50/80"
+            style={{ color: '#F4415F' }}
+          >
+            <Lightbulb className="w-4 h-4" />
+            Čo s tým
           </TabsTrigger>
         </TabsList>
 
@@ -164,56 +136,31 @@ export const MenstrualCycleTracker: React.FC<MenstrualCycleTrackerProps> = ({ ac
           )}
         </TabsContent>
 
-        <TabsContent value="symptoms" className="space-y-4">
-          {!derivedState.isFirstRun ? (
-            <SymptomTracker
-              currentPhase={derivedState.currentPhase}
-              onSaveSymptoms={saveSymptoms}
-              onSaveNotes={saveNotes}
-              getSymptoms={getSymptoms}
-              getNotes={getNotes}
-            />
-          ) : (
-            <div className="text-center py-8" style={{ color: 'hsl(var(--cycle-body-text))' }}>
-              <p>Najprv nastav svoj cyklus pre sledovanie príznakov</p>
-            </div>
-          )}
-        </TabsContent>
-
-        <TabsContent value="phase" className="space-y-4">
-          {selectedPhase ? (
-            <PhaseOverview
-              selectedPhase={selectedPhase}
-              currentPhase={derivedState.currentPhase}
-            />
-          ) : (
-            <div className="text-center py-8" style={{ color: 'hsl(var(--cycle-body-text))' }}>
-              <p>Vyber fázu cyklu pre detailné informácie</p>
-            </div>
-          )}
+        <TabsContent value="overview" className="space-y-4">
+          <PhaseOverview 
+            currentPhase={selectedPhase || derivedState.currentPhase}
+            selectedPhase={selectedPhase}
+          />
         </TabsContent>
       </Tabs>
 
       {/* Bottom Action Buttons */}
       <div className="mt-2 grid grid-cols-2 gap-2">
-        <Button
-          variant="outline"
+        <Button 
           onClick={() => setShowDatePicker(true)}
-          className="symptom-glass"
-          style={{ backgroundColor: 'var(--symptom-glass-bg)' }}
+          className="flex items-center gap-2 text-base bg-gradient-primary font-semibold rounded-3xl px-6 py-3 symptom-glass hover:opacity-90 transition-opacity"
+          style={{ color: '#F4415F' }}
         >
-          <Calendar className="w-4 h-4 mr-2" />
-          {UI_TEXT.calendar}
+          <Calendar className="w-4 h-4" />
+          Kalendár
         </Button>
-        
-        <Button
-          variant="outline"
+        <Button 
           onClick={() => setShowSettings(true)}
-          className="symptom-glass"
-          style={{ backgroundColor: 'var(--symptom-glass-bg)' }}
+          className="flex items-center gap-2 text-base bg-gradient-to-r from-rose-50 to-pink-50 border border-rose-200/30 rounded-3xl px-6 py-3 symptom-glass hover:from-rose-50 hover:to-pink-50 transition-all"
+          style={{ color: '#F4415F' }}
         >
-          <Settings className="w-4 h-4 mr-2" />
-          {UI_TEXT.settings}
+          <Settings className="w-4 h-4" />
+          Nastavenia
         </Button>
       </div>
 

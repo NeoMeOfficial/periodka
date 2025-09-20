@@ -48,10 +48,11 @@ All colors MUST be HSL.
     --cycle-body-text: 348 22% 48%;       /* #955F6A - Body text */
     
     /* Phase colors */
+    --destructive: 0 79% 70%;             /* Menstrual - red */
     --mint: 150 31% 82%;                  /* Follicular - Mint green */
     --lavender: 265 30% 92%;              /* Ovulation - Purple */
     --peach: 17 80% 86%;                  /* Luteal - Coral/peach */
-    --chart-center: 0 0% 98%;            /* Center circle color */
+    --chart-center: 41 78% 93%;          /* Center circle color */
     
     --shadow-elegant: 0 10px 30px -10px hsl(355 100% 73% / 0.3);
     --shadow-soft: 0 4px 20px -4px hsl(355 40% 80% / 0.4);

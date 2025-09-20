@@ -57,71 +57,65 @@ export const SymptomTracker: React.FC<SymptomTrackerProps> = ({
 
   return (
     <div className="space-y-6">
-      {/* Symptoms Section */}
-      <div>
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="font-semibold" style={{ color: 'hsl(var(--cycle-secondary-text))' }}>
-            {UI_TEXT.symptoms}
-          </h3>
+      <div className="symptom-glass rounded-xl p-4" style={{ backgroundColor: '#FBF8F9' }}>
+        <div className="flex items-center justify-between mb-2">
+          <span className="text-base font-medium" style={{ color: '#955F6A' }}>Príznaky</span>
           <Button
             variant="ghost"
             size="sm"
             onClick={() => setShowAllSymptoms(!showAllSymptoms)}
             className="text-xs"
+            style={{ color: '#955F6A' }}
           >
-            {showAllSymptoms ? 'Zobraziť pre fázu' : 'Zobraziť všetky'}
+            {showAllSymptoms ? 'Menej' : 'Viac'}
           </Button>
         </div>
-
+        <p className="text-sm mb-3" style={{ color: '#955F6A' }}>
+          Zaznamenajte príznaky pre lekársku konzultáciu
+        </p>
+        
         <div className="flex flex-wrap gap-2">
-          {symptomsToShow.map(symptom => {
-            const isSelected = selectedSymptoms.includes(symptom.id);
-            const isPhaseSpecific = phaseSpecificSymptoms.some(s => s.id === symptom.id);
-            
-            return (
-              <Badge
-                key={symptom.id}
-                variant={isSelected ? "default" : "outline"}
-                className={`cursor-pointer symptom-glass transition-all ${
-                  !isPhaseSpecific && !showAllSymptoms ? 'opacity-60' : ''
-                }`}
-                style={{
-                  backgroundColor: isSelected ? 'hsl(var(--cycle-secondary-text))' : 'var(--symptom-glass-bg)',
-                  color: isSelected ? 'white' : 'hsl(var(--cycle-body-text))',
-                  borderColor: isSelected ? 'hsl(var(--cycle-secondary-text))' : 'var(--symptom-glass-border)'
-                }}
-                onClick={() => toggleSymptom(symptom.id)}
-              >
-                <span className="mr-1.5">{symptom.icon}</span>
-                {symptom.name}
-              </Badge>
-            );
-          })}
+          {symptomsToShow.map((symptom) => (
+            <Badge
+              key={symptom.id}
+              className={`cursor-pointer select-none text-sm py-1.5 px-3 transition-all duration-200 symptom-glass ${
+                selectedSymptoms.includes(symptom.id) 
+                  ? 'bg-primary text-primary-foreground shadow-sm' 
+                  : 'hover:bg-muted'
+              }`}
+              style={selectedSymptoms.includes(symptom.id) ? {} : {
+                backgroundColor: '#FBF8F9',
+                color: '#955F6A'
+              }}
+              onClick={() => toggleSymptom(symptom.id)}
+            >
+              <span className="mr-1.5">{symptom.icon}</span>
+              {symptom.name}
+            </Badge>
+          ))}
         </div>
-
-        {!showAllSymptoms && phaseSpecificSymptoms.length === 0 && (
-          <p className="text-sm mt-2" style={{ color: 'hsl(var(--cycle-body-text))' }}>
-            Pre túto fázu nie sú definované špecifické príznaky.
-          </p>
-        )}
       </div>
 
-      {/* Notes Section */}
-      <div>
-        <h3 className="font-semibold mb-3" style={{ color: 'hsl(var(--cycle-secondary-text))' }}>
-          {UI_TEXT.notes}
-        </h3>
-        <Textarea
-          placeholder="Ako sa dnes cítiš? Zapíš si poznámky..."
-          value={notes}
-          onChange={(e) => handleNotesChange(e.target.value)}
-          rows={4}
-          className="symptom-glass resize-none"
-          style={{
-            backgroundColor: 'var(--symptom-glass-bg)',
-            borderColor: 'var(--symptom-glass-border)'
-          }}
-        />
+      <div className="symptom-glass rounded-xl p-4" style={{ backgroundColor: '#FBF8F9' }}>
+        <div className="space-y-2">
+          <div className="flex items-center justify-between">
+            <span className="text-base font-medium" style={{ color: '#955F6A' }}>Poznámky</span>
+          </div>
+          <p className="text-sm mb-3" style={{ color: '#955F6A' }}>
+            Zaznamenajte ďalšie informácie o vašom dni
+          </p>
+          <Textarea
+            value={notes}
+            onChange={(e) => handleNotesChange(e.target.value)}
+            placeholder="Napíšte poznámky o vašom dni..."
+            className="min-h-[80px] resize-none"
+            style={{
+              backgroundColor: '#FBF8F9',
+              borderColor: '#E5D4D7',
+              color: '#955F6A'
+            }}
+          />
+        </div>
       </div>
 
       {/* Summary */}

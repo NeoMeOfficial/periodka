@@ -12,13 +12,10 @@ export const SuggestedToday: React.FC<SuggestedTodayProps> = ({ currentPhase }) 
   const insights = PHASE_INSIGHTS[currentPhase.key];
 
   return (
-    <div className="space-y-4">
-      {/* Energy & Mood Display */}
+    <div className="symptom-glass rounded-xl p-4 space-y-3" style={{ backgroundColor: '#FBF8F9' }}>
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <span className="text-sm font-medium" style={{ color: 'hsl(var(--cycle-body-text))' }}>
-            {UI_TEXT.energy}
-          </span>
+        <span className="text-base font-medium" style={{ color: '#955F6A' }}>Energia</span>
+        <div className="flex items-center gap-2">
           <div className="relative h-2 w-16 bg-muted rounded-full overflow-hidden">
             <div 
               className="absolute left-0 top-0 h-full rounded-full transition-all duration-500"
@@ -28,25 +25,26 @@ export const SuggestedToday: React.FC<SuggestedTodayProps> = ({ currentPhase }) 
               }}
             />
           </div>
-          <span className="text-xs" style={{ color: 'hsl(var(--cycle-body-text))' }}>
-            {insights.energy}%
-          </span>
+          <span className="text-xs text-muted-foreground w-8">{insights.energy}%</span>
         </div>
-
-        <div className="flex items-center gap-3">
-          <span className="text-sm font-medium" style={{ color: 'hsl(var(--cycle-body-text))' }}>
-            {UI_TEXT.mood}
-          </span>
+      </div>
+      
+      <div className="flex items-center justify-between">
+        <span className="text-base font-medium" style={{ color: '#955F6A' }}>Nálada</span>
+        <div className="flex items-center gap-2">
           <div className="flex gap-1">
-            {[1, 2, 3, 4, 5].map(star => (
-              <div 
+            {[1, 2, 3, 4, 5].map((star) => (
+              <div
                 key={star}
-                className={`w-2 h-2 rounded-full transition-colors ${
-                  star <= Math.round(insights.mood) ? 'bg-yellow-400' : 'bg-muted'
-                }`} 
+                className={`w-2 h-2 rounded-full transition-all ${
+                  star <= Math.round(insights.mood) 
+                    ? 'bg-yellow-400' 
+                    : 'bg-muted'
+                }`}
               />
             ))}
           </div>
+          <span className="text-xl">😊</span>
         </div>
       </div>
 
