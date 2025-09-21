@@ -48,7 +48,7 @@ const Dashboard = () => {
             </p>
           </div>
 
-          {/* Menstrual Cycle Tracker */}
+          {/* Enhanced Menstrual Cycle Tracker */}
           <div className="flex justify-center">
             <MenstrualCycleTracker />
           </div>

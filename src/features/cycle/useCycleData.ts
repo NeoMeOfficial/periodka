@@ -51,10 +51,10 @@ export function useCycleData(accessCode?: string) {
     today: new Date(),
     minDate: new Date(Date.now() - 90 * 24 * 60 * 60 * 1000), // 90 days ago
     maxDate: new Date(),
-    currentDay: getCurrentCycleDay(cycleData.lastPeriodStart, cycleData.cycleLength),
+    currentDay: getCurrentCycleDay(cycleData.lastPeriodStart, new Date()),
     phaseRanges: getPhaseRanges(cycleData.cycleLength, cycleData.periodLength),
     currentPhase: getCurrentPhase(
-      getCurrentCycleDay(cycleData.lastPeriodStart, cycleData.cycleLength),
+      getCurrentCycleDay(cycleData.lastPeriodStart, new Date()),
       getPhaseRanges(cycleData.cycleLength, cycleData.periodLength)
     ),
     isFirstRun: !cycleData.lastPeriodStart
