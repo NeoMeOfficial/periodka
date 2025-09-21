@@ -37,21 +37,10 @@ const Dashboard = () => {
         </div>
       </header>
 
-      {/* Main Content */}
+      {/* Main Content - Enhanced Menstrual Calendar Widget */}
       <main className="container py-8">
-        <div className="space-y-8">
-          {/* Welcome Section */}
-          <div className="text-center space-y-4">
-            <h1 className="text-3xl font-bold">Tvoj zdravotný denníček</h1>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Sleduj svoju menštruáciu, zapisuj si poznámky a získaj lepší prehľad o svojom tele
-            </p>
-          </div>
-
-          {/* Enhanced Menstrual Cycle Tracker */}
-          <div className="flex justify-center">
-            <MenstrualCycleTracker />
-          </div>
+        <div className="w-full max-w-[600px] mx-auto">
+          <MenstrualCycleTracker />
         </div>
       </main>
     </div>

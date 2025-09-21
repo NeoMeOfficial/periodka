@@ -1,64 +1,149 @@
 import React, { useState } from 'react';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Calendar as CalendarIcon, TrendingUp, Lightbulb, Settings } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Calendar, Settings, Play, Square, TrendingUp, Lightbulb } from 'lucide-react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
+import { useCycleData } from './useCycleData';
 import { WellnessDonutChart } from './WellnessDonutChart';
-import { SuggestedToday } from './SuggestedToday';
 import { PhaseOverview } from './PhaseOverview';
-import { SymptomTracker } from './SymptomTracker';
 import { DatePickerModal } from './DatePickerModal';
 import { SettingsModal } from './SettingsModal';
-import { useCycleData } from './useCycleData';
-import { PhaseRange } from './types';
 import { UI_TEXT } from './insights';
-import { getDaysUntilPeriod, formatDisplayDate } from './utils';
+import { formatDateSk, getNextPeriodDate } from './utils';
+
+type OutcomeType = 'next-period' | 'fertile-days';
 
 interface MenstrualCycleTrackerProps {
   accessCode?: string;
+  compact?: boolean;
+  onFirstInteraction?: () => void;
 }
 
-export const MenstrualCycleTracker: React.FC<MenstrualCycleTrackerProps> = ({ accessCode }) => {
+export const MenstrualCycleTracker: React.FC<MenstrualCycleTrackerProps> = ({
+  accessCode,
+  compact = false,
+  onFirstInteraction
+}) => {
   const {
     cycleData,
     derivedState,
     loading,
-    startPeriod,
-    updateSettings,
-    updateCycleSettings,
-    saveSymptoms,
-    getSymptoms,
-    saveNotes,
-    getNotes
+    saveCycleData
   } = useCycleData(accessCode);
 
-  const [selectedPhase, setSelectedPhase] = useState<PhaseRange | undefined>();
-  const [activeTab, setActiveTab] = useState('today');
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
+  const [setupCycleLength, setSetupCycleLength] = useState(28);
+  const [setupPeriodLength, setSetupPeriodLength] = useState(5);
+
+  const handleFirstInteraction = () => {
+    onFirstInteraction?.();
+  };
+
+  const handleSetupComplete = (date: Date) => {
+    const dateString = date.toISOString().split('T')[0];
+    saveCycleData({
+      lastPeriodStart: dateString,
+      cycleLength: setupCycleLength,
+      periodLength: setupPeriodLength
+    });
+    handleFirstInteraction();
+  };
+
+  const handleDateSelect = (date: Date) => {
+    const dateString = date.toISOString().split('T')[0];
+    saveCycleData({ lastPeriodStart: dateString });
+    handleFirstInteraction();
+  };
 
   if (loading) {
     return (
-      <div className="w-full max-w-md mx-auto p-6">
-        <div className="animate-pulse space-y-4">
-          <div className="h-4 bg-muted rounded w-3/4"></div>
-          <div className="h-48 bg-muted rounded-2xl"></div>
+      <div className="bg-widget-bg p-3 w-full overflow-hidden">
+        <div className="w-full max-w-[600px] mx-auto space-y-2">
+          <div className="flex items-center justify-center py-8">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+          </div>
         </div>
       </div>
     );
   }
 
-  const daysUntilPeriod = getDaysUntilPeriod(cycleData.lastPeriodStart, cycleData.cycleLength);
-  const isInPeriod = derivedState.currentPhase.key === 'menstrual';
+  // Welcome screen for first-time setup
+  if (!cycleData.lastPeriodStart) {
+    return (
+      <div className="w-full space-y-6">
+        <div>
+          <p className="md:text-sm text-lg" style={{ color: '#955F6A' }}>
+            {UI_TEXT.welcome}
+          </p>
+        </div>
+
+        <div className="space-y-4">
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="setupCycleLength" className="text-mobile-sm md:text-sm font-medium block" style={{ color: '#955F6A' }}>
+                {UI_TEXT.cycleLength}
+              </Label>
+              <Input
+                id="setupCycleLength"
+                type="number"
+                min="21"
+                max="45"
+                value={setupCycleLength}
+                onChange={e => setSetupCycleLength(Number(e.target.value))}
+                placeholder="28 dni"
+                className="w-full text-base"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="setupPeriodLength" className="text-mobile-sm md:text-sm font-medium block" style={{ color: '#955F6A' }}>
+                {UI_TEXT.periodLength}
+              </Label>
+              <Input
+                id="setupPeriodLength"
+                type="number"
+                min="2"
+                max="10"
+                value={setupPeriodLength}
+                onChange={e => setSetupPeriodLength(Number(e.target.value))}
+                placeholder="5 dni"
+                className="w-full text-base"
+              />
+            </div>
+          </div>
+
+          <div className="pt-2">
+            <Button
+              onClick={() => setShowDatePicker(true)}
+              variant="outline"
+              className="w-full flex items-center justify-center gap-2 py-3 text-base"
+            >
+              <CalendarIcon className="w-5 h-5" />
+              {UI_TEXT.lastPeriod}
+            </Button>
+          </div>
+        </div>
+
+        <DatePickerModal
+          isOpen={showDatePicker}
+          onClose={() => setShowDatePicker(false)}
+          onDateSelect={handleSetupComplete}
+          title={UI_TEXT.lastPeriod}
+          minDate={derivedState?.minDate}
+          maxDate={derivedState?.maxDate}
+        />
+      </div>
+    );
+  }
+
+  if (!derivedState) return null;
+
+  const nextPeriodDate = getNextPeriodDate(cycleData.lastPeriodStart!, cycleData.cycleLength);
 
   return (
-    <div className="w-full max-w-md mx-auto space-y-4">
-      {/* Title */}
-      <div className="text-center mb-6">
-        <h1 className="text-2xl font-semibold" style={{ color: 'hsl(var(--foreground))' }}>
-          Menštruačný kalendár
-        </h1>
-      </div>
-
+    <div className="w-full space-y-4">
       {/* Cycle Information Card */}
       <div className="symptom-glass rounded-2xl p-4" style={{ backgroundColor: '#FBF8F9' }}>
         <div className="flex items-center justify-center">
@@ -70,145 +155,116 @@ export const MenstrualCycleTracker: React.FC<MenstrualCycleTrackerProps> = ({ ac
               </p>
               <div className="w-2 h-2 rounded-full bg-rose-400"></div>
             </div>
-            <Button 
-              className="phase-button phase-button--unselected rounded-3xl px-4 py-2"
+            <Button
+              className="px-4 py-2 text-sm font-medium bg-gradient-to-r from-rose-50 to-pink-50 border border-rose-200/30 rounded-3xl symptom-glass hover:from-rose-50 hover:to-pink-50 transition-all"
+              style={{ color: '#F4415F' }}
             >
-              {daysUntilPeriod !== null && daysUntilPeriod > 0 ? `za ${daysUntilPeriod} ${daysUntilPeriod === 1 ? 'deň' : 'dní'}` : 'Dnes'}
+              {formatDateSk(nextPeriodDate)}
             </Button>
           </div>
         </div>
       </div>
 
-      {/* Main Tabs System */}
-      <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-5">
-        {/* Phase selector buttons */}
-        <div className="flex gap-2 justify-center overflow-x-auto px-2 py-1 -mx-2">
-          {derivedState.phaseRanges.map((phase) => (
-            <Button
-              key={phase.key}
-              onClick={() => setSelectedPhase(selectedPhase?.key === phase.key ? undefined : phase)}
-              className={`phase-button ${
-                selectedPhase?.key === phase.key 
-                  ? 'phase-button--selected' 
-                  : 'phase-button--unselected'
-              }`}
-            >
-              {phase.name}
-            </Button>
-          ))}
-        </div>
+      <Tabs defaultValue="today" className="space-y-5">
+        <TabsContent value="today" className="space-y-5">
+          <div className="space-y-4">
+            <WellnessDonutChart
+              cycleLength={cycleData.cycleLength}
+              currentDay={derivedState.currentDay}
+              phaseRanges={derivedState.phaseRanges}
+              currentPhase={derivedState.currentPhase}
+            />
+          </div>
+        </TabsContent>
 
-        {/* Wellness Donut Chart */}
-        {!derivedState.isFirstRun && (
-          <WellnessDonutChart
-            cycleLength={cycleData.cycleLength}
-            currentDay={derivedState.currentDay}
-            phaseRanges={derivedState.phaseRanges}
-            currentPhase={derivedState.currentPhase}
-            selectedPhase={selectedPhase}
-            onPhaseSelect={setSelectedPhase}
-          />
-        )}
+        <TabsContent value="overview" className="space-y-5">
+          <div className="space-y-4">
+            <WellnessDonutChart
+              cycleLength={cycleData.cycleLength}
+              currentDay={derivedState.currentDay}
+              phaseRanges={derivedState.phaseRanges}
+              currentPhase={derivedState.currentPhase}
+            />
+          </div>
+        </TabsContent>
 
         <TabsList className="grid w-full grid-cols-2 gap-3 bg-transparent p-0">
-          <TabsTrigger 
-            value="today" 
-            className={`flex items-center gap-2 text-base font-semibold rounded-3xl px-6 py-3 transition-all ${
-              activeTab === 'today' ? 'phase-button--selected' : 'phase-button--unselected'
-            }`}
+          <TabsTrigger
+            value="today"
+            className="flex items-center gap-2 text-base bg-gradient-primary font-semibold rounded-3xl px-6 py-3 symptom-glass hover:opacity-90 transition-opacity data-[state=active]:bg-gradient-primary data-[state=inactive]:bg-gradient-primary"
+            style={{ color: '#F4415F' }}
           >
             <TrendingUp className="w-4 h-4" />
-            Odhad na dnes
+            {UI_TEXT.todayEstimate}
           </TabsTrigger>
-          <TabsTrigger 
-            value="overview" 
-            className={`flex items-center gap-2 text-base rounded-3xl px-6 py-3 transition-all ${
-              activeTab === 'overview' ? 'phase-button--selected' : 'phase-button--unselected'
-            }`}
+          <TabsTrigger
+            value="overview"
+            className="flex items-center gap-2 text-base bg-gradient-to-r from-rose-50/80 to-pink-50/80 border border-rose-200/30 backdrop-blur-sm rounded-3xl px-6 py-3 symptom-glass hover:from-rose-50 hover:to-pink-50 transition-all data-[state=active]:from-rose-50 data-[state=active]:to-pink-50 data-[state=inactive]:from-rose-50/80 data-[state=inactive]:to-pink-50/80"
+            style={{ color: '#F4415F' }}
           >
             <Lightbulb className="w-4 h-4" />
-            Čo s tým
+            {UI_TEXT.whatToDo}
           </TabsTrigger>
         </TabsList>
 
-        {/* Tab Content */}
-        <TabsContent value="today" className="space-y-4">
-          {!derivedState.isFirstRun ? (
-            <SuggestedToday currentPhase={derivedState.currentPhase} />
-          ) : (
-            <div className="text-center py-8" style={{ color: 'hsl(var(--cycle-body-text))' }}>
-              <Calendar className="w-12 h-12 mx-auto mb-4 opacity-50" />
-              <p>Nastav si dátum poslednej menštruácie pre personalizované rady</p>
+        <TabsContent value="today" className="mt-5">
+          <div className="space-y-4">
+            <div className="p-4 rounded-lg" style={{ backgroundColor: '#FBF8F9' }}>
+              <h3 className="text-base font-semibold mb-2" style={{ color: '#955F6A' }}>
+                Dnešné odporúčania
+              </h3>
+              <p className="text-sm" style={{ color: '#955F6A' }}>
+                Na základe vašej aktuálnej fázy cyklu ({derivedState.currentPhase.name}) 
+                odporúčame si dnes dopriať dostatok odpočinku a hydratácie.
+              </p>
             </div>
-          )}
+          </div>
         </TabsContent>
 
-        <TabsContent value="overview" className="space-y-4">
-          <PhaseOverview 
-            currentPhase={selectedPhase || derivedState.currentPhase}
-            selectedPhase={selectedPhase}
+        <TabsContent value="overview" className="mt-5">
+          <PhaseOverview
+            selectedPhase={derivedState.currentPhase}
+            currentPhase={derivedState.currentPhase}
           />
         </TabsContent>
       </Tabs>
 
-      {/* Bottom Action Buttons */}
       <div className="mt-2 grid grid-cols-2 gap-2">
-        <Button 
+        <Button
           onClick={() => setShowDatePicker(true)}
-          className="phase-button phase-button--selected flex items-center gap-2 text-base font-semibold rounded-3xl px-6 py-3"
+          className="flex items-center gap-2 text-base bg-gradient-primary font-semibold rounded-3xl px-6 py-3 symptom-glass hover:opacity-90 transition-opacity"
+          style={{ color: '#F4415F' }}
         >
-          <Calendar className="w-4 h-4" />
+          <CalendarIcon className="w-4 h-4" />
           Kalendár
         </Button>
-        <Button 
+        <Button
           onClick={() => setShowSettings(true)}
-          className="phase-button phase-button--unselected flex items-center gap-2 text-base rounded-3xl px-6 py-3"
+          className="flex items-center gap-2 text-base bg-gradient-to-r from-rose-50 to-pink-50 border border-rose-200/30 rounded-3xl px-6 py-3 symptom-glass hover:from-rose-50 hover:to-pink-50 transition-all"
+          style={{ color: '#F4415F' }}
         >
           <Settings className="w-4 h-4" />
           Nastavenia
         </Button>
       </div>
 
-      {/* Period Action Button */}
-      {!derivedState.isFirstRun && (
-        <Button
-          onClick={() => startPeriod()}
-          className="w-full symptom-glass"
-          style={{
-            backgroundColor: isInPeriod ? 'hsl(var(--destructive))' : 'hsl(var(--cycle-secondary-text))',
-            color: 'white'
-          }}
-        >
-          {isInPeriod ? (
-            <>
-              <Square className="w-4 h-4 mr-2" />
-              {UI_TEXT.endPeriod}
-            </>
-          ) : (
-            <>
-              <Play className="w-4 h-4 mr-2" />
-              {UI_TEXT.startPeriod}
-            </>
-          )}
-        </Button>
-      )}
-
-      {/* Modals */}
       <DatePickerModal
         isOpen={showDatePicker}
         onClose={() => setShowDatePicker(false)}
-        onDateSelect={startPeriod}
-        title={UI_TEXT.lastPeriod}
-        minDate={derivedState.minDate}
-        maxDate={derivedState.maxDate}
+        onDateSelect={handleDateSelect}
+        title="Nová menštruácia"
+        minDate={derivedState?.minDate}
+        maxDate={derivedState?.maxDate}
       />
 
       <SettingsModal
         isOpen={showSettings}
         onClose={() => setShowSettings(false)}
         cycleData={cycleData}
-        onUpdateCycleSettings={updateCycleSettings}
-        onUpdateSettings={updateSettings}
+        onUpdateCycleSettings={(settings) => saveCycleData(settings)}
+        onUpdateSettings={(settings) => saveCycleData({ 
+          customSettings: { ...cycleData.customSettings, ...settings }
+        })}
       />
     </div>
   );
