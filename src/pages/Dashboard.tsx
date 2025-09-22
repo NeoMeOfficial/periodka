@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
-import { LogOut } from 'lucide-react';
+import { LogOut, UserPlus } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import periodkaLogo from '@/assets/periodka-logo.png';
 import { MenstrualCycleTracker } from '@/features/cycle/MenstrualCycleTracker';
@@ -16,8 +16,12 @@ const Dashboard = () => {
     navigate('/');
   };
 
+  const handleLogin = () => {
+    navigate('/auth');
+  };
+
   // Generate or get user's access code (using user ID as access code for now)
-  const userAccessCode = user?.id || 'default-code';
+  const userAccessCode = user?.id || 'demo-user';
 
   useEffect(() => {
     // Listen for widget requests
@@ -75,13 +79,22 @@ const Dashboard = () => {
           </div>
           
           <div className="flex items-center gap-4">
-            <span className="text-sm text-muted-foreground">
-              Vitaj, {user?.email}
-            </span>
-            <Button variant="ghost" size="sm" onClick={handleSignOut}>
-              <LogOut className="w-4 h-4 mr-2" />
-              Odhlásiť sa
-            </Button>
+            {user ? (
+              <>
+                <span className="text-sm text-muted-foreground">
+                  Vitaj, {user.email}
+                </span>
+                <Button variant="ghost" size="sm" onClick={handleSignOut}>
+                  <LogOut className="w-4 h-4 mr-2" />
+                  Odhlásiť sa
+                </Button>
+              </>
+            ) : (
+              <Button variant="outline" size="sm" onClick={handleLogin}>
+                <UserPlus className="w-4 h-4 mr-2" />
+                Prihlásiť sa
+              </Button>
+            )}
           </div>
         </div>
       </header>

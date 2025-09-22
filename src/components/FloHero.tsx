@@ -65,7 +65,7 @@ export const FloHero = () => {
                 variant="primary" 
                 className="bg-gradient-primary-button" 
                 style={{ color: '#F4415F' }}
-                onClick={() => navigate('/auth')}
+                onClick={() => navigate('/dashboard')}
               >
                 <TrendingUp className="w-4 h-4" />
                 Chcem si to vyskúšať
@@ -157,7 +157,7 @@ export const FloHero = () => {
                                      onSelect={(date) => {
                                        if (date) {
                                          setLastPeriodDate(date);
-                                         navigate('/auth');
+                                         navigate('/dashboard');
                                        }
                                      }}
                                      initialFocus
@@ -220,7 +220,7 @@ export const FloHero = () => {
                               variant="primary" 
                               className="w-full bg-gradient-primary-button"
                               style={{ color: '#F4415F' }}
-                              onClick={() => navigate('/auth')}
+                              onClick={() => navigate('/dashboard')}
                             >
                               <TrendingUp className="w-4 h-4" />
                               Chcem si to vyskúšať
