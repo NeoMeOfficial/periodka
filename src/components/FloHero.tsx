@@ -65,7 +65,7 @@ export const FloHero = () => {
                 variant="primary" 
                 className="bg-gradient-primary-button" 
                 style={{ color: '#F4415F' }}
-                onClick={() => navigate('/dashboard')}
+                onClick={() => setShowWidget(true)}
               >
                 <TrendingUp className="w-4 h-4" />
                 Chcem si to vyskúšať
@@ -155,10 +155,10 @@ export const FloHero = () => {
                                      mode="single"
                                      selected={lastPeriodDate}
                                      onSelect={(date) => {
-                                       if (date) {
-                                         setLastPeriodDate(date);
-                                         navigate('/dashboard');
-                                       }
+                                        if (date) {
+                                          setLastPeriodDate(date);
+                                          setShowWidget(true);
+                                        }
                                      }}
                                      initialFocus
                                      className={cn("p-3 pointer-events-auto")}
@@ -220,7 +220,7 @@ export const FloHero = () => {
                               variant="primary" 
                               className="w-full bg-gradient-primary-button"
                               style={{ color: '#F4415F' }}
-                              onClick={() => navigate('/dashboard')}
+                              onClick={() => setShowWidget(true)}
                             >
                               <TrendingUp className="w-4 h-4" />
                               Chcem si to vyskúšať
