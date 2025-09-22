@@ -176,12 +176,12 @@ export const FloHero = () => {
                                 <p className="text-sm font-medium text-gray-700">Dĺžka cyklu</p>
                                 <Edit3 className="w-3 h-3 opacity-60 ml-auto" style={{ color: '#955F6A' }} />
                               </div>
-                              <div className="flex items-center gap-2">
+                              <div className="space-y-2">
                                 <Input
                                   type="number"
                                   value={cycleLength}
                                   onChange={(e) => setCycleLength(Number(e.target.value))}
-                                  className="flex-1 h-10 text-base font-semibold border border-gray-200 bg-gray-50"
+                                  className="w-full h-10 text-base font-semibold border border-gray-200 bg-gray-50"
                                   style={{ color: '#F4415F' }}
                                   min="20"
                                   max="40"
