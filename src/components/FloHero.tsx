@@ -66,7 +66,7 @@ export const FloHero = () => {
                 onClick={() => navigate('/auth')}
               >
                 <TrendingUp className="w-4 h-4" />
-                Ukáž čo ma čaká
+                Chcem si to vyskúšať
               </Button>
               
               <Button 
@@ -211,7 +211,7 @@ export const FloHero = () => {
                               onClick={() => navigate('/auth')}
                             >
                               <TrendingUp className="w-4 h-4" />
-                              Ukáž, čo ma čaká
+                              Chcem si to vyskúšať
                             </Button>
                           </div>
                         </div>
