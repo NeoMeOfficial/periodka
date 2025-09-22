@@ -8,9 +8,11 @@ import { format } from 'date-fns';
 import { cn } from '@/lib/utils';
 import { useNavigate } from 'react-router-dom';
 import periodkaAppScreen from '@/assets/periodka-app-screen.png';
+import { MenstrualCycleWidget } from '@/components/MenstrualCycleWidget';
 
 export const FloHero = () => {
   const [showEntries, setShowEntries] = useState(false);
+  const [showWidget, setShowWidget] = useState(false);
   const [lastPeriodDate, setLastPeriodDate] = useState<Date>(new Date(2025, 8, 5)); // September 5, 2025
   const [cycleLength, setCycleLength] = useState(28);
   const [periodLength, setPeriodLength] = useState(5);
@@ -63,7 +65,7 @@ export const FloHero = () => {
                 variant="primary" 
                 className="bg-gradient-primary-button" 
                 style={{ color: '#F4415F' }}
-                onClick={() => navigate('/auth')}
+                onClick={() => setShowWidget(true)}
               >
                 <TrendingUp className="w-4 h-4" />
                 Chcem si to vyskúšať
@@ -119,7 +121,12 @@ export const FloHero = () => {
                   
                   {/* Product Screenshot */}
                   <div className="w-full h-full relative rounded-[2.2rem] overflow-hidden">
-                    {showEntries ? (
+                    {showWidget ? (
+                      /* Menstrual Cycle Widget */
+                      <div className="w-full h-full relative z-20">
+                        <MenstrualCycleWidget userAccessCode="demo-user" />
+                      </div>
+                    ) : showEntries ? (
                       /* Period Tracking Entries */
                       <div className="w-full h-full bg-gradient-to-br from-rose-50 to-pink-50 p-4 flex flex-col justify-center gap-3 relative z-20">
                         <div className="space-y-3 relative z-30">
@@ -208,7 +215,7 @@ export const FloHero = () => {
                               variant="primary" 
                               className="w-full bg-gradient-primary-button"
                               style={{ color: '#F4415F' }}
-                              onClick={() => navigate('/auth')}
+                              onClick={() => setShowWidget(true)}
                             >
                               <TrendingUp className="w-4 h-4" />
                               Chcem si to vyskúšať
