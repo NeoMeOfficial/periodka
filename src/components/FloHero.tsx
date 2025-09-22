@@ -65,7 +65,7 @@ export const FloHero = () => {
                 variant="primary" 
                 className="bg-gradient-primary-button" 
                 style={{ color: '#F4415F' }}
-                onClick={() => setShowWidget(true)}
+                onClick={() => navigate('/auth')}
               >
                 <TrendingUp className="w-4 h-4" />
                 Chcem si to vyskúšať
@@ -215,7 +215,7 @@ export const FloHero = () => {
                               variant="primary" 
                               className="w-full bg-gradient-primary-button"
                               style={{ color: '#F4415F' }}
-                              onClick={() => setShowWidget(true)}
+                              onClick={() => navigate('/auth')}
                             >
                               <TrendingUp className="w-4 h-4" />
                               Chcem si to vyskúšať
