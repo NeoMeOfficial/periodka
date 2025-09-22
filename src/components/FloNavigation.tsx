@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 import periodkaLogo from '@/assets/periodka-logo.png';
 
 export const FloNavigation = () => {
@@ -19,21 +20,18 @@ export const FloNavigation = () => {
           
           {/* Navigation Links */}
           <div className="hidden md:flex items-center gap-8">
-            <a href="#funkcie" className="text-foreground/80 hover:text-primary transition-colors font-medium">
-              Funkcie
-            </a>
-            <a href="#o-aplikacii" className="text-foreground/80 hover:text-primary transition-colors font-medium">
-              O aplikácii
-            </a>
-            <a href="#recenzie" className="text-foreground/80 hover:text-primary transition-colors font-medium">
-              Recenzie
-            </a>
-            <a href="#podpora" className="text-foreground/80 hover:text-primary transition-colors font-medium">
-              Podpora
-            </a>
-            <a href="#premium" className="text-foreground/80 hover:text-primary transition-colors font-medium">
-              Premium
-            </a>
+            <Link to="/recenzia" className="text-foreground/80 hover:text-primary transition-colors font-medium">
+              Recenzia
+            </Link>
+            <Link to="/odporucania" className="text-foreground/80 hover:text-primary transition-colors font-medium">
+              Odporúčania
+            </Link>
+            <Link to="/blog" className="text-foreground/80 hover:text-primary transition-colors font-medium">
+              Blog
+            </Link>
+            <Link to="/neome" className="text-foreground/80 hover:text-primary transition-colors font-medium">
+              NeoMe
+            </Link>
           </div>
           
           {/* CTA Button */}

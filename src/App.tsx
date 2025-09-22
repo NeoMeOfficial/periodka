@@ -7,6 +7,10 @@ import { AuthProvider } from "@/hooks/useAuth";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
+import Recenzia from "./pages/Recenzia";
+import Odporucania from "./pages/Odporucania";
+import Blog from "./pages/Blog";
+import NeoMe from "./pages/NeoMe";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,6 +26,10 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/recenzia" element={<Recenzia />} />
+            <Route path="/odporucania" element={<Odporucania />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/neome" element={<NeoMe />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
