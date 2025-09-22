@@ -150,15 +150,20 @@ export const FloHero = () => {
                                     {format(lastPeriodDate, "d. MMMM yyyy")}
                                   </Button>
                                 </PopoverTrigger>
-                                <PopoverContent className="w-auto p-0 z-[100] pointer-events-auto shadow-xl border-2" align="start">
-                                  <Calendar
-                                    mode="single"
-                                    selected={lastPeriodDate}
-                                    onSelect={(date) => date && setLastPeriodDate(date)}
-                                    initialFocus
-                                    className={cn("p-3 pointer-events-auto")}
-                                  />
-                                </PopoverContent>
+                                 <PopoverContent className="w-auto p-0 z-[100] pointer-events-auto shadow-xl border-2" align="start">
+                                   <Calendar
+                                     mode="single"
+                                     selected={lastPeriodDate}
+                                     onSelect={(date) => {
+                                       if (date) {
+                                         setLastPeriodDate(date);
+                                         navigate('/auth');
+                                       }
+                                     }}
+                                     initialFocus
+                                     className={cn("p-3 pointer-events-auto")}
+                                   />
+                                 </PopoverContent>
                               </Popover>
                             </div>
                           </div>
