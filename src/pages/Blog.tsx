@@ -228,25 +228,9 @@ export default function Blog() {
               
               {selectedPost && (
                 <div className="pr-16">
-                  <h1 className="text-2xl font-bold text-foreground mb-3">
+                  <h1 className="text-2xl font-bold text-foreground">
                     {selectedPost.title}
                   </h1>
-                  <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                    <div className="flex items-center gap-2">
-                      <Calendar className="w-4 h-4" />
-                      <span>{new Date(selectedPost.created_at).toLocaleDateString('sk-SK')}</span>
-                    </div>
-                    {selectedPost.author && (
-                      <div className="flex items-center gap-2">
-                        <User className="w-4 h-4" />
-                        <span>{selectedPost.author}</span>
-                      </div>
-                    )}
-                    <div className="flex items-center gap-2">
-                      <Clock className="w-4 h-4" />
-                      <span>{selectedPost.read_time}</span>
-                    </div>
-                  </div>
                 </div>
               )}
             </div>
