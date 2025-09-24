@@ -217,23 +217,19 @@ export default function Blog() {
             className="fixed left-[50%] top-[50%] z-50 grid w-full max-w-4xl translate-x-[-50%] translate-y-[-50%] duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] max-h-[90vh] p-0 border-none"
           >
             <div className="bg-background/20 backdrop-blur-md rounded-3xl border border-border/30 shadow-elegant overflow-hidden">
-              {/* Header */}
-              <div className="relative p-6">
-                <button
-                  onClick={handleCloseDialog}
-                  className="absolute right-6 top-6 p-2 rounded-full bg-background/50 hover:bg-background/70 transition-colors z-10"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-
               {/* Content Area */}
               <div className="relative">
                 {selectedPost && (
                   <>
-                    {/* Main Content - White Box with Title */}
-                    <div className="bg-background/80 backdrop-blur-lg rounded-2xl m-6 p-8 border border-border/50 shadow-elegant max-h-[60vh] overflow-y-auto">
-                      <h1 className="text-2xl font-bold text-foreground mb-6 pr-12">
+                    {/* Main Content - White Box with Title and Close Button */}
+                    <div className="bg-background/80 backdrop-blur-lg rounded-2xl m-3 p-4 border border-border/50 shadow-elegant max-h-[60vh] overflow-y-auto relative">
+                      <button
+                        onClick={handleCloseDialog}
+                        className="absolute right-4 top-4 p-2 rounded-full bg-background/50 hover:bg-background/70 transition-colors z-10"
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                      <h1 className="text-2xl font-bold text-foreground mb-4 pr-12">
                         {selectedPost.title}
                       </h1>
                       <div 
