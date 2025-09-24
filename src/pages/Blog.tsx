@@ -224,30 +224,29 @@ export default function Blog() {
                     />
                   </div>
 
-                  {/* Navigation */}
-                  <div className="p-6 pt-0 flex items-center justify-between">
-                    {/* Previous Article */}
-                    <button
-                      onClick={goToPrevPost}
-                      className="flex items-center gap-3 p-4 bg-background/30 backdrop-blur-sm rounded-xl border border-border/30 hover:bg-background/40 transition-colors group"
-                    >
-                      <ChevronLeft className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
-                      <span className="text-sm text-muted-foreground">Predchádzajúci</span>
-                    </button>
-
-                    {/* Next Article Preview */}
-                    <button
-                      onClick={goToNextPost}
-                      className="flex items-center gap-3 p-4 bg-background/30 backdrop-blur-sm rounded-xl border border-border/30 hover:bg-background/40 transition-colors group max-w-xs"
-                    >
-                      <div className="flex-1 text-left">
-                        <div className="text-xs text-muted-foreground mb-1">Ďalší článok</div>
-                        <div className="text-sm font-medium text-foreground line-clamp-2">
-                          {getNextPost()?.title}
-                        </div>
-                      </div>
-                      <ChevronRight className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
-                    </button>
+                  {/* Article Selection */}
+                  <div className="p-6 pt-0">
+                    <h3 className="text-sm font-medium text-muted-foreground mb-4">Ďalšie články</h3>
+                    <div className="grid grid-cols-3 gap-3">
+                      {blogPosts.slice(0, 3).map((post, index) => (
+                        <button
+                          key={post.id}
+                          onClick={() => setSelectedPost(post)}
+                          className={`p-3 bg-background rounded-lg border transition-all text-left ${
+                            selectedPost?.id === post.id 
+                              ? 'border-primary/50 shadow-elegant' 
+                              : 'border-border/30 hover:border-border/50 hover:shadow-soft'
+                          }`}
+                        >
+                          <h4 className="text-xs font-medium text-foreground line-clamp-2">
+                            {post.title}
+                          </h4>
+                          <p className="text-xs text-muted-foreground mt-1">
+                            {post.read_time}
+                          </p>
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 </>
               )}
