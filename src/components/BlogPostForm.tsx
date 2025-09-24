@@ -48,6 +48,10 @@ export default function BlogPostForm({ adminCode, onPostCreated }: BlogPostFormP
 
       if (error) throw error;
 
+      if (data.error) {
+        throw new Error(data.error);
+      }
+
       if (data.success) {
         toast({
           title: 'Článok vytvorený',
