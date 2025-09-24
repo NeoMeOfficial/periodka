@@ -21,14 +21,14 @@ export const FloNavigation = () => {
         <nav className="max-w-6xl mx-auto bg-background/95 backdrop-blur-md border border-border/50 rounded-2xl shadow-elegant">
           <div className="px-6 py-3 flex items-center justify-between">
             {/* Logo */}
-            <div className="flex items-center gap-3">
+            <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
               <img 
                 src={periodkaLogo} 
                 alt="Periodka Logo" 
                 className="w-12 h-12 rounded-lg"
               />
               <div className="text-2xl font-bold brand-text leading-none" style={{ color: '#F4415F' }}>Periodka</div>
-            </div>
+            </Link>
             
             {/* Desktop Navigation Links */}
             <div className="hidden md:flex items-center gap-8">
