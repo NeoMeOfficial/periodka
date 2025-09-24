@@ -39,6 +39,7 @@ export default function BlogPostForm({ adminCode, onPostCreated }: BlogPostFormP
     setLoading(true);
     try {
       const { data, error } = await supabase.functions.invoke('blog-management', {
+        method: 'POST',
         body: formData,
         headers: {
           'x-admin-code': adminCode,
