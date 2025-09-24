@@ -18,6 +18,20 @@ export const FloHero = () => {
   const [periodLength, setPeriodLength] = useState(5);
   const navigate = useNavigate();
 
+  const scrollToMobileFrame = () => {
+    const mobileFrame = document.getElementById('mobile-questionnaire');
+    if (mobileFrame) {
+      mobileFrame.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'center' 
+      });
+      // Show the widget after scrolling
+      setTimeout(() => {
+        setShowWidget(true);
+      }, 800);
+    }
+  };
+
   return (
     <section className="pt-32 pb-16 bg-gradient-soft relative overflow-hidden floating-dots geometric-shapes">
       {/* Glassmorphism accent dots - reduced for hero */}
@@ -65,7 +79,7 @@ export const FloHero = () => {
                 variant="primary" 
                 className="bg-gradient-primary-button" 
                 style={{ color: '#F4415F' }}
-                onClick={() => setShowWidget(true)}
+                onClick={scrollToMobileFrame}
               >
                 <TrendingUp className="w-4 h-4" />
                 Chcem si to vyskúšať
@@ -88,7 +102,7 @@ export const FloHero = () => {
           </div>
           
           {/* Right Content - Phone Mockup */}
-          <div className="flex justify-center">
+          <div className="flex justify-center" id="mobile-questionnaire">
             <div className="relative">
               {/* 3D Premium Phone Frame */}
               <div className="w-80 h-[600px] bg-gradient-primary rounded-[3rem] p-1 shadow-elegant relative overflow-hidden" 
@@ -220,7 +234,7 @@ export const FloHero = () => {
                               variant="primary" 
                               className="w-full bg-gradient-primary-button"
                               style={{ color: '#F4415F' }}
-                              onClick={() => setShowWidget(true)}
+                              onClick={scrollToMobileFrame}
                             >
                               <TrendingUp className="w-4 h-4" />
                               Chcem si to vyskúšať
