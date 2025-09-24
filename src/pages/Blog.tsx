@@ -218,34 +218,29 @@ export default function Blog() {
           >
             <div className="bg-background/20 backdrop-blur-md rounded-3xl border border-border/30 shadow-elegant overflow-hidden">
               {/* Header */}
-              <div className="relative p-6 border-b border-border/30">
-              <button
-                onClick={handleCloseDialog}
-                className="absolute right-6 top-6 p-2 rounded-full bg-background/50 hover:bg-background/70 transition-colors"
-              >
-                <X className="w-5 h-5" />
-              </button>
-              
-              {selectedPost && (
-                <div className="pr-16">
-                  <h1 className="text-2xl font-bold text-foreground">
-                    {selectedPost.title}
-                  </h1>
-                </div>
-              )}
-            </div>
+              <div className="relative p-6">
+                <button
+                  onClick={handleCloseDialog}
+                  className="absolute right-6 top-6 p-2 rounded-full bg-background/50 hover:bg-background/70 transition-colors z-10"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
 
-            {/* Content Area */}
-            <div className="relative">
-              {selectedPost && (
-                <>
-                  {/* Main Content - White Box */}
-                  <div className="bg-background/80 backdrop-blur-lg rounded-2xl m-6 p-8 border border-border/50 shadow-elegant max-h-[60vh] overflow-y-auto">
-                    <div 
-                      className="prose prose-lg max-w-none text-foreground"
-                      dangerouslySetInnerHTML={{ __html: selectedPost.content }}
-                    />
-                  </div>
+              {/* Content Area */}
+              <div className="relative">
+                {selectedPost && (
+                  <>
+                    {/* Main Content - White Box with Title */}
+                    <div className="bg-background/80 backdrop-blur-lg rounded-2xl m-6 p-8 border border-border/50 shadow-elegant max-h-[60vh] overflow-y-auto">
+                      <h1 className="text-2xl font-bold text-foreground mb-6 pr-12">
+                        {selectedPost.title}
+                      </h1>
+                      <div 
+                        className="prose prose-lg max-w-none text-foreground"
+                        dangerouslySetInnerHTML={{ __html: selectedPost.content }}
+                      />
+                    </div>
 
                   {/* Article Selection */}
                   <div className="p-6 pt-0">
@@ -275,7 +270,7 @@ export default function Blog() {
                     </div>
 
                     {/* Mobile: Swipeable Carousel */}
-                    <div className="md:hidden relative overflow-hidden">
+                    <div className="md:hidden relative overflow-hidden mx-6">
                       {/* Current article display */}
                       <div className="flex justify-center mb-2">
                         <span className="text-xs text-muted-foreground">
@@ -294,7 +289,7 @@ export default function Blog() {
                         onTouchEnd={handleTouchEnd}
                       >
                         {getArticlesForSelection().map((post, index) => (
-                          <div key={post.id} className="w-full flex-shrink-0 px-4">
+                          <div key={post.id} className="w-full flex-shrink-0 px-2">
                             <button
                               onClick={() => setSelectedPost(post)}
                               className="w-full p-4 bg-background rounded-lg border-2 border-primary/50 hover:border-primary hover:shadow-soft transition-all text-left"
