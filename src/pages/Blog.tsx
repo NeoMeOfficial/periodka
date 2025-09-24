@@ -218,7 +218,7 @@ export default function Blog() {
               {selectedPost && (
                 <>
                   {/* Main Content - White Box */}
-                  <div className="bg-background rounded-2xl m-6 p-8 shadow-inner max-h-[60vh] overflow-y-auto">
+                  <div className="bg-background rounded-2xl m-6 p-8 border border-border/50 shadow-elegant max-h-[60vh] overflow-y-auto">
                     <div 
                       className="prose prose-lg max-w-none text-foreground"
                       dangerouslySetInnerHTML={{ __html: selectedPost.content }}
