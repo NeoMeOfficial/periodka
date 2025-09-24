@@ -38,13 +38,17 @@ Deno.serve(async (req) => {
     }
 
     // Validate admin code
+    console.log('Validating admin code:', adminCode)
     const { data: validCode, error: codeError } = await supabase
       .from('admin_codes')
       .select('*')
       .eq('code', adminCode)
-      .single()
+      .maybeSingle()
+
+    console.log('Admin code validation result:', { validCode, codeError })
 
     if (codeError || !validCode) {
+      console.error('Admin code validation failed:', codeError)
       return new Response(
         JSON.stringify({ error: 'Invalid admin code' }),
         { 
@@ -56,6 +60,7 @@ Deno.serve(async (req) => {
 
     // Check if code is expired
     if (new Date(validCode.expires_at) < new Date()) {
+      console.error('Admin code expired:', validCode.expires_at)
       return new Response(
         JSON.stringify({ error: 'Admin code expired' }),
         { 
@@ -64,6 +69,8 @@ Deno.serve(async (req) => {
         }
       )
     }
+
+    console.log('Admin code validation successful')
 
     if (req.method === 'POST') {
       const blogPost: BlogPost = await req.json()
