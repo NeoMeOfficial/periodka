@@ -1,39 +1,42 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { FloNavigation } from '@/components/FloNavigation';
 import { FloFooter } from '@/components/FloFooter';
 import { Calendar, Clock, User } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
+
+interface BlogPost {
+  id: string;
+  title: string;
+  excerpt: string;
+  author: string;
+  read_time: string;
+  created_at: string;
+}
 
 export default function Blog() {
-  const blogPosts = [
-    {
-      title: "Ako sledovať menštruačný cyklus efektívne",
-      excerpt: "Praktické tipy pre začínajúce používateľky aplikácie Periodka.",
-      date: "15. marec 2025",
-      author: "Dr. Anna Nováková",
-      readTime: "5 min čítania"
-    },
-    {
-      title: "Výživa počas menštruácie: Čo jesť a čomu sa vyhnúť",
-      excerpt: "Komplexný sprievodca stravovaním počas rôznych fáz cyklu.",
-      date: "10. marec 2025",
-      author: "Mgr. Petra Kováčová",
-      readTime: "8 min čítania"
-    },
-    {
-      title: "PMS a ako si s ním poradiť prirodzene",
-      excerpt: "Overené metódy na zmierňanie premenštruačného syndrómu.",
-      date: "5. marec 2025",
-      author: "Dr. Anna Nováková",
-      readTime: "6 min čítania"
-    },
-    {
-      title: "Cvičenie počas menštruácie: Mýty a fakty",
-      excerpt: "Pravda o tom, či by ste mali cvičiť počas periody.",
-      date: "28. február 2025",
-      author: "Mgr. Jana Svobodová",
-      readTime: "4 min čítania"
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchBlogPosts();
+  }, []);
+
+  const fetchBlogPosts = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('blog_posts')
+        .select('*')
+        .eq('published', true)
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+      setBlogPosts(data || []);
+    } catch (error) {
+      console.error('Error fetching blog posts:', error);
+    } finally {
+      setLoading(false);
     }
-  ];
+  };
 
   return (
     <div className="min-h-screen bg-gradient-soft">
@@ -55,37 +58,49 @@ export default function Blog() {
 
             {/* Blog Posts */}
             <div className="space-y-8">
-              {blogPosts.map((post, index) => (
-                <article 
-                  key={index}
-                  className="bg-background/50 backdrop-blur-sm rounded-2xl p-8 border border-border/50 shadow-elegant hover:shadow-elevated transition-all cursor-pointer group"
-                >
-                  <div className="space-y-4">
-                    <h2 className="text-2xl font-semibold text-foreground group-hover:text-primary transition-colors">
-                      {post.title}
-                    </h2>
-                    
-                    <p className="text-muted-foreground text-lg leading-relaxed">
-                      {post.excerpt}
-                    </p>
-                    
-                    <div className="flex items-center gap-6 text-sm text-muted-foreground">
-                      <div className="flex items-center gap-2">
-                        <Calendar className="w-4 h-4" />
-                        <span>{post.date}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <User className="w-4 h-4" />
-                        <span>{post.author}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Clock className="w-4 h-4" />
-                        <span>{post.readTime}</span>
+              {loading ? (
+                <div className="text-center py-12">
+                  <p className="text-muted-foreground">Načítavajú sa články...</p>
+                </div>
+              ) : blogPosts.length === 0 ? (
+                <div className="text-center py-12">
+                  <p className="text-muted-foreground">Žiadne články zatiaľ neboli publikované.</p>
+                </div>
+              ) : (
+                blogPosts.map((post) => (
+                  <article 
+                    key={post.id}
+                    className="bg-background/50 backdrop-blur-sm rounded-2xl p-8 border border-border/50 shadow-elegant hover:shadow-elevated transition-all cursor-pointer group"
+                  >
+                    <div className="space-y-4">
+                      <h2 className="text-2xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                        {post.title}
+                      </h2>
+                      
+                      <p className="text-muted-foreground text-lg leading-relaxed">
+                        {post.excerpt}
+                      </p>
+                      
+                      <div className="flex items-center gap-6 text-sm text-muted-foreground">
+                        <div className="flex items-center gap-2">
+                          <Calendar className="w-4 h-4" />
+                          <span>{new Date(post.created_at).toLocaleDateString('sk-SK')}</span>
+                        </div>
+                        {post.author && (
+                          <div className="flex items-center gap-2">
+                            <User className="w-4 h-4" />
+                            <span>{post.author}</span>
+                          </div>
+                        )}
+                        <div className="flex items-center gap-2">
+                          <Clock className="w-4 h-4" />
+                          <span>{post.read_time}</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </article>
-              ))}
+                  </article>
+                ))
+              )}
             </div>
 
             {/* Newsletter Signup */}

@@ -11,6 +11,7 @@ import Recenzia from "./pages/Recenzia";
 import Odporucania from "./pages/Odporucania";
 import Blog from "./pages/Blog";
 import NeoMe from "./pages/NeoMe";
+import AdminDashboard from "./pages/AdminDashboard";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -30,6 +31,7 @@ const App = () => (
             <Route path="/odporucania" element={<Odporucania />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/neome" element={<NeoMe />} />
+            <Route path="/admin" element={<AdminDashboard />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
