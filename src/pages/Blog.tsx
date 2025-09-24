@@ -171,7 +171,7 @@ export default function Blog() {
         <DialogPortal>
           {/* Custom overlay with gradient background */}
           <DialogOverlay 
-            className="fixed inset-0 z-50 bg-background/80 backdrop-blur-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0"
+            className="fixed inset-0 z-50 bg-background/95 backdrop-blur-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0"
           />
           {/* Custom content */}
           <DialogPrimitive.Content
