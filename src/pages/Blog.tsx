@@ -21,10 +21,9 @@ export default function Blog() {
   const [loading, setLoading] = useState(true);
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const [isDragging, setIsDragging] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [startX, setStartX] = useState(0);
-  const [velocity, setVelocity] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
 
   useEffect(() => {
     fetchBlogPosts();
@@ -81,61 +80,38 @@ export default function Blog() {
 
   // Get articles for selection (exclude current article)
   const getArticlesForSelection = () => {
-    return blogPosts.filter(post => post.id !== selectedPost?.id).slice(0, 3);
+    return blogPosts.filter(post => post.id !== selectedPost?.id).slice(0, 6); // Show more for mobile swipe
   };
 
-  // Handle touch events for mobile swipe
+  // Simple mobile swipe handlers
   const handleTouchStart = (e: React.TouchEvent) => {
-    setIsDragging(true);
+    e.preventDefault();
     setStartX(e.touches[0].clientX);
-    setVelocity(0);
+    setIsDragging(true);
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
     if (!isDragging) return;
-    
-    const currentX = e.touches[0].clientX;
-    const deltaX = currentX - startX;
-    const newVelocity = deltaX * 0.02; // Sensitivity adjustment
-    
-    setVelocity(newVelocity);
-    setScrollPosition(prev => Math.max(-200, Math.min(200, prev + deltaX * 0.5)));
-    setStartX(currentX);
+    e.preventDefault();
   };
 
-  const handleTouchEnd = () => {
-    setIsDragging(false);
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (!isDragging) return;
     
-    // Apple-style momentum with smooth deceleration
-    let currentVelocity = velocity;
-    let currentPosition = scrollPosition;
+    const endX = e.changedTouches[0].clientX;
+    const diff = startX - endX;
     
-    const decelerate = () => {
-      currentVelocity *= 0.92; // Deceleration factor (Apple-like)
-      currentPosition += currentVelocity;
-      
-      // Snap to bounds
-      if (currentPosition > 50) {
-        currentPosition = 0;
-        currentVelocity = 0;
-      } else if (currentPosition < -50) {
-        currentPosition = 0;
-        currentVelocity = 0;
-      }
-      
-      setScrollPosition(currentPosition);
-      
-      // Continue animation if velocity is significant
-      if (Math.abs(currentVelocity) > 0.1) {
-        requestAnimationFrame(decelerate);
+    if (Math.abs(diff) > 50) { // Minimum swipe distance
+      if (diff > 0) {
+        // Swiped left - next
+        setCurrentIndex(prev => Math.min(prev + 1, getArticlesForSelection().length - 1));
       } else {
-        setScrollPosition(0); // Snap to center
+        // Swiped right - previous  
+        setCurrentIndex(prev => Math.max(prev - 1, 0));
       }
-    };
-    
-    if (Math.abs(currentVelocity) > 0.1) {
-      requestAnimationFrame(decelerate);
     }
+    
+    setIsDragging(false);
   };
 
   return (
@@ -315,41 +291,55 @@ export default function Blog() {
                     </div>
 
                     {/* Mobile: Swipeable Carousel */}
-                    <div className="md:hidden relative">
-                      {/* Fade masks */}
-                      <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-background/80 to-transparent z-10 pointer-events-none"></div>
-                      <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-background/80 to-transparent z-10 pointer-events-none"></div>
+                    <div className="md:hidden relative overflow-hidden">
+                      {/* Current article display */}
+                      <div className="flex justify-center mb-2">
+                        <span className="text-xs text-muted-foreground">
+                          {currentIndex + 1} / {getArticlesForSelection().length}
+                        </span>
+                      </div>
                       
                       {/* Swipeable container */}
                       <div 
-                        className="flex gap-3 overflow-hidden px-4 transition-transform duration-300 ease-out"
+                        className="flex transition-transform duration-300 ease-out"
                         style={{ 
-                          transform: `translateX(${scrollPosition}px)`,
-                          transitionDuration: isDragging ? '0ms' : '300ms',
-                          transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' // Apple-style easing
+                          transform: `translateX(-${currentIndex * 100}%)`,
                         }}
                         onTouchStart={handleTouchStart}
                         onTouchMove={handleTouchMove}
                         onTouchEnd={handleTouchEnd}
                       >
-                        {getArticlesForSelection().map((post) => (
-                          <button
-                            key={post.id}
-                            onClick={() => setSelectedPost(post)}
-                            className="flex-shrink-0 w-64 p-3 bg-background rounded-lg border-2 border-primary/50 hover:border-primary hover:shadow-soft transition-all text-left"
-                          >
-                            <h4 className="text-xs font-medium text-foreground line-clamp-2 mb-2">
-                              {post.title}
-                            </h4>
-                            <div className="flex items-center justify-between">
-                              <p className="text-xs text-muted-foreground">
-                                {post.read_time}
-                              </p>
-                              <span className="text-xs font-medium text-primary">
-                                Prečitať
-                              </span>
-                            </div>
-                          </button>
+                        {getArticlesForSelection().map((post, index) => (
+                          <div key={post.id} className="w-full flex-shrink-0 px-4">
+                            <button
+                              onClick={() => setSelectedPost(post)}
+                              className="w-full p-4 bg-background rounded-lg border-2 border-primary/50 hover:border-primary hover:shadow-soft transition-all text-left"
+                            >
+                              <h4 className="text-sm font-medium text-foreground line-clamp-2 mb-3">
+                                {post.title}
+                              </h4>
+                              <div className="flex items-center justify-between">
+                                <p className="text-xs text-muted-foreground">
+                                  {post.read_time}
+                                </p>
+                                <span className="text-xs font-medium text-primary">
+                                  Prečitať
+                                </span>
+                              </div>
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                      
+                      {/* Swipe indicators */}
+                      <div className="flex justify-center mt-3 gap-1">
+                        {getArticlesForSelection().map((_, index) => (
+                          <div
+                            key={index}
+                            className={`w-2 h-2 rounded-full transition-colors ${
+                              index === currentIndex ? 'bg-primary' : 'bg-primary/30'
+                            }`}
+                          />
                         ))}
                       </div>
                     </div>
