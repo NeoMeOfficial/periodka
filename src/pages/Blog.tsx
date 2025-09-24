@@ -214,33 +214,37 @@ export default function Blog() {
           />
           {/* Custom content */}
           <DialogPrimitive.Content
-            className="fixed left-[50%] top-[50%] z-50 grid w-full max-w-4xl translate-x-[-50%] translate-y-[-50%] duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] max-h-[90vh] p-0 border-none"
+            className="fixed left-[50%] top-[50%] z-50 grid w-full max-w-4xl translate-x-[-50%] translate-y-[-50%] duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] h-[90vh] md:max-h-[90vh] p-0 border-none"
           >
-            <div className="bg-background/20 backdrop-blur-md rounded-3xl border border-border/30 shadow-elegant overflow-hidden">
-              {/* Content Area */}
-              <div className="relative">
+            <div className="bg-background/20 backdrop-blur-md rounded-3xl border border-border/30 shadow-elegant overflow-hidden h-full flex flex-col">
+              {/* Content Area - Flex container */}
+              <div className="flex-1 flex flex-col min-h-0">
                 {selectedPost && (
                   <>
-                    {/* Main Content - White Box with Title and Close Button */}
-                    <div className="bg-background/80 backdrop-blur-lg rounded-2xl m-3 p-4 border border-border/50 shadow-elegant max-h-[60vh] overflow-y-auto relative">
+                    {/* Main Content - White Box with Title and Close Button - Scrollable */}
+                    <div className="bg-background/80 backdrop-blur-lg rounded-2xl m-3 border border-border/50 shadow-elegant flex-1 flex flex-col relative min-h-0">
                       <button
                         onClick={handleCloseDialog}
                         className="absolute right-4 top-4 p-2 rounded-full bg-background/50 hover:bg-background/70 transition-colors z-10"
                       >
                         <X className="w-4 h-4" />
                       </button>
-                      <h1 className="text-2xl font-bold text-foreground mb-4 pr-12">
-                        {selectedPost.title}
-                      </h1>
-                      <div 
-                        className="prose prose-lg max-w-none text-foreground"
-                        dangerouslySetInnerHTML={{ __html: selectedPost.content }}
-                      />
+                      <div className="p-4 flex-shrink-0">
+                        <h1 className="text-2xl font-bold text-foreground pr-12">
+                          {selectedPost.title}
+                        </h1>
+                      </div>
+                      <div className="flex-1 overflow-y-auto px-4 pb-4">
+                        <div 
+                          className="prose prose-lg max-w-none text-foreground"
+                          dangerouslySetInnerHTML={{ __html: selectedPost.content }}
+                        />
+                      </div>
                     </div>
 
-                  {/* Article Selection */}
-                  <div className="p-6 pt-0">
-                    <h3 className="text-sm font-medium text-muted-foreground mb-4">Ďalšie články</h3>
+                   {/* Article Selection - Fixed at bottom */}
+                   <div className="p-6 pt-0 flex-shrink-0">
+                     <h3 className="text-sm font-medium text-muted-foreground mb-4">Ďalšie články</h3>
                     
                     {/* Desktop: Grid Layout */}
                     <div className="hidden md:grid grid-cols-3 gap-3">
