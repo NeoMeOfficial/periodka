@@ -3,7 +3,8 @@ import { FloNavigation } from '@/components/FloNavigation';
 import { FloFooter } from '@/components/FloFooter';
 import { Calendar, Clock, User, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
-import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { Dialog, DialogPortal, DialogOverlay } from '@/components/ui/dialog';
+import * as DialogPrimitive from "@radix-ui/react-dialog";
 
 interface BlogPost {
   id: string;
@@ -167,13 +168,19 @@ export default function Blog() {
 
       {/* Blog Post Reading Dialog */}
       <Dialog open={isDialogOpen} onOpenChange={handleCloseDialog}>
-        <DialogContent 
-          className="max-w-4xl max-h-[90vh] p-0 border-none"
-          style={{background: 'var(--gradient-soft)'}}
-        >
-          <div className="bg-background/20 backdrop-blur-md rounded-3xl border border-border/30 shadow-2xl overflow-hidden">
-            {/* Header */}
-            <div className="relative p-6 border-b border-border/30">
+        <DialogPortal>
+          {/* Custom overlay with gradient background */}
+          <DialogOverlay 
+            className="fixed inset-0 z-50 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0"
+            style={{background: 'var(--gradient-soft)'}}
+          />
+          {/* Custom content */}
+          <DialogPrimitive.Content
+            className="fixed left-[50%] top-[50%] z-50 grid w-full max-w-4xl translate-x-[-50%] translate-y-[-50%] duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] max-h-[90vh] p-0 border-none"
+          >
+            <div className="bg-background/20 backdrop-blur-md rounded-3xl border border-border/30 shadow-2xl overflow-hidden">
+              {/* Header */}
+              <div className="relative p-6 border-b border-border/30">
               <button
                 onClick={handleCloseDialog}
                 className="absolute right-6 top-6 p-2 rounded-full bg-background/50 hover:bg-background/70 transition-colors"
@@ -246,8 +253,9 @@ export default function Blog() {
                 </>
               )}
             </div>
-          </div>
-        </DialogContent>
+            </div>
+          </DialogPrimitive.Content>
+        </DialogPortal>
       </Dialog>
     </div>
   );
