@@ -70,6 +70,18 @@ Deno.serve(async (req) => {
       )
     }
 
+    // Check if code is already used
+    if (validCode.is_used) {
+      console.error('Admin code already used:', validCode.used_at)
+      return new Response(
+        JSON.stringify({ error: 'Admin code already used' }),
+        { 
+          status: 401,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        }
+      )
+    }
+
     console.log('Admin code validation successful')
 
     if (req.method === 'POST') {

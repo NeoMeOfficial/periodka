@@ -65,9 +65,25 @@ export default function BlogPostForm({ adminCode, onPostCreated }: BlogPostFormP
       }
     } catch (error) {
       console.error('Error creating blog post:', error);
+      
+      let errorMessage = 'Nepodarilo sa vytvoriť článok.';
+      
+      // Handle different types of errors
+      if (error instanceof Error) {
+        if (error.message.includes('Failed to fetch')) {
+          errorMessage = 'Problém s pripojením. Skúste to znova.';
+        } else if (error.message.includes('Invalid admin code')) {
+          errorMessage = 'Neplatný admin kód.';
+        } else if (error.message.includes('Admin code expired')) {
+          errorMessage = 'Admin kód expiroval.';
+        } else if (error.message.includes('Admin code already used')) {
+          errorMessage = 'Admin kód už bol použitý.';
+        }
+      }
+      
       toast({
         title: 'Chyba',
-        description: 'Nepodarilo sa vytvoriť článok.',
+        description: errorMessage,
         variant: 'destructive',
       });
     } finally {
