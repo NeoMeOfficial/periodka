@@ -232,18 +232,23 @@ export default function Blog() {
                         <button
                           key={post.id}
                           onClick={() => setSelectedPost(post)}
-                          className={`p-3 bg-background rounded-lg border transition-all text-left ${
+                          className={`p-3 bg-background rounded-lg border-2 transition-all text-left ${
                             selectedPost?.id === post.id 
-                              ? 'border-primary/50 shadow-elegant' 
-                              : 'border-border/30 hover:border-border/50 hover:shadow-soft'
+                              ? 'border-primary shadow-elegant' 
+                              : 'border-primary/50 hover:border-primary hover:shadow-soft'
                           }`}
                         >
-                          <h4 className="text-xs font-medium text-foreground line-clamp-2">
+                          <h4 className="text-xs font-medium text-foreground line-clamp-2 mb-2">
                             {post.title}
                           </h4>
-                          <p className="text-xs text-muted-foreground mt-1">
-                            {post.read_time}
-                          </p>
+                          <div className="flex items-center justify-between">
+                            <p className="text-xs text-muted-foreground">
+                              {post.read_time}
+                            </p>
+                            <span className="text-xs font-medium text-primary">
+                              Prečitať
+                            </span>
+                          </div>
                         </button>
                       ))}
                     </div>
