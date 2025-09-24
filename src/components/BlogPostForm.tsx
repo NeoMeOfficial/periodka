@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
+import RichTextEditor from './RichTextEditor';
 
 interface BlogPostFormProps {
   adminCode: string;
@@ -96,26 +96,24 @@ export default function BlogPostForm({ adminCode, onPostCreated }: BlogPostFormP
 
           <div>
             <Label htmlFor="excerpt">Popis článku *</Label>
-            <Textarea
+            <Input
               id="excerpt"
               value={formData.excerpt}
               onChange={(e) => setFormData({ ...formData, excerpt: e.target.value })}
               placeholder="Krátky popis článku"
               className="mt-1"
-              rows={3}
             />
           </div>
 
           <div>
             <Label htmlFor="content">Obsah článku *</Label>
-            <Textarea
-              id="content"
-              value={formData.content}
-              onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-              placeholder="Celý obsah článku"
-              className="mt-1"
-              rows={10}
-            />
+            <div className="mt-1">
+              <RichTextEditor
+                value={formData.content}
+                onChange={(content) => setFormData({ ...formData, content })}
+                placeholder="Celý obsah článku"
+              />
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
