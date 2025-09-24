@@ -318,10 +318,29 @@ export default function Blog() {
                               <h4 className="text-sm font-medium text-foreground line-clamp-2 mb-3">
                                 {post.title}
                               </h4>
-                              <div className="flex items-center justify-between">
-                                <p className="text-xs text-muted-foreground">
-                                  {post.read_time}
-                                </p>
+                              
+                              {/* Mobile horizontal info layout */}
+                              <div className="flex items-center justify-between text-xs text-muted-foreground mb-3">
+                                <div className="flex items-center gap-3 flex-1 min-w-0">
+                                  <span className="whitespace-nowrap">
+                                    {new Date(post.created_at).toLocaleDateString('sk-SK')}
+                                  </span>
+                                  {post.author && (
+                                    <>
+                                      <span className="text-border">•</span>
+                                      <span className="truncate">
+                                        {post.author}
+                                      </span>
+                                    </>
+                                  )}
+                                  <span className="text-border">•</span>
+                                  <span className="whitespace-nowrap">
+                                    {post.read_time}
+                                  </span>
+                                </div>
+                              </div>
+                              
+                              <div className="flex items-center justify-end">
                                 <span className="text-xs font-medium text-primary">
                                   Prečitať
                                 </span>
