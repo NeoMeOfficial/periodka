@@ -43,6 +43,7 @@ export default function AdminDashboard() {
     setLoading(true);
     try {
       const { data, error } = await supabase.functions.invoke('blog-management', {
+        method: 'GET',
         headers: {
           'x-admin-code': adminCode,
         },
