@@ -61,10 +61,10 @@ export const FloHero = () => {
                 <span className="whitespace-nowrap">
                   <span className="text-foreground">som </span>
                   <span className="brand-text text-primary">Periodka</span>
+                  <span className="text-foreground">.</span>
                 </span>
-                <span className="text-foreground">.</span>
                 <br />
-                <span className="text-foreground">Ukážem ti <span className="highlight-text">ako</span> a <span className="highlight-text">kedy</span> sa o seba starať. <span className="highlight-text">Bodka</span>.</span>
+                <span className="text-foreground">Ukážem ti <span className="highlight-text">ako</span> a <span className="highlight-text">kedy</span> sa o seba starať<span className="whitespace-nowrap">. <span className="highlight-text">Bodka</span>.</span></span>
               </h1>
               
               <p className="text-xl text-muted-foreground leading-relaxed max-w-lg">
