@@ -75,7 +75,7 @@ export default function Blog() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-soft">
+    <div className="min-h-screen" style={{background: 'var(--gradient-soft)'}}>
       <FloNavigation />
       
       <main className="pt-32 pb-16">
