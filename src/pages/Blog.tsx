@@ -21,6 +21,10 @@ export default function Blog() {
   const [loading, setLoading] = useState(true);
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [velocity, setVelocity] = useState(0);
 
   useEffect(() => {
     fetchBlogPosts();
@@ -73,6 +77,65 @@ export default function Blog() {
   const getNextPost = () => {
     const currentIndex = getCurrentPostIndex();
     return currentIndex < blogPosts.length - 1 ? blogPosts[currentIndex + 1] : blogPosts[0];
+  };
+
+  // Get articles for selection (exclude current article)
+  const getArticlesForSelection = () => {
+    return blogPosts.filter(post => post.id !== selectedPost?.id).slice(0, 3);
+  };
+
+  // Handle touch events for mobile swipe
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setIsDragging(true);
+    setStartX(e.touches[0].clientX);
+    setVelocity(0);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging) return;
+    
+    const currentX = e.touches[0].clientX;
+    const deltaX = currentX - startX;
+    const newVelocity = deltaX * 0.02; // Sensitivity adjustment
+    
+    setVelocity(newVelocity);
+    setScrollPosition(prev => Math.max(-200, Math.min(200, prev + deltaX * 0.5)));
+    setStartX(currentX);
+  };
+
+  const handleTouchEnd = () => {
+    setIsDragging(false);
+    
+    // Apple-style momentum with smooth deceleration
+    let currentVelocity = velocity;
+    let currentPosition = scrollPosition;
+    
+    const decelerate = () => {
+      currentVelocity *= 0.92; // Deceleration factor (Apple-like)
+      currentPosition += currentVelocity;
+      
+      // Snap to bounds
+      if (currentPosition > 50) {
+        currentPosition = 0;
+        currentVelocity = 0;
+      } else if (currentPosition < -50) {
+        currentPosition = 0;
+        currentVelocity = 0;
+      }
+      
+      setScrollPosition(currentPosition);
+      
+      // Continue animation if velocity is significant
+      if (Math.abs(currentVelocity) > 0.1) {
+        requestAnimationFrame(decelerate);
+      } else {
+        setScrollPosition(0); // Snap to center
+      }
+    };
+    
+    if (Math.abs(currentVelocity) > 0.1) {
+      requestAnimationFrame(decelerate);
+    }
   };
 
   return (
@@ -227,16 +290,14 @@ export default function Blog() {
                   {/* Article Selection */}
                   <div className="p-6 pt-0">
                     <h3 className="text-sm font-medium text-muted-foreground mb-4">Ďalšie články</h3>
-                    <div className="grid grid-cols-3 gap-3">
-                      {blogPosts.slice(0, 3).map((post, index) => (
+                    
+                    {/* Desktop: Grid Layout */}
+                    <div className="hidden md:grid grid-cols-3 gap-3">
+                      {getArticlesForSelection().map((post) => (
                         <button
                           key={post.id}
                           onClick={() => setSelectedPost(post)}
-                          className={`p-3 bg-background rounded-lg border-2 transition-all text-left ${
-                            selectedPost?.id === post.id 
-                              ? 'border-primary shadow-elegant' 
-                              : 'border-primary/50 hover:border-primary hover:shadow-soft'
-                          }`}
+                          className="p-3 bg-background rounded-lg border-2 border-primary/50 hover:border-primary hover:shadow-soft transition-all text-left"
                         >
                           <h4 className="text-xs font-medium text-foreground line-clamp-2 mb-2">
                             {post.title}
@@ -251,6 +312,46 @@ export default function Blog() {
                           </div>
                         </button>
                       ))}
+                    </div>
+
+                    {/* Mobile: Swipeable Carousel */}
+                    <div className="md:hidden relative">
+                      {/* Fade masks */}
+                      <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-background/80 to-transparent z-10 pointer-events-none"></div>
+                      <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-background/80 to-transparent z-10 pointer-events-none"></div>
+                      
+                      {/* Swipeable container */}
+                      <div 
+                        className="flex gap-3 overflow-hidden px-4 transition-transform duration-300 ease-out"
+                        style={{ 
+                          transform: `translateX(${scrollPosition}px)`,
+                          transitionDuration: isDragging ? '0ms' : '300ms',
+                          transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' // Apple-style easing
+                        }}
+                        onTouchStart={handleTouchStart}
+                        onTouchMove={handleTouchMove}
+                        onTouchEnd={handleTouchEnd}
+                      >
+                        {getArticlesForSelection().map((post) => (
+                          <button
+                            key={post.id}
+                            onClick={() => setSelectedPost(post)}
+                            className="flex-shrink-0 w-64 p-3 bg-background rounded-lg border-2 border-primary/50 hover:border-primary hover:shadow-soft transition-all text-left"
+                          >
+                            <h4 className="text-xs font-medium text-foreground line-clamp-2 mb-2">
+                              {post.title}
+                            </h4>
+                            <div className="flex items-center justify-between">
+                              <p className="text-xs text-muted-foreground">
+                                {post.read_time}
+                              </p>
+                              <span className="text-xs font-medium text-primary">
+                                Prečitať
+                              </span>
+                            </div>
+                          </button>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </>
