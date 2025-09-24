@@ -275,27 +275,34 @@ export default function Blog() {
                       </div>
                       
                       {/* Swipeable container */}
-                      <div 
-                        className="flex transition-transform duration-300 ease-out"
-                        style={{ 
-                          transform: `translateX(-${currentIndex * 100}%)`,
-                        }}
-                        onTouchStart={handleTouchStart}
-                        onTouchMove={handleTouchMove}
-                        onTouchEnd={handleTouchEnd}
-                      >
-                        {getArticlesForSelection().map((post, index) => (
-                          <div key={post.id} className="w-full flex-shrink-0 px-2">
-                            <button
-                              onClick={() => setSelectedPost(post)}
-                              className="w-full p-4 bg-background rounded-lg border-2 border-primary/50 hover:border-primary hover:shadow-soft transition-all text-left"
-                            >
-                              <h4 className="text-sm font-medium text-foreground line-clamp-2">
-                                {post.title}
-                              </h4>
-                            </button>
-                          </div>
-                        ))}
+                      <div className="relative">
+                        <div 
+                          className="flex transition-transform duration-300 ease-out"
+                          style={{ 
+                            transform: `translateX(-${currentIndex * 75}%)`,
+                          }}
+                          onTouchStart={handleTouchStart}
+                          onTouchMove={handleTouchMove}
+                          onTouchEnd={handleTouchEnd}
+                        >
+                          {getArticlesForSelection().map((post, index) => (
+                            <div key={post.id} className="w-3/4 flex-shrink-0 pr-4">
+                              <button
+                                onClick={() => setSelectedPost(post)}
+                                className={`w-full p-4 bg-background rounded-lg border-2 border-primary/50 hover:border-primary hover:shadow-soft transition-all text-left ${
+                                  index === currentIndex + 1 ? 'opacity-60' : 'opacity-100'
+                                }`}
+                              >
+                                <h4 className="text-sm font-medium text-foreground line-clamp-2">
+                                  {post.title}
+                                </h4>
+                              </button>
+                            </div>
+                          ))}
+                        </div>
+                        
+                        {/* Fade gradient on the right */}
+                        <div className="absolute top-0 right-0 w-8 h-full bg-gradient-to-l from-background/80 to-transparent pointer-events-none" />
                       </div>
                       
                       {/* Swipe indicators */}
