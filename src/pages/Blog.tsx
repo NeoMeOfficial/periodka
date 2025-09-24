@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { FloNavigation } from '@/components/FloNavigation';
 import { FloFooter } from '@/components/FloFooter';
-import { Calendar, Clock, User } from 'lucide-react';
+import { Calendar, Clock, User, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
 
 interface BlogPost {
   id: string;
   title: string;
   excerpt: string;
+  content: string;
   author: string;
   read_time: string;
   created_at: string;
@@ -16,6 +18,8 @@ interface BlogPost {
 export default function Blog() {
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   useEffect(() => {
     fetchBlogPosts();
@@ -25,7 +29,7 @@ export default function Blog() {
     try {
       const { data, error } = await supabase
         .from('blog_posts')
-        .select('*')
+        .select('id, title, excerpt, content, author, read_time, created_at')
         .eq('published', true)
         .order('created_at', { ascending: false });
 
@@ -36,6 +40,38 @@ export default function Blog() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handlePostClick = (post: BlogPost) => {
+    setSelectedPost(post);
+    setIsDialogOpen(true);
+  };
+
+  const handleCloseDialog = () => {
+    setIsDialogOpen(false);
+    setSelectedPost(null);
+  };
+
+  const getCurrentPostIndex = () => {
+    if (!selectedPost) return -1;
+    return blogPosts.findIndex(post => post.id === selectedPost.id);
+  };
+
+  const goToNextPost = () => {
+    const currentIndex = getCurrentPostIndex();
+    const nextIndex = (currentIndex + 1) % blogPosts.length;
+    setSelectedPost(blogPosts[nextIndex]);
+  };
+
+  const goToPrevPost = () => {
+    const currentIndex = getCurrentPostIndex();
+    const prevIndex = currentIndex === 0 ? blogPosts.length - 1 : currentIndex - 1;
+    setSelectedPost(blogPosts[prevIndex]);
+  };
+
+  const getNextPost = () => {
+    const currentIndex = getCurrentPostIndex();
+    return currentIndex < blogPosts.length - 1 ? blogPosts[currentIndex + 1] : blogPosts[0];
   };
 
   return (
@@ -56,44 +92,45 @@ export default function Blog() {
               </p>
             </div>
 
-            {/* Blog Posts */}
-            <div className="space-y-8">
+            {/* Blog Posts Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {loading ? (
-                <div className="text-center py-12">
+                <div className="col-span-full text-center py-12">
                   <p className="text-muted-foreground">Načítavajú sa články...</p>
                 </div>
               ) : blogPosts.length === 0 ? (
-                <div className="text-center py-12">
+                <div className="col-span-full text-center py-12">
                   <p className="text-muted-foreground">Žiadne články zatiaľ neboli publikované.</p>
                 </div>
               ) : (
                 blogPosts.map((post) => (
                   <article 
                     key={post.id}
-                    className="bg-background/50 backdrop-blur-sm rounded-2xl p-8 border border-border/50 shadow-elegant hover:shadow-elevated transition-all cursor-pointer group"
+                    onClick={() => handlePostClick(post)}
+                    className="bg-background/50 backdrop-blur-sm rounded-2xl p-6 border border-border/50 shadow-elegant hover:shadow-elevated transition-all cursor-pointer group hover:scale-105 aspect-[4/5] flex flex-col"
                   >
-                    <div className="space-y-4">
-                      <h2 className="text-2xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                    <div className="flex-1 space-y-4">
+                      <h2 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-2">
                         {post.title}
                       </h2>
                       
-                      <p className="text-muted-foreground text-lg leading-relaxed">
+                      <p className="text-muted-foreground leading-relaxed line-clamp-3 flex-1">
                         {post.excerpt}
                       </p>
                       
-                      <div className="flex items-center gap-6 text-sm text-muted-foreground">
+                      <div className="space-y-2 text-xs text-muted-foreground mt-auto">
                         <div className="flex items-center gap-2">
-                          <Calendar className="w-4 h-4" />
+                          <Calendar className="w-3 h-3" />
                           <span>{new Date(post.created_at).toLocaleDateString('sk-SK')}</span>
                         </div>
                         {post.author && (
                           <div className="flex items-center gap-2">
-                            <User className="w-4 h-4" />
+                            <User className="w-3 h-3" />
                             <span>{post.author}</span>
                           </div>
                         )}
                         <div className="flex items-center gap-2">
-                          <Clock className="w-4 h-4" />
+                          <Clock className="w-3 h-3" />
                           <span>{post.read_time}</span>
                         </div>
                       </div>
@@ -127,6 +164,88 @@ export default function Blog() {
       </main>
 
       <FloFooter />
+
+      {/* Blog Post Reading Dialog */}
+      <Dialog open={isDialogOpen} onOpenChange={handleCloseDialog}>
+        <DialogContent className="max-w-4xl max-h-[90vh] p-0 bg-transparent border-none">
+          <div className="bg-background/20 backdrop-blur-md rounded-3xl border border-border/30 shadow-2xl overflow-hidden">
+            {/* Header */}
+            <div className="relative p-6 border-b border-border/30">
+              <button
+                onClick={handleCloseDialog}
+                className="absolute right-6 top-6 p-2 rounded-full bg-background/50 hover:bg-background/70 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              
+              {selectedPost && (
+                <div className="pr-16">
+                  <h1 className="text-2xl font-bold text-foreground mb-3">
+                    {selectedPost.title}
+                  </h1>
+                  <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                    <div className="flex items-center gap-2">
+                      <Calendar className="w-4 h-4" />
+                      <span>{new Date(selectedPost.created_at).toLocaleDateString('sk-SK')}</span>
+                    </div>
+                    {selectedPost.author && (
+                      <div className="flex items-center gap-2">
+                        <User className="w-4 h-4" />
+                        <span>{selectedPost.author}</span>
+                      </div>
+                    )}
+                    <div className="flex items-center gap-2">
+                      <Clock className="w-4 h-4" />
+                      <span>{selectedPost.read_time}</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Content Area */}
+            <div className="relative">
+              {selectedPost && (
+                <>
+                  {/* Main Content - White Box */}
+                  <div className="bg-background rounded-2xl m-6 p-8 shadow-inner max-h-[60vh] overflow-y-auto">
+                    <div 
+                      className="prose prose-lg max-w-none text-foreground"
+                      dangerouslySetInnerHTML={{ __html: selectedPost.content }}
+                    />
+                  </div>
+
+                  {/* Navigation */}
+                  <div className="p-6 pt-0 flex items-center justify-between">
+                    {/* Previous Article */}
+                    <button
+                      onClick={goToPrevPost}
+                      className="flex items-center gap-3 p-4 bg-background/30 backdrop-blur-sm rounded-xl border border-border/30 hover:bg-background/40 transition-colors group"
+                    >
+                      <ChevronLeft className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
+                      <span className="text-sm text-muted-foreground">Predchádzajúci</span>
+                    </button>
+
+                    {/* Next Article Preview */}
+                    <button
+                      onClick={goToNextPost}
+                      className="flex items-center gap-3 p-4 bg-background/30 backdrop-blur-sm rounded-xl border border-border/30 hover:bg-background/40 transition-colors group max-w-xs"
+                    >
+                      <div className="flex-1 text-left">
+                        <div className="text-xs text-muted-foreground mb-1">Ďalší článok</div>
+                        <div className="text-sm font-medium text-foreground line-clamp-2">
+                          {getNextPost()?.title}
+                        </div>
+                      </div>
+                      <ChevronRight className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
