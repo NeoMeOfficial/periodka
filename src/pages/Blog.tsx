@@ -167,7 +167,10 @@ export default function Blog() {
 
       {/* Blog Post Reading Dialog */}
       <Dialog open={isDialogOpen} onOpenChange={handleCloseDialog}>
-        <DialogContent className="max-w-4xl max-h-[90vh] p-0 bg-transparent border-none">
+        <DialogContent 
+          className="max-w-4xl max-h-[90vh] p-0 border-none"
+          style={{background: 'var(--gradient-soft)'}}
+        >
           <div className="bg-background/20 backdrop-blur-md rounded-3xl border border-border/30 shadow-2xl overflow-hidden">
             {/* Header */}
             <div className="relative p-6 border-b border-border/30">
