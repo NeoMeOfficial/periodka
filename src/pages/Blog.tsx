@@ -293,11 +293,11 @@ export default function Blog() {
                             <div key={post.id} className="w-3/4 flex-shrink-0 pr-4">
                               <button
                                 onClick={() => setSelectedPost(post)}
-                                className={`w-full p-4 bg-background rounded-lg border-2 border-primary/50 hover:border-primary hover:shadow-soft transition-all text-left ${
+                                className={`w-full h-20 p-4 bg-background rounded-lg border-2 border-primary/50 hover:border-primary hover:shadow-soft transition-all text-left flex items-center ${
                                   index === currentIndex + 1 ? 'opacity-60' : 'opacity-100'
                                 }`}
                               >
-                                <h4 className="text-sm font-medium text-foreground line-clamp-2">
+                                <h4 className="text-sm font-medium text-foreground line-clamp-2 leading-tight">
                                   {post.title}
                                 </h4>
                               </button>
