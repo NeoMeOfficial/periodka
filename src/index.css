@@ -394,4 +394,56 @@ All colors MUST be HSL.
     transform: translateY(-1px);
     box-shadow: var(--symptom-glass-shadow), 0 8px 25px rgba(0, 0, 0, 0.1);
   }
+
+  /* Liquid Loading Animation */
+  .liquid-loader {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .liquid-dot {
+    width: 12px;
+    height: 12px;
+    background: linear-gradient(135deg, hsl(330, 70%, 70%), hsl(340, 80%, 75%));
+    border-radius: 50%;
+    animation: liquid-morph 1.8s ease-in-out infinite;
+    transform-origin: center;
+  }
+
+  .liquid-dot:nth-child(1) {
+    animation-delay: -0.6s;
+  }
+
+  .liquid-dot:nth-child(2) {
+    animation-delay: -0.3s;
+  }
+
+  .liquid-dot:nth-child(3) {
+    animation-delay: 0s;
+  }
+
+  @keyframes liquid-morph {
+    0%, 100% {
+      transform: scale(0.2) rotate(0deg);
+      opacity: 0.3;
+      border-radius: 50%;
+    }
+    25% {
+      transform: scale(1.2) rotate(90deg);
+      opacity: 1;
+      border-radius: 60% 40% 30% 70%;
+    }
+    50% {
+      transform: scale(1) rotate(180deg);
+      opacity: 0.8;
+      border-radius: 40% 60% 70% 30%;
+    }
+    75% {
+      transform: scale(0.8) rotate(270deg);
+      opacity: 0.6;
+      border-radius: 70% 30% 40% 60%;
+    }
+  }
 }

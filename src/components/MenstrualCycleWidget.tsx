@@ -36,7 +36,11 @@ export function MenstrualCycleWidget({ userAccessCode }: { userAccessCode?: stri
     <div className="relative w-full h-full">
       {isLoading && (
         <div className="absolute inset-0 flex items-center justify-center bg-background/80 rounded-[2.2rem] z-10">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+          <div className="liquid-loader">
+            <div className="liquid-dot"></div>
+            <div className="liquid-dot"></div>
+            <div className="liquid-dot"></div>
+          </div>
         </div>
       )}
       <iframe 
