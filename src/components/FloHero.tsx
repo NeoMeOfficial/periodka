@@ -32,10 +32,10 @@ export const FloHero = () => {
   };
 
   const handleIframeLoad = () => {
-    // Add a longer delay to ensure the widget inside the iframe is fully rendered and interactive
+    // Shorter delay to ensure widget is ready but faster loading
     setTimeout(() => {
       setIsWidgetLoading(false);
-    }, 3000); // Keep loading for 3 seconds after iframe loads to ensure widget is ready
+    }, 800); // Reduced to 800ms for faster loading
   };
 
   return (
