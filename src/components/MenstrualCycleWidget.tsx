@@ -2,12 +2,14 @@ import { useEffect, useState } from 'react';
 
 export function MenstrualCycleWidget({ userAccessCode }: { userAccessCode?: string }) {
   const [isLoading, setIsLoading] = useState(true);
-  const [widgetKey, setWidgetKey] = useState(Date.now());
+  const [widgetKey, setWidgetKey] = useState(() => Date.now());
+
+  // Generate new widget key whenever component mounts to force fresh instance
   useEffect(() => {
-    // Reset widget key and clear any stored data on mount
-    setWidgetKey(Date.now());
+    const newKey = Date.now() + Math.random();
+    setWidgetKey(newKey);
     setIsLoading(true);
-  }, []);
+  }, [userAccessCode]);
 
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {

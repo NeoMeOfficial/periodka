@@ -25,7 +25,8 @@ export const FloHero = () => {
         behavior: 'smooth', 
         block: 'center' 
       });
-      // Show the widget after scrolling
+      // Force complete widget reset
+      setShowWidget(false);
       setTimeout(() => {
         setShowWidget(true);
       }, 800);
