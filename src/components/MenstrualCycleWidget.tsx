@@ -2,32 +2,47 @@ import { useEffect, useState } from 'react';
 
 export function MenstrualCycleWidget({ userAccessCode }: { userAccessCode?: string }) {
   const [isLoading, setIsLoading] = useState(true);
+  const [widgetKey, setWidgetKey] = useState(Date.now());
+  useEffect(() => {
+    // Reset widget key and clear any stored data on mount
+    setWidgetKey(Date.now());
+    setIsLoading(true);
+  }, []);
+
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
       // For development, we'll allow the widget origin. In production, verify the origin
       // if (event.origin !== 'https://preview--neomeapp.lovable.app') return;
       
       if (event.data.type === 'WIDGET_REQUEST_ACCESS_CODE') {
-        const iframe = document.getElementById('cycle-widget') as HTMLIFrameElement;
+        const iframe = document.getElementById(`cycle-widget-${widgetKey}`) as HTMLIFrameElement;
         iframe?.contentWindow?.postMessage({
           type: 'WIDGET_RECEIVE_ACCESS_CODE',
-          payload: { accessCode: userAccessCode }
+          payload: { accessCode: userAccessCode, clearData: true }
         }, '*');
       }
     };
 
     window.addEventListener('message', handleMessage);
     return () => window.removeEventListener('message', handleMessage);
-  }, [userAccessCode]);
+  }, [userAccessCode, widgetKey]);
 
   const handleIframeLoad = () => {
-    // Initialize widget with access code when iframe loads
-    const iframe = document.getElementById('cycle-widget') as HTMLIFrameElement;
+    // Clear any existing data and initialize with fresh state
+    const iframe = document.getElementById(`cycle-widget-${widgetKey}`) as HTMLIFrameElement;
     if (iframe?.contentWindow) {
+      // Send message to clear all stored data
       iframe.contentWindow.postMessage({
-        type: 'WIDGET_RECEIVE_ACCESS_CODE',
-        payload: { accessCode: userAccessCode || 'demo-user' }
+        type: 'WIDGET_CLEAR_DATA'
       }, '*');
+      
+      // Initialize with fresh access code
+      setTimeout(() => {
+        iframe.contentWindow?.postMessage({
+          type: 'WIDGET_RECEIVE_ACCESS_CODE',
+          payload: { accessCode: userAccessCode || 'demo-user', clearData: true }
+        }, '*');
+      }, 100);
     }
     setIsLoading(false);
   };
@@ -44,8 +59,9 @@ export function MenstrualCycleWidget({ userAccessCode }: { userAccessCode?: stri
         </div>
       )}
       <iframe 
-        id="cycle-widget"
-        src="https://preview--neomeapp.lovable.app/menstrual-calendar"
+        key={widgetKey}
+        id={`cycle-widget-${widgetKey}`}
+        src={`https://preview--neomeapp.lovable.app/menstrual-calendar?t=${widgetKey}&fresh=true`}
         className="w-full h-full border-0 rounded-[2.2rem]"
         title="Menstrual Cycle Widget"
         onLoad={handleIframeLoad}
