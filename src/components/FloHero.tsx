@@ -291,7 +291,14 @@ export const FloHero = () => {
                  style={{
                    boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(0, 0, 0, 0.05)'
                  }}>
-              <MenstrualCycleWidget key={isModalOpen ? Date.now() : 'closed'} userAccessCode="demo-user" />
+              <iframe 
+                src="https://neomeapp.lovable.app/menstrual-calendar"
+                width="100%" 
+                height="600"
+                frameBorder="0"
+                style={{ border: 'none', borderRadius: '8px' }}
+                key={isModalOpen ? Date.now() : 'closed'}
+              />
             </div>
           </div>
         </DialogContent>
