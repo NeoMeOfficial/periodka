@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
-import { Star, TrendingUp, Calendar as CalendarIcon, Clock, Activity, Edit3 } from 'lucide-react';
+import { Star, TrendingUp, Calendar as CalendarIcon, Clock, Activity, Edit3, X } from 'lucide-react';
 import { format } from 'date-fns';
 import { cn } from '@/lib/utils';
 import { useNavigate } from 'react-router-dom';
@@ -13,24 +14,18 @@ import { MenstrualCycleWidget } from '@/components/MenstrualCycleWidget';
 export const FloHero = () => {
   const [showEntries, setShowEntries] = useState(false);
   const [showWidget, setShowWidget] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [lastPeriodDate, setLastPeriodDate] = useState<Date>(new Date(2025, 8, 5)); // September 5, 2025
   const [cycleLength, setCycleLength] = useState(28);
   const [periodLength, setPeriodLength] = useState(5);
   const navigate = useNavigate();
 
-  const scrollToMobileFrame = () => {
-    const mobileFrame = document.getElementById('mobile-questionnaire');
-    if (mobileFrame) {
-      mobileFrame.scrollIntoView({ 
-        behavior: 'smooth', 
-        block: 'center' 
-      });
-      // Force complete widget reset
-      setShowWidget(false);
-      setTimeout(() => {
-        setShowWidget(true);
-      }, 800);
-    }
+  const openWidgetModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -80,7 +75,7 @@ export const FloHero = () => {
                 variant="primary" 
                 className="bg-gradient-primary-button" 
                 style={{ color: '#F4415F' }}
-                onClick={scrollToMobileFrame}
+                onClick={openWidgetModal}
               >
                 <TrendingUp className="w-4 h-4" />
                 Chcem si to vyskúšať
@@ -235,7 +230,7 @@ export const FloHero = () => {
                               variant="primary" 
                               className="w-full bg-gradient-primary-button"
                               style={{ color: '#F4415F' }}
-                              onClick={scrollToMobileFrame}
+                              onClick={openWidgetModal}
                             >
                               <TrendingUp className="w-4 h-4" />
                               Chcem si to vyskúšať
@@ -270,6 +265,37 @@ export const FloHero = () => {
           </div>
         </div>
       </div>
+
+      {/* Modal for Menstrual Cycle Widget */}
+      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+        <DialogContent className="max-w-md w-full h-[600px] p-0 bg-transparent border-0 shadow-none">
+          <div className="w-full h-full bg-gradient-primary rounded-[3rem] p-1 shadow-elegant relative overflow-hidden" 
+               style={{
+                 boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
+               }}>
+            
+            {/* Close button */}
+            <button
+              onClick={closeModal}
+              className="absolute top-4 right-4 z-50 w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
+            >
+              <X className="w-4 h-4 text-white" />
+            </button>
+            
+            {/* Phone bezel styling */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-white/10 to-transparent rounded-[3rem] backdrop-blur-sm"></div>
+            <div className="absolute inset-1 bg-gradient-to-br from-white/20 via-transparent to-white/5 rounded-[2.8rem] backdrop-blur-lg border border-white/30"></div>
+            
+            {/* Widget container */}
+            <div className="absolute inset-2 bg-background rounded-[2.2rem] overflow-hidden" 
+                 style={{
+                   boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(0, 0, 0, 0.05)'
+                 }}>
+              <MenstrualCycleWidget key={isModalOpen ? Date.now() : 'closed'} userAccessCode="demo-user" />
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };
