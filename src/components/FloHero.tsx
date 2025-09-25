@@ -15,17 +15,24 @@ export const FloHero = () => {
   const [showEntries, setShowEntries] = useState(false);
   const [showWidget, setShowWidget] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isWidgetLoading, setIsWidgetLoading] = useState(true);
   const [lastPeriodDate, setLastPeriodDate] = useState<Date>(new Date(2025, 8, 5)); // September 5, 2025
   const [cycleLength, setCycleLength] = useState(28);
   const [periodLength, setPeriodLength] = useState(5);
   const navigate = useNavigate();
 
   const openWidgetModal = () => {
+    setIsWidgetLoading(true);
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
+    setIsWidgetLoading(true); // Reset loading state for next time
+  };
+
+  const handleIframeLoad = () => {
+    setIsWidgetLoading(false);
   };
 
   return (
@@ -291,13 +298,30 @@ export const FloHero = () => {
                  style={{
                    boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(0, 0, 0, 0.05)'
                  }}>
+              
+              {/* Loading State */}
+              {isWidgetLoading && (
+                <div className="absolute inset-0 z-10 bg-background rounded-[2.2rem] flex flex-col items-center justify-center gap-6">
+                  <div className="text-center space-y-4">
+                    <h3 className="text-xl font-semibold text-foreground">Pripravujeme</h3>
+                    <div className="liquid-loader">
+                      <div className="liquid-dot"></div>
+                      <div className="liquid-dot"></div>
+                      <div className="liquid-dot"></div>
+                    </div>
+                  </div>
+                </div>
+              )}
+              
+              {/* Widget Iframe */}
               <iframe 
                 src="https://neomeapp.lovable.app/menstrual-calendar"
                 width="100%" 
                 height="600"
                 frameBorder="0"
-                style={{ border: 'none', borderRadius: '8px' }}
+                style={{ border: 'none', borderRadius: '8px', opacity: isWidgetLoading ? 0 : 1 }}
                 key={isModalOpen ? Date.now() : 'closed'}
+                onLoad={handleIframeLoad}
               />
             </div>
           </div>
