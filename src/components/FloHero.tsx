@@ -296,7 +296,7 @@ export const FloHero = () => {
 
       {/* Modal for Menstrual Cycle Widget */}
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogContent className="max-w-md w-full h-[600px] p-0 bg-transparent border-0 shadow-none">
+        <DialogContent className="max-w-5xl w-full h-[90vh] p-0 bg-transparent border-0 shadow-none">
           <div className="w-full h-full bg-gradient-primary rounded-[3rem] p-1 shadow-elegant relative overflow-hidden" 
                style={{
                  boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
