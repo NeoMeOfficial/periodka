@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
@@ -37,6 +37,24 @@ export const FloHero = () => {
       setIsWidgetLoading(false);
     }, 800); // Reduced to 800ms for faster loading
   };
+
+  // Listen for questionnaire completion from the widget
+  useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+      const { type } = event.data;
+      
+      if (type === 'QUESTIONNAIRE_COMPLETED') {
+        // Close the modal and redirect to dashboard
+        setIsModalOpen(false);
+        setIsWidgetLoading(true);
+        // Redirect to dashboard where user can see their full data
+        window.location.href = '/dashboard';
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  }, []);
 
   return (
     <section className="pt-32 pb-16 bg-gradient-soft relative overflow-hidden floating-dots geometric-shapes">
